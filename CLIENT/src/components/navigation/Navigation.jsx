@@ -1,43 +1,49 @@
 import './Navigation.css'
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+
+const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 
 const Navigation = () => {
   return (
-    <div>
+    <>
       <Navbar expand='lg' className='navbg'>
-        <Container fluid>
-          <Navbar.Brand><NavLink to='/'>GeekHub</NavLink></Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbarScroll' />
-          <Navbar.Collapse id='navbarScroll'>
-            <Nav
-              className='me-auto my-2 my-lg-0'
-              style={{ maxHeight: '100px' }}
-              navbarScroll
-            >
-              <NavLink to='/' className='navlinks'>Home</NavLink>
-              <NavDropdown title='Categorias' id='navbarScrollingDropdown'>
-                <NavDropdown.Item to='#action3' className='navdropitem'>Categoria 1</NavDropdown.Item>
-                <NavDropdown.Item to='#action4' className='navdropitem'>Categoria 2</NavDropdown.Item>
-                <NavDropdown.Item to='#action5' className='navdropitem'>Categoria 3</NavDropdown.Item>
-              </NavDropdown>
-              <NavLink to='/about-us' className='navlinks'>Sobre Nosotros</NavLink>
-              <NavLink to='/contact' className='navlinks'>Contacto</NavLink>
-              <NavLink to='/help' className='navlinks'>Ayuda</NavLink>
-            </Nav>
-            <Form className='d-flex'>
-              <Form.Control
-                type='search'
-                placeholder='Search'
-                className='me-2'
-                aria-label='Search'
-              />
-              <Button className='search-btn'>Search</Button>
-            </Form>
-          </Navbar.Collapse>
+        <Container fluid className='mainContainer'>
+          <Container className='firstContainer'>
+            <Navbar.Brand><NavLink to='/'>GeekHub</NavLink></Navbar.Brand>
+          </Container>
+          <Container className='secondContainer'>
+            <Navbar.Toggle aria-controls='navbarScroll' />
+            <div id='navbarScroll'>
+              <Form className='d-flex w-100'>
+                <Form.Control type='search' placeholder='Search' className='mr-sm-2 me-sm-2 w-100' aria-label='Search' />
+                <Button className='search-btn'>Search</Button>
+              </Form>
+              <Nav className='linksContainer me-auto my-2 my-lg-0' style={{ maxHeight: '100px' }} navbarScroll>
+                <NavLink to='/' className='navlinks'>Home</NavLink>
+                <NavDropdown title='Categorias' id='navbarScrollingDropdown'>
+                  <NavDropdown.Item to='#action3' className='navdropitem'>Categoria 1</NavDropdown.Item>
+                  <NavDropdown.Item to='#action4' className='navdropitem'>Categoria 2</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem'>Categoria 3</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem'>Categoria 4</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem'>Categoria 5</NavDropdown.Item>
+                </NavDropdown>
+                <NavLink to='/about-us' className='navlinks'>Sobre Nosotros</NavLink>
+                <NavLink to='/contact' className='navlinks'>Contacto</NavLink>
+                <NavLink to='/help' className='navlinks'>Ayuda</NavLink>
+              </Nav>
+            </div>
+          </Container>
+          <Container className='thirdContainer'>
+            <NavLink to='/register' className='navlinks'>Registrar</NavLink>
+            <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
+            <NavLink to='/login'>{cartLogo}</NavLink>
+          </Container>
         </Container>
       </Navbar>
-    </div>
+    </>
   )
 }
 

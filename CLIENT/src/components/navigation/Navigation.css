@@ -1,8 +1,7 @@
 .navlinks{
     text-decoration: none;
     color: #FFE5E5;
-    padding-top: 7px;
-    margin-left: 7px;
+    margin-top: 7px;
 }
 
 .navbg {
@@ -36,11 +35,41 @@
 .search-btn {
     border: #FFE5E5;
     border-style: outset;
-    background-color:#E0AED0 ;
+    background-color:#E0AED0;
+    width: 25%;
+    margin-right: 10px;
 }
 
 .search-btn:hover {
     border: #FFE5E5;
     border-style: outset;
     background-color:#AC87C5 ;
+}
+
+.mainContainer {
+    display: flex;
+}
+
+.linksContainer {
+    width: 700px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.firstContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.thirdContainer{
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+
+#navbarScroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

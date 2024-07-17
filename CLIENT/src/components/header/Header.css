@@ -1,8 +1,5 @@
-/* .carousel{
-    width: 500px;
-} */
-
-.section-carousel {
-  display: grid;
+.carousel-item img {
+  height: 350px;
   width: 100%;
+  object-fit:fill;
 }
