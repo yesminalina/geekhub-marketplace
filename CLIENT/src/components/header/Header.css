@@ -1,0 +1,8 @@
+/* .carousel{
+    width: 500px;
+} */
+
+.section-carousel {
+  display: grid;
+  width: 100%;
+}
