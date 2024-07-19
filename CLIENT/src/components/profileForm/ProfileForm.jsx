@@ -22,7 +22,7 @@ const ProfileForm = () => {
             </Form>
           </Col>
           <Col md={4}>
-            <Image src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' roundedCircle className='w-50' />
+            <Image src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' roundedCircle fluid className='w-50' />
           </Col>
         </Row>
       </Container>

@@ -5,7 +5,7 @@ import './Profile.css'
 
 const Profile = () => {
   return (
-    <Container className='min-vh-100 py-5'>
+    <Container fluid className='min-vh-100 px-5 py-5'>
       <Row className='min-vh-100'>
         <Col xs={4} className='border-end'>
           <ProfileMenu />
