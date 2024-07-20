@@ -11,19 +11,31 @@ const Header = () => {
         <Carousel.Item interval={2200}>
           <img src={img1} alt='img1' />
           <Carousel.Caption>
-            <h3>Categoria 1</h3>
+            <h3>Juegos de Mesa</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={2200}>
           <img src={img2} alt='img2' />
           <Carousel.Caption>
-            <h3>Categoria 2</h3>
+            <h3>TCG</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={2200}>
           <img src={img3} alt='img3' />
           <Carousel.Caption>
-            <h3>Categoria 3</h3>
+            <h3>Figuras Coleccionables</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2200}>
+          <img src={img3} alt='img4' />
+          <Carousel.Caption>
+            <h3>Mangas y Cómics</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2200}>
+          <img src={img3} alt='img5' />
+          <Carousel.Caption>
+            <h3>Albumes y Laminas</h3>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

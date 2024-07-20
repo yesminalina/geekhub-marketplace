@@ -20,13 +20,13 @@ const PaymentForm = () => {
       <Form.Label>Fecha de vencimiento</Form.Label>
       <Row className='mb-3'>
         <Col xs={2}>
-          <Form.Control placeholder="15" />
+          <Form.Control placeholder='15' />
         </Col>
         <Col xs={6}>
-          <Form.Control placeholder="Noviembre" />
+          <Form.Control placeholder='Noviembre' />
         </Col>
         <Col xs={4}>
-          <Form.Control placeholder="2027" />
+          <Form.Control placeholder='2027' />
         </Col>
       </Row>
       <Button variant='primary' type='submit' size='lg' className='w-100 mt-2'>Pagar</Button>

@@ -24,11 +24,11 @@ const Navigation = () => {
               <Nav className='linksContainer me-auto my-2 my-lg-0' style={{ maxHeight: '100px' }} navbarScroll>
                 <NavLink to='/' className='navlinks'>Home</NavLink>
                 <NavDropdown title='Categorias' id='navbarScrollingDropdown'>
-                  <NavDropdown.Item to='#action3' className='navdropitem'>Categoria 1</NavDropdown.Item>
-                  <NavDropdown.Item to='#action4' className='navdropitem'>Categoria 2</NavDropdown.Item>
-                  <NavDropdown.Item to='#action5' className='navdropitem'>Categoria 3</NavDropdown.Item>
-                  <NavDropdown.Item to='#action5' className='navdropitem'>Categoria 4</NavDropdown.Item>
-                  <NavDropdown.Item to='#action5' className='navdropitem'>Categoria 5</NavDropdown.Item>
+                  <NavDropdown.Item to='#action3' className='navdropitem'>Juegos de Mesa</NavDropdown.Item>
+                  <NavDropdown.Item to='#action4' className='navdropitem'>TCG</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem'>Figuras Coleccionables</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem'>Mangas y Cómics</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem'>Álbunes y Láminas</NavDropdown.Item>
                 </NavDropdown>
                 <NavLink to='/about-us' className='navlinks'>Sobre Nosotros</NavLink>
                 <NavLink to='/contact' className='navlinks'>Contacto</NavLink>
@@ -39,7 +39,7 @@ const Navigation = () => {
           <Container className='thirdContainer'>
             <NavLink to='/register' className='navlinks'>Registrar</NavLink>
             <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
-            <NavLink to='/login'>{cartLogo}</NavLink>
+            <NavLink to='/cart'>{cartLogo}</NavLink>
           </Container>
         </Container>
       </Navbar>
