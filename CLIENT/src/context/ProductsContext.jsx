@@ -5,7 +5,7 @@ const ProductsContextProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const liked = products.filter((product) => product.liked)
   const getProducts = async () => {
-    const res = await fetch('./MOCK_DATA.json')
+    const res = await fetch('./json/MOCK_DATA_PRODUCTS.json')
     const data = await res.json()
     setProducts(data)
   }

@@ -1,34 +1,35 @@
 import './Catalogue.css'
 import { useContext } from 'react'
 import { ProductContext } from '../../context/ProductsContext'
-import IconHeart from './IconHeart'
+import IconHeart from '../../components/iconHeart/IconHeart'
 import { Badge, Dropdown } from 'react-bootstrap'
 
 const Catalogue = () => {
-  const { products, toggleLike } = useContext(ProductContext)
+  const { products } = useContext(ProductContext)
+
+  const listCategory = data.map((category) => category === category.name)
+
   return (
     <>
       <div className='grid-container'>
         <aside>
           <h3>Categorías</h3>
-          {products.map((product) => (
-            <article className='comic' key={product.id}>
-              <a href='#'><p>{product.category}</p></a>
-              <p className='cantidad'>({product.stock})</p>
-            </article>
-          ))}
           <h3>Categorías</h3>
-          <article className='comic'>
-            <a href='#'><p>Comics</p></a>
-            <p className='cantidad'>(50)</p>
+          <article className='Juegos de Mesa'>
+            <a href='#'><p>Juegos de Mesa</p></a>
+            <p className='cantidad'>()</p>
           </article>
-          <article className='manga'>
-            <a href='#'><p>Manga</p></a>
+          <article className='tcg'>
+            <a href='#'><p>TCG</p></a>
             <p className='cantidad'>(150)</p>
           </article>
-          <article className='album'>
-            <a href='#'><p>Album</p></a>
+          <article className='Figures'>
+            <a href='#'><p>Figuras</p></a>
             <p className='cantidad'>(8)</p>
+          </article>
+          <article className='cartas'>
+            <a href='#'><p>Cartas</p></a>
+            <p className='cantidad'>(3)</p>
           </article>
           <article className='cartas'>
             <a href='#'><p>Cartas</p></a>
@@ -50,10 +51,10 @@ const Catalogue = () => {
 
         <div className='gallery grid-columns-5 p-3'>
           {products.map((product) => (
-            <div className='product' key={product.id} style={{ backgroundImage: `url(${product.image})` }} onClick={() => toggleLike(product.id)}>
+            <div className='producto' key={product.id} style={{ backgroundImage: `url(${product.image_url})` }}>
               {product.liked ? <IconHeart filled /> : <IconHeart />}
               <div>
-                <p>{product.product_name}</p>
+                <p>{product.title}</p>
                 <h6><Badge bg='dark'>Precio: {product.price}</Badge></h6>
               </div>
             </div>
@@ -63,4 +64,5 @@ const Catalogue = () => {
     </>
   )
 }
+
 export default Catalogue
