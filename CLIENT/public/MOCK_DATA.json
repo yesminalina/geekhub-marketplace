@@ -1,0 +1,146 @@
+[
+    {
+        "id": 1,
+        "product_name": "Sony Xperia XA2",
+        "image": "http://dummyimage.com/950x625.png/cc0000/ffffff",
+        "price": "$40.90",
+        "liked": false,
+        "category": "Overhead Doors",
+        "stock": 36
+    },
+    {
+        "id": 2,
+        "product_name": "verykool i310",
+        "image": "http://dummyimage.com/950x625.png/cc0000/ffffff",
+        "price": "$1.74",
+        "liked": false,
+        "category": "HVAC",
+        "stock": 26
+    },
+    {
+        "id": 3,
+        "product_name": "Karbonn Sparkle V",
+        "image": "http://dummyimage.com/950x625.png/cc0000/ffffff",
+        "price": "$129.20",
+        "liked": false,
+        "category": "Construction Clean and Final Clean",
+        "stock": 30
+    },
+    {
+        "id": 4,
+        "product_name": "Huawei U8220",
+        "image": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
+        "price": "$59.47",
+        "liked": false,
+        "category": "Glass & Glazing",
+        "stock": 47
+    },
+    {
+        "id": 5,
+        "product_name": "Spice Mi-310",
+        "image": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
+        "price": "$1.38",
+        "liked": false,
+        "category": "Sitework & Site Utilities",
+        "stock": 46
+    },
+    {
+        "id": 6,
+        "product_name": "LG GB270",
+        "image": "http://dummyimage.com/950x625.png/cc0000/ffffff",
+        "price": "$192.50",
+        "liked": false,
+        "category": "Drywall & Acoustical (FED)",
+        "stock": 9
+    },
+    {
+        "id": 7,
+        "product_name": "Samsung S3030 Tobi",
+        "image": "http://dummyimage.com/950x625.png/cc0000/ffffff",
+        "price": "$166.21",
+        "liked": false,
+        "category": "Construction Clean and Final Clean",
+        "stock": 19
+    },
+    {
+        "id": 8,
+        "product_name": "Samsung i8510 INNOV8",
+        "image": "http://dummyimage.com/950x625.png/ff4444/ffffff",
+        "price": "$115.71",
+        "liked": false,
+        "category": "Roofing (Asphalt)",
+        "stock": 2
+    },
+    {
+        "id": 9,
+        "product_name": "BLU C5",
+        "image": "http://dummyimage.com/950x625.png/dddddd/000000",
+        "price": "$182.42",
+        "liked": false,
+        "category": "Masonry & Precast",
+        "stock": 6
+    },
+    {
+        "id": 10,
+        "product_name": "Asus Zenfone 2 Laser ZE500KG",
+        "image": "http://dummyimage.com/950x625.png/dddddd/000000",
+        "price": "$170.37",
+        "liked": false,
+        "category": "Wall Protection",
+        "stock": 17
+    },
+    {
+        "id": 11,
+        "product_name": "Asus Transformer Prime TF700T",
+        "image": "http://dummyimage.com/950x625.png/ff4444/ffffff",
+        "price": "$129.86",
+        "liked": false,
+        "category": "Painting & Vinyl Wall Covering",
+        "stock": 11
+    },
+    {
+        "id": 12,
+        "product_name": "Siemens A62",
+        "image": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
+        "price": "$69.55",
+        "liked": false,
+        "category": "Drywall & Acoustical (FED)",
+        "stock": 24
+    },
+    {
+        "id": 13,
+        "product_name": "alcatel OT 835",
+        "image": "http://dummyimage.com/950x625.png/cc0000/ffffff",
+        "price": "$75.35",
+        "liked": false,
+        "category": "Granite Surfaces",
+        "stock": 17
+    },
+    {
+        "id": 14,
+        "product_name": "Bird S890",
+        "image": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
+        "price": "$109.08",
+        "liked": false,
+        "category": "Roofing (Asphalt)",
+        "stock": 13
+    },
+    {
+        "id": 15,
+        "product_name": "LG C3300",
+        "image": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
+        "price": "$25.16",
+        "liked": false,
+        "category": "Rebar & Wire Mesh Install",
+        "stock": 33
+    },
+    {
+        "id": 16,
+        "product_name": "Samsung X700",
+        "image": "http://dummyimage.com/950x625.png/ff4444/ffffff",
+        "price": "$47.41",
+        "liked": false,
+        "category": "Retaining Wall and Brick Pavers",
+        "stock": 37
+    }
+]

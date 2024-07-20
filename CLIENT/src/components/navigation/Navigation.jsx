@@ -19,7 +19,7 @@ const Navigation = () => {
             <div id='navbarScroll'>
               <Form className='d-flex w-100'>
                 <Form.Control type='search' placeholder='Search' className='mr-sm-2 me-sm-2 w-100' aria-label='Search' />
-                <Button className='search-btn'>Search</Button>
+                <Button className='search-btn' bsPrefix='custom-btn'>Search</Button>
               </Form>
               <Nav className='linksContainer me-auto my-2 my-lg-0' style={{ maxHeight: '100px' }} navbarScroll>
                 <NavLink to='/' className='navlinks'>Home</NavLink>
