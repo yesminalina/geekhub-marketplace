@@ -2,6 +2,11 @@ import './Favorites.css'
 import { useContext } from 'react'
 import { ProductContext } from '../../context/ProductsContext'
 import { Button, Col, Container, Row } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+
+const cart = <FontAwesomeIcon icon={faShoppingCart} size='1x' />
+
 const Favorites = () => {
   const { liked, products } = useContext(ProductContext)
   return (
@@ -13,9 +18,9 @@ const Favorites = () => {
             <div key={like.id}>
               <div className='d-flex justify-content-between w-100'>
                 <div className='d-flex gap-2 justify-content-start align-items-center'>
-                  <img src={like.image} alt='' style={{ width: '180px', cursor: 'pointer', paddingLeft: '20px' }} /* onClick={() => verPizzaDetalles(filtroPizza.id)} */ />
+                  <img src={like.image_url} alt='' style={{ width: '180px', cursor: 'pointer', paddingLeft: '20px' }} /* onClick={() => productoDetails(like.id)} */ />
                   <div className='containerFav'>
-                    <h5 className='m-0 text-capitalize'>{like.product_name}</h5>
+                    <h5 className='m-0 text-capitalize'>{like.title}</h5>
                     <h6 className='text-dark'>Precio:{like.price}</h6>
                     <h6 className='text-dark'>Descripción:{like.description}</h6>
                   </div>
@@ -31,8 +36,8 @@ const Favorites = () => {
                       </Col>
                       <Col>
                         <section style={{ paddingRight: '20px' }} className='d-flex align-items-center justify-content-end'>
-                          {/* <Button variant='danger' onClick={() => handleFavorito(like.id)}>insertar corazon</Button>
-                          <Button onClick={() => handleCarrito(like.id)}>insertar carrito</Button>   agregar icono carrito y corazon */}
+                    {/*       <Button variant='danger' onClick={() => handleFavorito(like.id)}>insertar corazon</Button> */}
+                   {/*        <Button onClick={() => handleCarrito(like.id)}>{cart}</Button>   agregar icono carrito y corazon */}
                         </section>
                       </Col>
                     </Row>

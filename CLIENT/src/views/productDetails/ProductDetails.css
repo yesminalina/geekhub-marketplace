@@ -1,4 +1,4 @@
-.card {
+.principal {
     height: 45rem !important;
     width: 69rem !important;
     background-color: #E0AED0;
@@ -24,14 +24,14 @@
     gap: 10px;
 }
 
-.img-fluid {
+.big-img {
     width: fit-content;
     height: 340px;
     border-radius: 5px;
     box-shadow: 6px 6px 8px rgb(133, 18, 18);
 }
 
-.img-thumbnail {
+.mini-img {
     width:fit-content;
     background-color: #FFE5E5;
     border: #E0AED0;
@@ -55,7 +55,7 @@
     margin: 0 5px 0 5px;
 }
 
-.card-title {
+.title-name {
     font-size: 2rem;
     margin: 0 0 10px 0;
 }

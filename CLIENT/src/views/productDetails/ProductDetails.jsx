@@ -20,30 +20,30 @@ const ProductDetails = () => {
 
   return (
     <Container className='pdcontainer'>
-      <Card>
+      <Card className='principal'>
         <Card.Body className='wholespace'>
           <Col md={1} className='miniatures'>
             <img
               src={img1}
-              className='img-thumbnail'
+              className='mini-img'
               alt='Miniatura 1'
               onClick={() => handleChangeImage(img1)}
             />
             <img
               src={img2}
-              className='img-thumbnail'
+              className='mini-img'
               alt='Miniatura 2'
               onClick={() => handleChangeImage(img2)}
             />
             <img
               src={img3}
-              className='img-thumbnail'
+              className='mini-img'
               alt='Miniatura 3'
               onClick={() => handleChangeImage(img3)}
             />
           </Col>
           <Col md={6} className='text-center mb-3 mb-md-0'>
-            <img src={selectedImage} className='img-fluid' alt='Imagen grande' />
+            <img src={selectedImage} className='big-img' alt='Imagen grande' />
           </Col>
           <Col md={3} className='details'>
             <section className='icons'>
@@ -51,7 +51,7 @@ const ProductDetails = () => {
               <Button type='button' className='action'>{heart}</Button>
               <Button type='button' className='action'>{add}</Button>
             </section>
-            <Card.Title>Nombre</Card.Title>
+            <Card.Title className='title-name'>Nombre</Card.Title>
             <StarRating totalStars={5} />
             <Card.Text className='description'>Descripción del producto o información adicional aquí</Card.Text>
             <Card.Text className='price'>$50.000</Card.Text>
