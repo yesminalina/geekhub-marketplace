@@ -1,0 +1,69 @@
+
+body {
+    overflow: hidden;
+}
+
+.principal {
+    background-color: rgb(52, 135, 135);
+    width: 100%;
+    height: 47rem;
+}
+.trio {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 75rem;
+}
+
+#products {
+    width: 30rem;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+#separator {
+    width: min-content;
+}
+
+.product {
+    background-color: aqua;
+    width: 38rem;
+}
+
+#product {
+    background-color: blue;
+    width: 10rem;
+}
+
+.horizontal {
+    border-right: 2px solid black;
+    width: 5rem;
+}
+
+.vertical {
+    border-right: 2px solid black;
+    height: 47rem;
+}
+
+#post {
+    width: 30rem;
+}
+
+.new-product {
+    background-color: #ffffff !important;
+    width: 38rem !important;
+    margin: 20px 0 20px 0 !important;
+    padding: 20px;
+    gap: 40px;
+}
+
+.new-product :nth-child(3) {
+    margin-bottom: 20px;
+}
+
+.new-product :last-child {
+    height: 3rem;
+}

@@ -1,0 +1,72 @@
+.card {
+    height: 45rem !important;
+    width: 69rem !important;
+    background-color: #E0AED0;
+    padding-top: 2px;
+    margin: 0;
+}
+
+.pdcontainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.wholespace {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px
+}
+
+.miniatures {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.img-fluid {
+    width: fit-content;
+    height: 340px;
+    border-radius: 5px;
+    box-shadow: 6px 6px 8px rgb(133, 18, 18);
+}
+
+.img-thumbnail {
+    width:fit-content;
+    background-color: #FFE5E5;
+    border: #E0AED0;
+    margin: 0px 0px 2px 0px;
+    padding: 0;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto mono';
+}
+
+.icons {
+    padding-bottom: 190px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.action {
+    margin: 0 5px 0 5px;
+}
+
+.card-title {
+    font-size: 2rem;
+    margin: 0 0 10px 0;
+}
+
+.description {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.price {
+    font-weight: bolder;
+    font-size: 25px;
+}
