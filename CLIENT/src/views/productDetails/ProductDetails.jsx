@@ -4,9 +4,9 @@ import { Container, Card, Button } from 'react-bootstrap'
 import StarRating from '../../components/startRating/StarRating'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faShareAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import img1 from '../../assets/img/img1.webp'
-import img2 from '../../assets/img/img4.jpg'
-import img3 from '../../assets/img/img3.webp'
+// import img1 from '../../assets/img/img1.webp'
+// import img2 from '../../assets/img/img4.jpg'
+// import img3 from '../../assets/img/img3.webp'
 
 const heart = <FontAwesomeIcon icon={faHeart} size='1x' />
 const share = <FontAwesomeIcon icon={faShareAlt} size='1x' />

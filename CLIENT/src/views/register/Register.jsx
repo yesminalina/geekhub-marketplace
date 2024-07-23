@@ -24,7 +24,7 @@ const Register = () => {
   return (
     <div className='principal-register'>
       <Card className='register-card'>
-        <Card.Title className='title-name'>Registrate Ahora!</Card.Title>
+        <Card.Title className='title-name'>Regístrate Ahora!</Card.Title>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Row className='mb-3'>
             <Form.Group as={Col} md='6' controlId='validationCustom01'>
