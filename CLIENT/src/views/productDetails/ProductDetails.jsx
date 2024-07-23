@@ -1,11 +1,11 @@
 import './ProductDetails.css'
 import React, { useState } from 'react'
-import { Container, Col, Card, Button } from 'react-bootstrap'
+import { Container, Card, Button } from 'react-bootstrap'
 import StarRating from '../../components/startRating/StarRating'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faShareAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import img1 from '../../assets/img/img1.webp'
-import img2 from '../../assets/img/img2.jpg'
+import img2 from '../../assets/img/img4.jpg'
 import img3 from '../../assets/img/img3.webp'
 
 const heart = <FontAwesomeIcon icon={faHeart} size='1x' />
@@ -20,9 +20,9 @@ const ProductDetails = () => {
 
   return (
     <Container className='pdcontainer'>
-      <Card className='principal'>
+      <Card className='principal-box'>
         <Card.Body className='wholespace'>
-          <Col md={1} className='miniatures'>
+          <div className='miniatures'>
             <img
               src={img1}
               className='mini-img'
@@ -41,11 +41,11 @@ const ProductDetails = () => {
               alt='Miniatura 3'
               onClick={() => handleChangeImage(img3)}
             />
-          </Col>
-          <Col md={6} className='text-center mb-3 mb-md-0'>
+          </div>
+          <div id='big-photo'>
             <img src={selectedImage} className='big-img' alt='Imagen grande' />
-          </Col>
-          <Col md={3} className='details'>
+          </div>
+          <div className='details'>
             <section className='icons'>
               <Button type='button' className='action'>{share}</Button>
               <Button type='button' className='action'>{heart}</Button>
@@ -56,7 +56,7 @@ const ProductDetails = () => {
             <Card.Text className='description'>Descripción del producto o información adicional aquí</Card.Text>
             <Card.Text className='price'>$50.000</Card.Text>
             <Button type='button'>Agregar al carrito</Button>
-          </Col>
+          </div>
         </Card.Body>
       </Card>
     </Container>
