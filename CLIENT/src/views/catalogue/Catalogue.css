@@ -10,7 +10,6 @@
   }
   
   .gallery .producto {
-    cursor: pointer;
     padding: 10px 10px 0px 10px;
     display: flex;
     flex-direction: column;
@@ -88,4 +87,8 @@
     grid-template-rows: 0.01fr 1fr 0.99fr;
     grid-template-columns: 0.2fr 0.8fr;
     gap: 1px;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+    align-self: flex-end;
   }
