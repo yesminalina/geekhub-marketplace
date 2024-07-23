@@ -22,7 +22,7 @@ const Register = () => {
   }
 
   return (
-    <div className='principal'>
+    <div className='principal-register'>
       <Card className='register-card'>
         <Card.Title className='title-name'>Registrate Ahora!</Card.Title>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -84,7 +84,7 @@ const Register = () => {
           <Button type='submit'>Registrarme</Button>
         </Form>
       </Card>
-      <p>Ya tienes una cuenta?</p>
+      <p id='haveAccount'>Ya tienes una cuenta?</p>
       <Button type='button' onClick={handleClick}>Iniciar Sesión</Button>
     </div>
   )

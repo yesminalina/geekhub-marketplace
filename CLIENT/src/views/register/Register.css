@@ -1,4 +1,4 @@
-.principal {
+.principal-register {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,12 +7,12 @@
 
 .register-card {
        background-color: #E0AED0;
-       width: 31rem !important;
-       height: 40rem !important;
-       margin: 20px 0 20px 0 !important;
+       width: 31rem;
+       height: 40rem;
+       margin: 20px 0 20px 0;
        padding: 20px;
-       border: 2px solid #4230a9;
-       box-shadow: 4px 4px 8px rgba(0, 0, 0, 1)
+       border: 3px solid #4230a9;
+       box-shadow: 1px 5px 15px #1e0e3e;
 }
 
 .title-name {
@@ -58,4 +58,8 @@
 
 .form-check-input.is-valid, .was-validated .form-check-input:valid {
     border-color: #756AB6;
+}
+
+#haveAccount {
+    color: #FFE5E5;
 }

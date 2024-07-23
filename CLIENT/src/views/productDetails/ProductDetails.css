@@ -1,9 +1,8 @@
-.principal {
-    height: 45rem !important;
-    width: 69rem !important;
+.principal-box {
+    height: 35rem;
     background-color: #E0AED0;
     padding-top: 2px;
-    margin: 0;
+    margin: 6rem;
 }
 
 .pdcontainer {
@@ -15,7 +14,7 @@
 .wholespace {
     display: flex;
     justify-content: space-between;
-    gap: 10px
+    gap: 10px;
 }
 
 .miniatures {
@@ -24,17 +23,22 @@
     gap: 10px;
 }
 
+#big-photo {
+    display: flex;
+    margin-right: 1rem;
+}
+
 .big-img {
-    width: fit-content;
-    height: 340px;
+    width: 40rem;
     border-radius: 5px;
     box-shadow: 6px 6px 8px rgb(133, 18, 18);
 }
 
 .mini-img {
-    width:fit-content;
+    width:10rem;
     background-color: #FFE5E5;
     border: #E0AED0;
+    border-radius: 5px;
     margin: 0px 0px 2px 0px;
     padding: 0;
 }
@@ -43,6 +47,7 @@
     display: flex;
     flex-direction: column;
     font-family: 'Roboto mono';
+    width: 20rem;
 }
 
 .icons {

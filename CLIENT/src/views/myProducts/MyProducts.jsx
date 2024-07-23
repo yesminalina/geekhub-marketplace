@@ -1,19 +1,31 @@
-import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import './MyProducts.css'
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+
+const edit = <FontAwesomeIcon icon={faEdit} size='1x' />
+const trash = <FontAwesomeIcon icon={faTrash} size='1x' />
 
 const MyProducts = () => {
   return (
     <>
-      <Container className='principal'>
+      <Container className='twosection'>
         <Row className='trio'>
           <Col md={5} id='products'>
             <Container className='product'>
-              <Card.Title>Mis Productos</Card.Title>
+              <Card.Title id='my-products'>Mis Productos</Card.Title>
               <Card id='product'>{/* Este se deberia iterar */}
                 <Row>
-                  <Col>Detalle del producto</Col>
-                  <Col>Foto</Col>
-                  <Col>Interaccion</Col>
+                  <Col md={5}>
+                    <p>Nombre</p>
+                    <p>Precio</p>
+                    <p>Descripción</p>
+                  </Col>
+                  <Col md={5}>Foto</Col>
+                  <Col md={2} id='interaction'>
+                    <Button className='interaction'>{edit}</Button>
+                    <Button className='interaction'>{trash}</Button>
+                  </Col>
                 </Row>
                 <div className='horizontal'> </div>
               </Card>
@@ -24,7 +36,7 @@ const MyProducts = () => {
           </Col>
           <Col md={5} id='post'>
             <Card className='new-product'>
-              <Card.Title>Publica un producto</Card.Title>
+              <Card.Title id='publish-now'>Publica un producto</Card.Title>
               <Row>
                 <Form.Group as={Col} md='6' controlId='validationCustom01'>
                   <Form.Label>URL de la imagen</Form.Label>
