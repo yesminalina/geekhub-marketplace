@@ -8,7 +8,7 @@ const Carousel = () => {
   return (
     <div>
       <div className='container-home'>
-        {products.slice(0, 10).map((product) => (
+        {products.slice(0, 5).map((product) => (
           <div key={product.id} style={{ backgroundImage: `url(${product.image_url})` }} className=''>
             <div className='content'>
               <h2>{product.title}</h2>

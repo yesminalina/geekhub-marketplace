@@ -91,3 +91,12 @@
     color: white;
     background-color: blueviolet;
 }
+
+.logo-img {
+  width: 200px;
+}
+
+.cart {
+  color: #FD90BA;
+  filter: drop-shadow(0 0 0.75rem crimson)
+}
