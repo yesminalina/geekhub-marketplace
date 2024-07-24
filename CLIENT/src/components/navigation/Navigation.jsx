@@ -51,7 +51,7 @@ const Navigation = () => {
           <Container className='thirdContainer'>
             <NavLink to='/register' className='navlinks'>Registrar</NavLink>
             <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
-            <NavLink to='/cart' className='cart'>{cantidad}{cartLogo}</NavLink>
+            <NavLink to='/cart' className='cart'>{cantidad? cantidad : ''}{cartLogo}</NavLink>
           </Container>
         </Container>
       </Navbar>
