@@ -4,10 +4,17 @@ import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import logo from '../../assets/img/logo-pink.png'
+import { useContext } from 'react'
+import { CartContext } from '../../context/CartContext'
 
 const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 
 const Navigation = () => {
+  const { cart } = useContext(CartContext)
+  const quantity = cart.map((product) => (
+    product.qty
+  ))
+  const cantidad = quantity.reduce((acc, item) => acc + item, 0)
   return (
     <>
       <Navbar expand='lg' className='navbg'>
@@ -44,7 +51,7 @@ const Navigation = () => {
           <Container className='thirdContainer'>
             <NavLink to='/register' className='navlinks'>Registrar</NavLink>
             <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
-            <NavLink to='/cart' className='cart'>{cartLogo}</NavLink>
+            <NavLink to='/cart' className='cart'>{cantidad}{cartLogo}</NavLink>
           </Container>
         </Container>
       </Navbar>
