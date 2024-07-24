@@ -3,7 +3,7 @@ import './ProfileForm.css'
 
 const ProfileForm = () => {
   return (
-    <Container fluid>
+    <Container fluid className='py-4 px-2'>
       <Container>
         <Row className='text-center mb-5'>
           <Col className='d-flex justify-content-center align-items-center' md={8}>

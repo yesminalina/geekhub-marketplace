@@ -1,8 +1,9 @@
 import { Row, Col, Button, Form } from 'react-bootstrap'
+import './PaymentForm.css'
 
 const PaymentForm = () => {
   return (
-    <Form className='border border-2 rounded-2 px-4 py-5'>
+    <Form className='p-4 form-container'>
       <Row className='mb-3'>
         <Col>
           <Form.Label>Número de tarjeta</Form.Label>

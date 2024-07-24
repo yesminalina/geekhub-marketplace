@@ -5,12 +5,12 @@ import './Profile.css'
 
 const Profile = () => {
   return (
-    <Container fluid className='min-vh-100 px-5 py-5'>
-      <Row className='min-vh-100'>
-        <Col xs={4} className='border-end'>
+    <Container className='py-5'>
+      <Row className='justify-content-around'>
+        <Col xs={3} className='profile-menu-section'>
           <ProfileMenu />
         </Col>
-        <Col xs={8}>
+        <Col xs={9} className='profile-form-section'>
           <ProfileForm />
         </Col>
       </Row>
