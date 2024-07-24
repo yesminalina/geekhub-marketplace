@@ -1,11 +1,12 @@
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import CartCard from '../../components/cartCard/CartCard'
+import './Cart.css'
 
 const cart = () => {
   return (
-    <Container fluid className='min-vh-100 px-5 py-5'>
-      <h2 className='text-uppercase fs-4 mb-5'>Mi Carrito</h2>
-      <Container className='w-50 border border-2 rounded-2 px-4 pb-5'>
+    <Container fluid className='px-5 py-5'>
+      <Container className='w-50 px-4 pb-5 cart-container'>
+        <h2 className='mt-4 mb-3 text-center title-name'>Mi Carrito</h2>
         <Row className='justify-content-center gy-3'>
           <Col xs={12}>
             <CartCard />
