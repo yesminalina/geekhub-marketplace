@@ -41,16 +41,17 @@
     flex-direction: column;
     flex-basis: 200px;
     justify-content: flex-start;
-    align-items: center;
+    align-items: start;
+    margin-left: 10px;
   }
   aside h3 {
-    margin: 0;
+    margin: 0 0 20px 50px;
     padding-top: 10px;
   }
   aside p {
     margin: 0;
-    padding-top: 10px;
-    color: black;
+    padding-top: 12px;
+    color: #FFE5E5;
   }
   article {
     display: flex;
@@ -61,18 +62,6 @@
   .cantidad {
     padding-left: 5px;
     color: rgb(147, 145, 145);
-  }
-  .comic {
-    padding-left: 1px;
-  }
-  .manga {
-    padding-left: 4px;
-  }
-  .album {
-    padding-right: 14px;
-  }
-  .cartas {
-    padding-right: 15px;
   }
   .d-flex{
     grid-area: c;
@@ -87,6 +76,7 @@
     grid-template-rows: 0.01fr 1fr 0.99fr;
     grid-template-columns: 0.2fr 0.8fr;
     gap: 1px;
+    color: #FFE5E5;
   }
   .cursor-pointer {
     cursor: pointer;
