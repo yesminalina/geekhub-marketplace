@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap'
+import { Container, Stack } from 'react-bootstrap'
 import './ProfileMenu.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDice, faHeart, faStore } from '@fortawesome/free-solid-svg-icons'
@@ -9,27 +9,23 @@ const sellLogo = <FontAwesomeIcon icon={faStore} size='xl' />
 
 const menuProfile = () => {
   return (
-    <>
-      <h2 className='text-uppercase fs-4 mb-5'>Mi Perfil</h2>
-      <Container className='pb-4'>
-        <div className='d-flex'>
+    <Container fluid className='py-5 px-2'>
+      <h2 className='text-uppercase fs-4 mb-5 title-name'>Mi Perfil</h2>
+      <Stack gap={3}>
+        <div className='p-2'>
           <i className='me-2'>{diceLogo}</i>
-          <a className='fw-bold text-decoration-none'>Mis Productos</a>
+          <a className='fw-bold text-decoration-none title-menu'>Mis Productos</a>
         </div>
-      </Container>
-      <Container className='pb-4'>
-        <div className='d-flex'>
+        <div className='p-2'>
           <i className='me-2'>{favLogo}</i>
-          <a className='fw-bold text-decoration-none'>Mis Favoritos</a>
+          <a className='fw-bold text-decoration-none title-menu'>Mis Favoritos</a>
         </div>
-      </Container>
-      <Container className='pb-4'>
-        <div className='d-flex'>
+        <div className='p-2'>
           <i className='me-2'>{sellLogo}</i>
-          <a className='fw-bold text-decoration-none'>Vender</a>
+          <a className='fw-bold text-decoration-none title-menu'>Vender</a>
         </div>
-      </Container>
-    </>
+      </Stack>
+    </Container>
   )
 }
 export default menuProfile
