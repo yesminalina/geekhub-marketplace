@@ -17,7 +17,7 @@ const Footer = () => {
         <Col xs={4}>
           <div>
             <img src={logo} className='logo-img' />
-            <iframe src={map} style={{ border: 0, width: '350px', height: '200px' }} loading='lazy' referrerpolicy='no-referrer-when-downgrade' className='rounded-1'> </iframe>
+            <iframe src={map} style={{ border: 0, width: '350px', height: '200px' }} loading='lazy' referrerPolicy='no-referrer-when-downgrade' className='rounded-1'> </iframe>
           </div>
         </Col>
         <Col xs={3} className='d-flex flex-column justify-content-between'>
