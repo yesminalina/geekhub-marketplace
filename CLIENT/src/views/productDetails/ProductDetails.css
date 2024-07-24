@@ -1,5 +1,5 @@
 .principal-box {
-    height: 35rem;
+    height: 30rem;
     background-color: #E0AED0;
     padding-top: 2px;
     margin: 2rem;
@@ -26,10 +26,13 @@
 #big-photo {
     display: flex;
     margin-right: 1rem;
+    max-width: 25rem;
+    max-height: 25rem;
+    padding: 60px 0 0 0;
 }
 
 .big-img {
-    width: 40rem;
+    width: 25rem;
     border-radius: 5px;
     box-shadow: 6px 6px 8px rgb(133, 18, 18);
 }
@@ -51,7 +54,7 @@
 }
 
 .icons {
-    padding-bottom: 190px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: flex-end;
 }
