@@ -2,7 +2,7 @@
   {
     "id": 1,
     "user_id": 1,
-    "title": "Yu-Gi-Oh! deck box",
+    "title": "Magic The Gathering! deck box",
     "price": 1170,
     "description": "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
     "stock": 1168,
@@ -17,7 +17,7 @@
     "price": 340,
     "description": "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     "stock": 5316,
-    "image_url": "http://dummyimage.com/950x625.png/dddddd/000000",
+    "image_url": "https://image.made-in-china.com/202f0j00UcZbjTpzOtki/Hot-Sale-English-French-Spanish-Pokemon-Booster-Card-Box-Pokemon-Card.webp",
     "category": "Figuras Coleccionables",
     "liked": false
   },
@@ -28,7 +28,7 @@
     "price": 792,
     "description": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
     "stock": 1422,
-    "image_url": "http://dummyimage.com/950x625.png/dddddd/000000",
+    "image_url": "https://images.thedirect.com/media/article_full/marvel-legends.jpg",
     "category": "Álbumes y Láminas",
     "liked": false
   },
@@ -39,7 +39,7 @@
     "price": 436,
     "description": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
     "stock": 5964,
-    "image_url": "http://dummyimage.com/950x625.png/cc0000/ffffff",
+    "image_url": "https://i.etsystatic.com/17850170/r/il/deea35/1601587900/il_570xN.1601587900_edal.jpg",
     "category": "Figuras Coleccionables",
     "liked": false
   },
@@ -50,7 +50,7 @@
     "price": 969,
     "description": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
     "stock": 7021,
-    "image_url": "http://dummyimage.com/950x625.png/ff4444/ffffff",
+    "image_url": "https://www.denofgeek.com/wp-content/uploads/2020/11/amazing-rare-pokemon-cards-main.jpg?fit=1200%2C675",
     "category": "Álbumes y Láminas",
     "liked": false
   },
