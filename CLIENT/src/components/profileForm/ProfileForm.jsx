@@ -1,7 +1,9 @@
-import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap'
 import './ProfileForm.css'
+import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap'
 
-const ProfileForm = () => {
+const ProfileForm = ({ findUser }) => {
+  console.log(findUser(1))
+  // TENEMOS QUE TRAER EL ID PARA RENDERIZAR
   return (
     <Container fluid className='py-4 px-2'>
       <Container>
@@ -22,7 +24,7 @@ const ProfileForm = () => {
             </Form>
           </Col>
           <Col md={4}>
-            <Image src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' roundedCircle fluid className='w-50' />
+            <Image src={findUser.photo_url} roundedCircle fluid className='w-50' />
           </Col>
         </Row>
       </Container>
@@ -30,7 +32,7 @@ const ProfileForm = () => {
         <Form>
           <Row className='mb-3'>
             <Col>
-              <Form.Control placeholder='Nombre' />
+              <Form.Control placeholder={findUser.first_name} />
             </Col>
             <Col>
               <Form.Control placeholder='Apellido' />
