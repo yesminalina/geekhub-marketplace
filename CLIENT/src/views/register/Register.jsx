@@ -33,7 +33,6 @@ const Register = () => {
                 required
                 type='text'
                 placeholder='First name'
-                /* defaultValue='Anne' */
               />
               <Form.Control.Feedback>Aceptado!</Form.Control.Feedback>
             </Form.Group>
@@ -43,7 +42,6 @@ const Register = () => {
                 required
                 type='text'
                 placeholder='Last name'
-                /* defaultValue='Smith' */
               />
               <Form.Control.Feedback>Aceptado!</Form.Control.Feedback>
             </Form.Group>

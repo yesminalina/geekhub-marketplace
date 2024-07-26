@@ -10,7 +10,10 @@ const ProductsContextProvider = ({ children }) => {
     const data = await res.json()
     setProducts(data)
   }
-  useEffect(() => { getProducts() }, [])
+  useEffect(() => {
+    getProducts()
+  }, [])
+
   const toggleLike = (id) => {
     const newProducts = products.map((product) => {
       if (product.id === id) {
