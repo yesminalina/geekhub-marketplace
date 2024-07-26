@@ -15,7 +15,7 @@ const Footer = () => {
     <Container fluid className='principalfooter py-4 px-4'>
       <Row>
         <Col xs={4}>
-          <div>
+          <div className='d-flex flex-column'>
             <img src={logo} className='logo-img' />
             <iframe src={map} style={{ border: 0, width: '350px', height: '200px' }} loading='lazy' referrerPolicy='no-referrer-when-downgrade' className='rounded-1'> </iframe>
           </div>
