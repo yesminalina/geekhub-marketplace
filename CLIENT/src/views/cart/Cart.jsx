@@ -16,7 +16,7 @@ const Cart = () => {
 
   return (
     <Container fluid className='px-5 py-5'>
-      <Container className='w-50 px-4 pb-5 cart-container'>
+      <Container className='w-75 px-4 pb-5 cart-container'>
         <h2 className='mt-4 mb-3 text-center title-name'>Mi Carrito</h2>
         <Row className='justify-content-center gy-3'>
           {cart.map((product) => (

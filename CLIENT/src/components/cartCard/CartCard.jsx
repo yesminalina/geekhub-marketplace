@@ -21,19 +21,21 @@ const CartCard = ({ product }) => {
         </Col>
         <Col xs={10} md={6} className='d-flex flex-column justify-content-between ps-4'>
           <div>
-            <h2>{product.title}</h2>∫
+            <h2>{product.title}</h2>
             <p>{product.description}</p>
           </div>
           <div className='d-flex justify-content-start align-items-center'>
-            <div className='d-flex justify-content-center align-items-center text-center'>
-              <Button onClick={() => removeFromCart(product)} variant='secondary'>-</Button>
-              <p className='mx-2 mb-0'>{product.qty}</p>
-              <Button onClick={() => addToCart(product)} variant='danger'>+</Button>
+            <div className='d-flex justify-content-center align-items-center text-center price-article'>
+              <Button onClick={() => removeFromCart(product)}>-</Button>
+              <p className='mx-2 mb-0 fw-bolder fs-5'>{product.qty}</p>
+              <Button onClick={() => addToCart(product)}>+</Button>
             </div>
           </div>
         </Col>
         <Col md={12} lg={2} className='d-flex flex-column justify-content-between align-items-end'>
-          <i onClick={() => removeItemFromCart(product)} className='px-2'>{trashLogo}</i>
+          <Button variant='outline'>
+            <i onClick={() => removeItemFromCart(product)} className='px-2'>{trashLogo}</i>
+          </Button>
           <p className='m-0 py-2'>{product.price * product.qty}</p>
         </Col>
       </Row>
