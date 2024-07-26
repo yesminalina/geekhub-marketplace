@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import CartCard from '../../components/cartCard/CartCard'
 import PaymentForm from '../../components/paymentForm/PaymentForm'
 import { CartContext } from '../../context/CartContext'
@@ -26,9 +26,6 @@ const Payment = () => {
               <Col xs={12} className='d-flex justify-content-between align-items-center px-5 py-2 fw-bold'>
                 <p>Subtotal</p>
                 <p className='text-end'>${total}</p>
-              </Col>
-              <Col xs={12} className='text-center'>
-                <Button variant='primary' size='lg'>Proceder con la compra</Button>
               </Col>
             </Row>
           </Container>

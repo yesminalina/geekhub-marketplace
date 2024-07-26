@@ -1,7 +1,25 @@
-import { Row, Col, Button, Form } from 'react-bootstrap'
 import './PaymentForm.css'
+import { Row, Col, Button, Form } from 'react-bootstrap'
+import { CartContext } from '../../context/CartContext'
+import Swal from 'sweetalert2'
+import { useContext } from 'react'
 
 const PaymentForm = () => {
+  const { total } = useContext(CartContext)
+
+  const thanks = (e) => {
+    e.preventDefault()
+
+    if (total > 0) {
+      Swal.fire({
+        title: 'Gracias por tu compra',
+        text: `Orden Nº ${total}`
+      })
+    } else {
+      Swal.fire('Agrega un producto!')
+    }
+  }
+
   return (
     <Form className='p-4 form-container'>
       <Row className='mb-3'>
@@ -30,7 +48,7 @@ const PaymentForm = () => {
           <Form.Control placeholder='2027' />
         </Col>
       </Row>
-      <Button variant='primary' type='submit' size='lg' className='w-100 mt-2'>Pagar</Button>
+      <Button variant='primary' type='submit' size='lg' className='w-100 mt-2' onClick={thanks}>Pagar</Button>
     </Form>
   )
 }
