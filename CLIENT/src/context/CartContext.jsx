@@ -17,22 +17,27 @@ const CartContextProvider = ({ children }) => {
     }
   }
 
-  const removeFromCart = (productId) => {
+  const removeFromCart = (product) => {
     const newCart = [...cart]
-    const index = newCart.findIndex((item) => item.id === productId)
+    const index = newCart.findIndex((item) => item.id === product.id)
     if (newCart[index].qty > 1) {
       newCart[index] = { ...newCart[index], qty: newCart[index].qty - 1 }
       setCart(newCart)
     } else {
-      setCart(newCart.filter((item) => item.id !== productId))
+      setCart(newCart.filter((item) => item.id !== product.id))
     }
+  }
+
+  const removeItemFromCart = (product) => {
+    const newCart = [...cart]
+    setCart(newCart.filter((item) => item.id !== product.id))
   }
 
   const getTotal = () => {
     setTotal(cart.reduce((acc, item) => (acc + (item.price * item.qty)), 0))
   }
 
-  const globalState = { cart, total, getTotal, addToCart, removeFromCart }
+  const globalState = { cart, total, getTotal, addToCart, removeFromCart, removeItemFromCart }
 
   return (
     <CartContext.Provider value={globalState}>
