@@ -1,10 +1,10 @@
 import './Favorites.css'
 import { useContext } from 'react'
-import { ProductContext } from '../../context/ProductsContext'
+import { ProductsContext } from '../../context/ProductsContext'
 import Liked from '../../components/Liked/Liked'
 
 const Favorites = () => {
-  const { liked } = useContext(ProductContext)
+  const { liked } = useContext(ProductsContext)
   return (
     <>
       <div className='Fav'>

@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { ProductContext } from '../../context/ProductsContext'
+import { ProductsContext } from '../../context/ProductsContext'
 import './Carousel.css'
 
 const Carousel = () => {
-  const { products } = useContext(ProductContext)
+  const { products } = useContext(ProductsContext)
 
   return (
     <div>

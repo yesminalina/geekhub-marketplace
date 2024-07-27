@@ -1,6 +1,6 @@
 import './Liked.css'
 import { useContext } from 'react'
-import { ProductContext } from '../../context/ProductsContext'
+import { ProductsContext } from '../../context/ProductsContext'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -9,7 +9,7 @@ import IconHeart from '../iconHeart/IconHeart'
 const cart = <FontAwesomeIcon icon={faShoppingCart} size='2x' />
 
 const Liked = () => {
-  const { liked, toggleLike } = useContext(ProductContext)
+  const { liked, toggleLike } = useContext(ProductsContext)
   return (
     <Container className='pt-5'>
       <h3>Mis Favoritos</h3>

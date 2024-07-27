@@ -1,12 +1,11 @@
 import { createContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 
 export const UserContext = createContext()
 
 const UserContextProvider = ({ children }) => {
   const [users, setUsers] = useState([])
-  const { id } = useParams()
-  const getUsers = async () => {
+
+  const getUsers = () => {
     fetch('./json/MOCK_DATA_USERS.json')
       .then((res) => {
         if (!res.ok) {
@@ -27,7 +26,7 @@ const UserContextProvider = ({ children }) => {
 
   useEffect(() => {
     getUsers()
-  }, [id, setUsers])
+  }, [])
 
   const globalState = { users, findUser }
 
