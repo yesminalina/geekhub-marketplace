@@ -4,13 +4,33 @@ import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import logo from '../../assets/img/logo-pink.png'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
+import { ProductsContext } from '../../context/ProductsContext'
 
 const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 
 const Navigation = () => {
+  const [search, setSearch] = useState('')
+
   const { cart } = useContext(CartContext)
+  const { products, getProducts } = useContext(ProductsContext)
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
+  useEffect(() => {
+    if (search === '') {
+      getProducts()
+    } else {
+      const filteredProducts = products.filter((product) =>
+        product.title.toLowerCase().includes(search.toLowerCase())
+      )
+      setFilter(filteredProducts)
+    }
+  }, [search])
+
   const quantity = cart.map((product) => (
     product.qty
   ))
@@ -30,8 +50,8 @@ const Navigation = () => {
             <Navbar.Toggle aria-controls='navbarScroll' />
             <div id='navbarScroll'>
               <Form className='d-flex w-100'>
-                <Form.Control type='search' placeholder='Busca un producto' className='mr-sm-2 me-sm-2 w-100' aria-label='Search' />
-                <Button className='search-btn' bsPrefix='custom-btn'>Buscar</Button>
+                <Form.Control type='text' placeholder='Busca un producto' className='mr-sm-2 me-sm-2 w-100' aria-label='Search' value={search} onChange={handleSearch} />
+                <Button className='search-btn' bsPrefix='custom-btn' type='submit'>Buscar</Button>
               </Form>
               <Nav className='linksContainer me-auto my-2 my-lg-0' style={{ maxHeight: '100px' }} navbarScroll>
                 <NavLink to='/' className='navlinks'>Inicio</NavLink>
@@ -51,7 +71,7 @@ const Navigation = () => {
           <Container className='thirdContainer'>
             <NavLink to='/register' className='navlinks'>Registrar</NavLink>
             <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
-            <NavLink to='/cart' className='cart'>{cantidad? cantidad : ''}{cartLogo}</NavLink>
+            <NavLink to='/cart' className='cart'>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink>
           </Container>
         </Container>
       </Navbar>
