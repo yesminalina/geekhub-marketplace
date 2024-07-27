@@ -1,12 +1,12 @@
 import './Catalogue.css'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ProductContext } from '../../context/ProductsContext'
+import { ProductsContext } from '../../context/ProductsContext'
 import IconHeart from '../../components/iconHeart/IconHeart'
 import { Badge, Dropdown } from 'react-bootstrap'
 
 const Catalogue = () => {
-  const { products, toggleLike } = useContext(ProductContext)
+  const { products, toggleLike } = useContext(ProductsContext)
 
   const navigate = useNavigate()
 
@@ -17,7 +17,7 @@ const Catalogue = () => {
           <h3>Categorías</h3>
           <article className='category'>
             <a href='#'><p>Juegos de Mesa</p></a>
-            <p className='cantidad'>()</p>
+            <p className='cantidad'>(2)</p>
           </article>
           <article className='category'>
             <a href='#'><p>TCG</p></a>

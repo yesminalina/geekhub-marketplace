@@ -1,6 +1,6 @@
 import './ProductDetails.css'
 import { useState, useContext, useEffect } from 'react'
-import { ProductContext } from '../../context/ProductsContext'
+import { ProductsContext } from '../../context/ProductsContext'
 import { CartContext } from '../../context/CartContext'
 import { useParams } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
@@ -22,7 +22,7 @@ const ProductDetails = () => {
   }
 
   const { id } = useParams()
-  const { products } = useContext(ProductContext)
+  const { products } = useContext(ProductsContext)
   const { addToCart } = useContext(CartContext)
 
   useEffect(() => {

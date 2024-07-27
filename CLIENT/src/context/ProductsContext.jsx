@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-export const ProductContext = createContext()
+export const ProductsContext = createContext()
 
 const ProductsContextProvider = ({ children }) => {
   const [products, setProducts] = useState([])
@@ -23,11 +23,12 @@ const ProductsContextProvider = ({ children }) => {
     })
     setProducts(newProducts)
   }
-  const globalState = { products, liked, toggleLike }
+  const globalState = { products, liked, toggleLike, getProducts }
+
   return (
-    <ProductContext.Provider value={globalState}>
+    <ProductsContext.Provider value={globalState}>
       {children}
-    </ProductContext.Provider>
+    </ProductsContext.Provider>
   )
 }
 
