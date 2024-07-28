@@ -1,10 +1,10 @@
 import './Navigation.css'
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import logo from '../../assets/img/logo-pink.png'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { ProductsContext } from '../../context/ProductsContext'
 
@@ -12,24 +12,38 @@ const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 
 const Navigation = () => {
   const [search, setSearch] = useState('')
-
   const { cart } = useContext(CartContext)
-  const { products, getProducts } = useContext(ProductsContext)
+  const { products, setFilterProducts } = useContext(ProductsContext)
 
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
 
-  useEffect(() => {
+  // Handles search button
+  const navigate = useNavigate()
+
+  const handleFilter = (e) => {
+    e.preventDefault()
+    let result = []
     if (search === '') {
-      getProducts()
+      result = products
+      setFilterProducts(result)
     } else {
-      const filteredProducts = products.filter((product) =>
+      result = products.filter((product) =>
         product.title.toLowerCase().includes(search.toLowerCase())
       )
-      setFilter(filteredProducts)
+      setFilterProducts(result)
     }
-  }, [search])
+    navigate('/catalogue')
+  }
+
+  // Handles links to catalogue filtered by category
+  const handleFilterLink = (e) => {
+    const result = products.filter((product) => product.category.toLowerCase().includes(e.target.name.toLowerCase()))
+    setFilterProducts(result)
+    navigate('/catalogue')
+    e.preventDefault()
+  }
 
   const quantity = cart.map((product) => (
     product.qty
@@ -51,16 +65,16 @@ const Navigation = () => {
             <div id='navbarScroll'>
               <Form className='d-flex w-100'>
                 <Form.Control type='text' placeholder='Busca un producto' className='mr-sm-2 me-sm-2 w-100' aria-label='Search' value={search} onChange={handleSearch} />
-                <Button className='search-btn' bsPrefix='custom-btn' type='submit'>Buscar</Button>
+                <Button className='search-btn' bsPrefix='custom-btn' onClick={handleFilter}>Buscar</Button>
               </Form>
               <Nav className='linksContainer me-auto my-2 my-lg-0' style={{ maxHeight: '100px' }} navbarScroll>
                 <NavLink to='/' className='navlinks'>Inicio</NavLink>
                 <NavDropdown title='Categorias' id='navbarScrollingDropdown'>
-                  <NavDropdown.Item to='#action3' className='navdropitem'>Juegos de Mesa</NavDropdown.Item>
-                  <NavDropdown.Item to='#action4' className='navdropitem'>TCG</NavDropdown.Item>
-                  <NavDropdown.Item to='#action5' className='navdropitem'>Figuras Coleccionables</NavDropdown.Item>
-                  <NavDropdown.Item to='#action5' className='navdropitem'>Mangas y Cómics</NavDropdown.Item>
-                  <NavDropdown.Item to='#action5' className='navdropitem'>Álbumes y Láminas</NavDropdown.Item>
+                  <NavDropdown.Item to='#action3' className='navdropitem' name='Juegos de Mesa' onClick={handleFilterLink}>Juegos de Mesa</NavDropdown.Item>
+                  <NavDropdown.Item to='#action4' className='navdropitem' name='TCG' onClick={handleFilterLink}>TCG</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem' name='Figuras Coleccionables' onClick={handleFilterLink}>Figuras Coleccionables</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem' name='Mangas y Cómics' onClick={handleFilterLink}>Mangas y Cómics</NavDropdown.Item>
+                  <NavDropdown.Item to='#action5' className='navdropitem' name='Álbumes y Láminas' onClick={handleFilterLink}>Álbumes y Láminas</NavDropdown.Item>
                 </NavDropdown>
                 <NavLink to='/about-us' className='navlinks'>Sobre Nosotros</NavLink>
                 <NavLink to='/contact' className='navlinks'>Contacto</NavLink>

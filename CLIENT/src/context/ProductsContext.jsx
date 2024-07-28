@@ -3,6 +3,7 @@ export const ProductsContext = createContext()
 
 const ProductsContextProvider = ({ children }) => {
   const [products, setProducts] = useState([])
+  const [filterProducts, setFilterProducts] = useState(products)
 
   const liked = products.filter((product) => product.liked)
   const getProducts = async () => {
@@ -10,6 +11,7 @@ const ProductsContextProvider = ({ children }) => {
     const data = await res.json()
     setProducts(data)
   }
+
   useEffect(() => {
     getProducts()
   }, [])
@@ -23,7 +25,7 @@ const ProductsContextProvider = ({ children }) => {
     })
     setProducts(newProducts)
   }
-  const globalState = { products, liked, toggleLike, getProducts }
+  const globalState = { products, liked, toggleLike, filterProducts, setFilterProducts }
 
   return (
     <ProductsContext.Provider value={globalState}>
