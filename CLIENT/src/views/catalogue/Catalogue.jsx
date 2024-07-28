@@ -6,7 +6,7 @@ import IconHeart from '../../components/iconHeart/IconHeart'
 import { Badge, Dropdown } from 'react-bootstrap'
 
 const Catalogue = () => {
-  const { products, toggleLike } = useContext(ProductsContext)
+  const { filterProducts, toggleLike } = useContext(ProductsContext)
 
   const navigate = useNavigate()
 
@@ -52,7 +52,7 @@ const Catalogue = () => {
         </Dropdown>
 
         <div className='gallery grid-columns-5 p-3'>
-          {products.map((product) => (
+          {filterProducts.map((product) => (
             <div onClick={() => navigate(`/product-details/${product.id}`)} className='producto' key={product.id} style={{ backgroundImage: `url(${product.image_url})` }}>
               <div onClick={() => { toggleLike(product.id) }} className='cursor-pointer'>{product.liked ? <IconHeart filled /> : <IconHeart />}</div>
               <div>
