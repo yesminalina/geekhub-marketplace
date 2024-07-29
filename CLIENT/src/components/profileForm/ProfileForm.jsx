@@ -1,9 +1,7 @@
 import './ProfileForm.css'
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap'
 
-const ProfileForm = ({ findUser }) => {
-  console.log(findUser(1))
-  // TENEMOS QUE TRAER EL ID PARA RENDERIZAR
+const ProfileForm = ({ activeUser }) => {
   return (
     <Container fluid className='py-4 px-2'>
       <Container>
@@ -24,7 +22,7 @@ const ProfileForm = ({ findUser }) => {
             </Form>
           </Col>
           <Col md={4}>
-            <Image src={findUser.photo_url} roundedCircle fluid className='w-50' />
+            <Image src={activeUser.photo_url} roundedCircle fluid className='w-50' />
           </Col>
         </Row>
       </Container>
@@ -32,32 +30,38 @@ const ProfileForm = ({ findUser }) => {
         <Form>
           <Row className='mb-3'>
             <Col>
-              <Form.Control placeholder={findUser.first_name} />
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control placeholder={activeUser.first_name} />
             </Col>
             <Col>
-              <Form.Control placeholder='Apellido' />
-            </Col>
-          </Row>
-          <Row className='mb-3'>
-            <Col>
-              <Form.Control placeholder='Número telefónico' />
-            </Col>
-            <Col>
-              <Form.Control placeholder='Dirección' />
+              <Form.Label>Apellido</Form.Label>
+              <Form.Control placeholder={activeUser.last_name} />
             </Col>
           </Row>
           <Row className='mb-3'>
             <Col>
-              <Form.Control placeholder='Correo Electrónico' />
+              <Form.Label>Teléfono</Form.Label>
+              <Form.Control placeholder={activeUser.phone_number} />
             </Col>
             <Col>
-              <Form.Control placeholder='Contraseña' />
+              <Form.Label>Dirección</Form.Label>
+              <Form.Control placeholder={activeUser.address} />
+            </Col>
+          </Row>
+          <Row className='mb-3'>
+            <Col>
+              <Form.Label>Email</Form.Label>
+              <Form.Control placeholder={activeUser.email} />
+            </Col>
+            <Col>
+              <Form.Label>Contraseña</Form.Label>
+              <Form.Control placeholder='********' />
             </Col>
           </Row>
           <Row className='mb-3'>
             <Col>
               <Button className='w-75' variant='primary' type='submit'>
-                Guardar
+                Guardar Cambios
               </Button>
             </Col>
           </Row>

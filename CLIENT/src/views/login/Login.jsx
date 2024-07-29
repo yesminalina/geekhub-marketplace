@@ -45,12 +45,12 @@ const Login = () => {
         <Form>
           <Form.Group className='mb-3' controlId='formBasicEmail'>
             <Form.Label>Correo Electrónico</Form.Label>
-            <Form.Control type='email' placeholder='tucorreo@mail.com' onChange={handleChange} />
+            <Form.Control type='email' placeholder='tucorreo@mail.com' name='email' onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='formBasicPassword'>
             <Form.Label>Password</Form.Label>
-            <Form.Control type='password' placeholder='Password' onChange={handleChange} />
+            <Form.Control type='password' placeholder='Password' name='password' onChange={handleChange} />
           </Form.Group>
           <Container className='boton-login'>
             <Button className='boton-login' type='submit' onClick={handleSubmit}>Iniciar Sesión</Button>
