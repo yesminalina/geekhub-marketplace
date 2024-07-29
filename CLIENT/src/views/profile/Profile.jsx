@@ -3,16 +3,23 @@ import { Container, Row, Col } from 'react-bootstrap'
 import ProfileMenu from '../../components/profileMenu/ProfileMenu'
 import ProfileForm from '../../components/profileForm/ProfileForm'
 import { useParams } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 
 const Profile = () => {
   const { id } = useParams()
+  const { users } = useContext(UserContext)
 
-  const { users, findUser } = useContext(UserContext)
-  console.log(users)
-  findUser(id)
-  console.log(findUser(2))
+  const [activeUser, setActiveUser] = useState('')
+
+  const findUser = (id) => {
+    const user = users.find((user) => +id === user.id)
+    setActiveUser(user)
+  }
+
+  useEffect(() => {
+    findUser(id)
+  }, [])
 
   return (
     <Container className='py-5'>
@@ -21,7 +28,7 @@ const Profile = () => {
           <ProfileMenu />
         </Col>
         <Col xs={9} className='profile-form-section'>
-          <ProfileForm findUser={findUser} />
+          <ProfileForm activeUser={activeUser} />
         </Col>
       </Row>
     </Container>

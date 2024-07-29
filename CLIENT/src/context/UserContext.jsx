@@ -22,13 +22,11 @@ const UserContextProvider = ({ children }) => {
       })
   }
 
-  const findUser = (id) => users.find((user) => +id === user.id)
-
   useEffect(() => {
     getUsers()
   }, [])
 
-  const globalState = { users, findUser }
+  const globalState = { users }
 
   return (
     <UserContext.Provider value={globalState}>
