@@ -47,7 +47,6 @@ const Catalogue = () => {
             <Dropdown.Item href='#'>Precio de mayor a menor</Dropdown.Item>
             <Dropdown.Item href='#'>Alfabético de A-Z</Dropdown.Item>
             <Dropdown.Item href='#'>Alfabético de Z-A</Dropdown.Item>
-            <Dropdown.Item href='#'>Menu Item</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 

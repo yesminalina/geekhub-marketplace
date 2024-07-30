@@ -15,7 +15,7 @@ const UserContextProvider = ({ children }) => {
       })
       .then((data) => {
         setUsers(data)
-        console.log(data[0])
+        console.log(data[1])
       })
       .catch((error) => {
         console.error(error.message)
@@ -26,7 +26,7 @@ const UserContextProvider = ({ children }) => {
     getUsers()
   }, [])
 
-  const globalState = { users }
+  const globalState = { users, setUsers }
 
   return (
     <UserContext.Provider value={globalState}>
