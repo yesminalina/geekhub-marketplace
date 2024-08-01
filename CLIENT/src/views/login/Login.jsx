@@ -1,8 +1,8 @@
 import './Login.css'
 import { Card, Button, Form, Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { useContext, useState } from 'react'
-import { UserContext } from '../../context/UserContext'
+import { useState } from 'react'
+import axios from 'axios'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -12,22 +12,13 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  const { users } = useContext(UserContext)
-
-  const validateUser = (email, password) => {
-    const user = users.find((user) => email === user.email)
-    if (user && user.password === password) {
-      navigate(`/profile/${user.id}`)
-    } else {
-      console.log('usuario y/o contraseña incorrectos')
-    }
-  }
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const { email, password } = formData
-
-    validateUser(email, password)
+    const response = await axios.post('/login', formData)
+    window.sessionStorage.setItem('token', response.data.token)
+    window.alert('Usuario identificado con éxito 😀.')
+    console.log('La respuesta', response)
+    navigate('/profile')
   }
 
   const handleChange = (e) => {

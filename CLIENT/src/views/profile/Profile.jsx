@@ -2,24 +2,29 @@ import './Profile.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import ProfileMenu from '../../components/profileMenu/ProfileMenu'
 import ProfileForm from '../../components/profileForm/ProfileForm'
-import { useParams } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
+import axios from 'axios'
 
 const Profile = () => {
-  const { id } = useParams()
-  const { users } = useContext(UserContext)
+  const { activeUser, fnActiveUser } = useContext(UserContext)
+  const navigate = useNavigate()
 
-  const [activeUser, setActiveUser] = useState('')
-
-  const findUser = (id) => {
-    const user = users.find((user) => +id === user.id)
-    setActiveUser(user)
+  const getUserData = () => {
+    const token = window.sessionStorage.getItem('token')
+    axios.get('./profile', { headers: { Authorization: `Bearer ${token}` } })
+      .then(({ data: [user] }) => {
+        fnActiveUser({ ...user[0] })
+        console.log(user)
+      })
+      .catch(({ response: { data } }) => {
+        console.error(data)
+        navigate('/')
+      })
   }
 
-  useEffect(() => {
-    findUser(id)
-  }, [])
+  useEffect(getUserData, [])
 
   return (
     <Container className='py-5'>
@@ -34,4 +39,5 @@ const Profile = () => {
     </Container>
   )
 }
+
 export default Profile

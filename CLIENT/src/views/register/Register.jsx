@@ -1,21 +1,19 @@
 import './Register.css'
 import { Card, Button, Col, Form, Row } from 'react-bootstrap'
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../../context/UserContext'
+import axios from 'axios'
 
 const Register = () => {
-  const { users, setUsers } = useContext(UserContext)
   const [validated, setValidated] = useState(false)
   const [user, setUser] = useState({
-    id: '', // sacar para unión con Backend
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     address: '',
-    phone_number: '',
+    phoneNumber: '',
     password: '',
     email: '',
-    photo_url: ''
+    photoUrl: ''
   })
 
   const navigate = useNavigate()
@@ -25,20 +23,19 @@ const Register = () => {
   }
 
   const handleChange = (e) => {
-    const lastUser = users[users.length - 1]
-    const id = lastUser ? +lastUser.id + 1 : 1
-    setUser({ ...user, [e.target.name]: e.target.value, id })
+    setUser({ ...user, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const form = event.currentTarget
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget
     if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
+      e.preventDefault()
+      e.stopPropagation()
     }
     setValidated(true)
-    setUsers([...users, user])
+    const response = await axios.post('/register', user)
+    console.log('La respuesta', response)
     navigate('/login')
   }
 

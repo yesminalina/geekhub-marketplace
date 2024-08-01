@@ -22,7 +22,7 @@ const ProfileForm = ({ activeUser }) => {
             </Form>
           </Col>
           <Col md={4}>
-            <Image src={activeUser.photo_url} roundedCircle fluid className='w-50' />
+            <Image src={activeUser.photoUrl} roundedCircle fluid className='w-50' />
           </Col>
         </Row>
       </Container>
@@ -31,17 +31,17 @@ const ProfileForm = ({ activeUser }) => {
           <Row className='mb-3'>
             <Col>
               <Form.Label>Nombre</Form.Label>
-              <Form.Control placeholder={activeUser.first_name} />
+              <Form.Control placeholder={activeUser.firstName} />
             </Col>
             <Col>
               <Form.Label>Apellido</Form.Label>
-              <Form.Control placeholder={activeUser.last_name} />
+              <Form.Control placeholder={activeUser.lastName} />
             </Col>
           </Row>
           <Row className='mb-3'>
             <Col>
               <Form.Label>Teléfono</Form.Label>
-              <Form.Control placeholder={activeUser.phone_number} />
+              <Form.Control placeholder={activeUser.phoneNumber} />
             </Col>
             <Col>
               <Form.Label>Dirección</Form.Label>
