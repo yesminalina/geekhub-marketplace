@@ -43,6 +43,7 @@ const login = http.post('/login', async ({ request }) => {
 })
 
 const userTest = [{
+  id: 1,
   photoUrl: 'https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg',
   firstName: 'Francoise',
   lastName: 'Skerme',
@@ -72,4 +73,13 @@ const getProfile = http.get('/profile', async ({ request }) => {
   return HttpResponse.json([userTest], { status: 200 })
 })
 
-export default [register, login, getProfile]
+const putProfile = http.put('/profile/:id', async ({ request, params }) => {
+  await delay(300)
+
+  const { id } = params
+  const updatedProfile = await request.json()
+  console.log('perfil actualizado', id, updatedProfile)
+  return HttpResponse.json({ status: true, data: updatedProfile, message: 'Usuario modificado con exito' }, { status: 201 })
+})
+
+export default [register, login, getProfile, putProfile]
