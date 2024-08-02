@@ -1,7 +1,22 @@
 import './ProfileForm.css'
+import { useState } from 'react'
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const ProfileForm = ({ activeUser }) => {
+  const [user, setUser] = useState(activeUser)
+  const id = activeUser.id
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const userData = { ...activeUser, ...user }
+    const response = await axios.put(`/profile/${id}`, userData)
+    console.log('El usuario actualizado es:', response)
+  }
+
   return (
     <Container fluid className='py-4 px-2'>
       <Container>
@@ -9,7 +24,7 @@ const ProfileForm = ({ activeUser }) => {
           <Col className='d-flex justify-content-center align-items-center' md={8}>
             <Form className='w-100'>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
-                <Form.Control type='email' placeholder='URL de la imagen' />
+                <Form.Control name='photoUrl' type='email' placeholder='URL de la imagen' onChange={handleChange} />
               </Form.Group>
               <Container className='d-flex justify-content-around p-0'>
                 <Button className='w-50 me-2' variant='primary' type='submit'>
@@ -31,36 +46,36 @@ const ProfileForm = ({ activeUser }) => {
           <Row className='mb-3'>
             <Col>
               <Form.Label>Nombre</Form.Label>
-              <Form.Control placeholder={activeUser.firstName} />
+              <Form.Control name='firstName' placeholder={activeUser.firstName} onChange={handleChange} />
             </Col>
             <Col>
               <Form.Label>Apellido</Form.Label>
-              <Form.Control placeholder={activeUser.lastName} />
+              <Form.Control name='lastName' placeholder={activeUser.lastName} onChange={handleChange} />
             </Col>
           </Row>
           <Row className='mb-3'>
             <Col>
               <Form.Label>Teléfono</Form.Label>
-              <Form.Control placeholder={activeUser.phoneNumber} />
+              <Form.Control name='phoneNumber' placeholder={activeUser.phoneNumber} onChange={handleChange} />
             </Col>
             <Col>
               <Form.Label>Dirección</Form.Label>
-              <Form.Control placeholder={activeUser.address} />
+              <Form.Control name='address' placeholder={activeUser.address} onChange={handleChange} />
             </Col>
           </Row>
           <Row className='mb-3'>
             <Col>
               <Form.Label>Email</Form.Label>
-              <Form.Control placeholder={activeUser.email} />
+              <Form.Control name='email' placeholder={activeUser.email} disabled />
             </Col>
             <Col>
               <Form.Label>Contraseña</Form.Label>
-              <Form.Control placeholder='********' />
+              <Form.Control name='password' placeholder='********' onChange={handleChange} />
             </Col>
           </Row>
           <Row className='mb-3'>
             <Col>
-              <Button className='w-75' variant='primary' type='submit'>
+              <Button className='w-75' variant='primary' type='submit' onClick={handleSubmit}>
                 Guardar Cambios
               </Button>
             </Col>
