@@ -35,6 +35,7 @@ const Register = () => {
     }
     setValidated(true)
     const response = await axios.post('/register', user)
+    window.alert('Usuario creado con éxito 😀.')
     console.log('La respuesta', response)
     navigate('/login')
   }
@@ -47,19 +48,19 @@ const Register = () => {
           <Row className='mb-3'>
             <Form.Group as={Col} md='6' controlId='validationCustom01'>
               <Form.Label>Nombre</Form.Label>
-              <Form.Control required type='text' name='first_name' placeholder='First name' onChange={handleChange} />
+              <Form.Control required type='text' name='firstName' placeholder='First name' onChange={handleChange} />
               <Form.Control.Feedback>Aceptado!</Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md='6' controlId='validationCustom02'>
               <Form.Label>Apellido</Form.Label>
-              <Form.Control required type='text' name='last_name' placeholder='Last name' onChange={handleChange} />
+              <Form.Control required type='text' name='lastName' placeholder='Last name' onChange={handleChange} />
               <Form.Control.Feedback>Aceptado!</Form.Control.Feedback>
             </Form.Group>
           </Row>
           <Row className='mb-3'>
             <Form.Group as={Col} md='6' controlId='validationCustom03'>
               <Form.Label>Número de teléfono</Form.Label>
-              <Form.Control type='text' name='phone_number' placeholder='955544433' onChange={handleChange} required />
+              <Form.Control type='text' name='phoneNumber' placeholder='955544433' onChange={handleChange} required />
               <Form.Control.Feedback type='invalid'>
                 Por favor ingresa un número válido
               </Form.Control.Feedback>
