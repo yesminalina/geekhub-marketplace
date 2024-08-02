@@ -13,7 +13,7 @@ const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 const Navigation = () => {
   const [search, setSearch] = useState('')
   const { cart } = useContext(CartContext)
-  const { products, setFilterProducts } = useContext(ProductsContext)
+  const { products, fnFilterProducts } = useContext(ProductsContext)
 
   const handleSearch = (e) => {
     setSearch(e.target.value)
@@ -27,12 +27,12 @@ const Navigation = () => {
     let result = []
     if (search === '') {
       result = products
-      setFilterProducts(result)
+      fnFilterProducts(result)
     } else {
       result = products.filter((product) =>
         product.title.toLowerCase().includes(search.toLowerCase())
       )
-      setFilterProducts(result)
+      fnFilterProducts(result)
     }
     navigate('/catalogue')
   }
@@ -40,7 +40,7 @@ const Navigation = () => {
   // Handles links to catalogue filtered by category
   const handleFilterLink = (e) => {
     const result = products.filter((product) => product.category.toLowerCase().includes(e.target.name.toLowerCase()))
-    setFilterProducts(result)
+    fnFilterProducts(result)
     navigate('/catalogue')
     e.preventDefault()
   }
