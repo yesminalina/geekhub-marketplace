@@ -13,7 +13,7 @@
     padding: 10px 10px 0px 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: end;
     align-items: flex-start;
     height: 200px;
     background-size: cover;
@@ -81,4 +81,5 @@
   .cursor-pointer {
     cursor: pointer;
     align-self: flex-end;
+    transform: translate(83%, 120%);
   }

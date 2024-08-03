@@ -33,9 +33,11 @@ const ProductsContextProvider = ({ children }) => {
     })
     setProducts(newProducts)
   }
+
+  const fnProducts = (product) => setProducts(product)
   const fnFilterProducts = (product) => setFilterProducts(product)
 
-  const globalState = { products, filterProducts, fnFilterProducts, getProducts, liked, toggleLike }
+  const globalState = { products, filterProducts, fnProducts, fnFilterProducts, getProducts, liked, toggleLike }
 
   return (
     <ProductsContext.Provider value={globalState}>
