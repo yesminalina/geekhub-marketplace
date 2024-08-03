@@ -1,7 +1,8 @@
 import './Login.css'
 import { Card, Button, Form, Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { UserContext } from '../../context/UserContext'
 import axios from 'axios'
 
 const Login = () => {
@@ -11,6 +12,7 @@ const Login = () => {
   })
 
   const navigate = useNavigate()
+  const { fnIsAuthenticated } = useContext(UserContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,7 +21,15 @@ const Login = () => {
     window.alert('Usuario identificado con éxito 😀.')
     console.log('La respuesta', response)
     navigate('/profile')
+    fnIsAuthenticated(true)
   }
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+    }
+  }, [])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
