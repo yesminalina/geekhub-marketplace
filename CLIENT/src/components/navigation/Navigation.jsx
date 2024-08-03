@@ -4,16 +4,16 @@ import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import logo from '../../assets/img/logo-pink.png'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { CartContext } from '../../context/CartContext'
-import { ProductsContext } from '../../context/ProductsContext'
+import { UserContext } from '../../context/UserContext'
 
 const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 
 const Navigation = () => {
   const [search, setSearch] = useState('')
   const { cart } = useContext(CartContext)
-  const { products, fnFilterProducts } = useContext(ProductsContext)
+  const { isAuthenticated, fnIsAuthenticated } = useContext(UserContext)
 
   const handleSearch = (e) => {
     setSearch(e.target.value)
@@ -24,31 +24,35 @@ const Navigation = () => {
 
   const handleFilter = (e) => {
     e.preventDefault()
-    let result = []
-    if (search === '') {
-      result = products
-      fnFilterProducts(result)
-    } else {
-      result = products.filter((product) =>
-        product.title.toLowerCase().includes(search.toLowerCase())
-      )
-      fnFilterProducts(result)
-    }
-    navigate('/catalogue')
+    const searchQuery = search.toLowerCase()
+    navigate(`/catalogue/?searchQuery=${searchQuery}`)
   }
 
   // Handles links to catalogue filtered by category
   const handleFilterLink = (e) => {
-    const result = products.filter((product) => product.category.toLowerCase().includes(e.target.name.toLowerCase()))
-    fnFilterProducts(result)
-    navigate('/catalogue')
     e.preventDefault()
+    const category = e.target.name.toLowerCase()
+    navigate(`/catalogue/?category=${category}`)
+  }
+
+  // Logout
+  const handleLogout = () => {
+    window.sessionStorage.removeItem('token')
+    fnIsAuthenticated(false)
   }
 
   const quantity = cart.map((product) => (
     product.qty
   ))
   const cantidad = quantity.reduce((acc, item) => acc + item, 0)
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+    }
+  }, [isAuthenticated])
+
   return (
     <>
       <Navbar expand='lg' className='navbg'>
@@ -69,6 +73,7 @@ const Navigation = () => {
               </Form>
               <Nav className='linksContainer me-auto my-2 my-lg-0' style={{ maxHeight: '100px' }} navbarScroll>
                 <NavLink to='/' className='navlinks'>Inicio</NavLink>
+                <NavLink to='/catalogue' className='navlinks'>Tienda</NavLink>
                 <NavDropdown title='Categorias' id='navbarScrollingDropdown'>
                   <NavDropdown.Item as={Link} to='boardgames' className='navdropitem' name='Juegos de Mesa' onClick={handleFilterLink}>Juegos de Mesa</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to='tcg' className='navdropitem' name='TCG' onClick={handleFilterLink}>TCG</NavDropdown.Item>
@@ -78,15 +83,20 @@ const Navigation = () => {
                 </NavDropdown>
                 <NavLink to='/about-us' className='navlinks'>Sobre Nosotros</NavLink>
                 <NavLink to='/contact' className='navlinks'>Contacto</NavLink>
-                <NavLink to='/help' className='navlinks'>Ayuda</NavLink>
               </Nav>
             </div>
           </Container>
-          <Container className='thirdContainer'>
-            <NavLink to='/register' className='navlinks'>Registrar</NavLink>
-            <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
-            <NavLink to='/cart' className='cart'>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink>
-          </Container>
+          {isAuthenticated
+            ? <Container className='thirdContainer'>
+              <NavLink to='/profile' className='navlinks'>Perfil</NavLink>
+              <NavLink to='/' className='navlinks' onClick={handleLogout}>Cerrar Sesión</NavLink>
+              <NavLink to='/cart' className='cart'>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink>
+            </Container>
+            : <Container className='thirdContainer'>
+              <NavLink to='/register' className='navlinks'>Registrar</NavLink>
+              <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
+              <NavLink to='/register' className='cart'>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink>
+            </Container>}
         </Container>
       </Navbar>
     </>
