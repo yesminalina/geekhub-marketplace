@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { CartContext } from '../../context/CartContext'
 import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const trashLogo = <FontAwesomeIcon icon={faTrash} size='xl' />
 
 const CartCard = ({ product }) => {
   const { cart, addToCart, removeFromCart, removeItemFromCart, getTotal } = useContext(CartContext)
-
+  const navigate = useNavigate()
   useEffect(() => {
     getTotal()
   }, [cart])
@@ -17,7 +18,7 @@ const CartCard = ({ product }) => {
     <Container className='border-bottom border-2'>
       <Row className='px-4 py-3'>
         <Col xs={12} md={4} className='p-0'>
-          <Image rounded fluid className='p-0' src={`${product.image_url}`} />
+          <Image rounded fluid className='p-0' src={`${product.image_url}`} onClick={() => navigate(`/product-details/${product.id}`)} />
         </Col>
         <Col xs={10} md={6} className='d-flex flex-column justify-content-between ps-4'>
           <div>
