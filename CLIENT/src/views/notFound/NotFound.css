@@ -1,0 +1,25 @@
+.notFound {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .img404 {
+    max-height: max-content;
+    object-fit: cover;
+  }
+  
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  #goHome {
+    margin-top: 4rem;
+    height: 3rem;
+    width: 15rem;
+  }
