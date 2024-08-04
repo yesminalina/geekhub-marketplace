@@ -8,7 +8,7 @@ import { UserContext } from '../../context/UserContext'
 import axios from 'axios'
 
 const Profile = () => {
-  const { activeUser, fnActiveUser } = useContext(UserContext)
+  const { activeUser, fnActiveUser, isAuthenticated } = useContext(UserContext)
   const navigate = useNavigate()
 
   const getUserData = () => {
@@ -20,11 +20,16 @@ const Profile = () => {
       })
       .catch(({ response: { data } }) => {
         console.error(data)
-        navigate('/')
+        navigate('/register')
       })
   }
 
   useEffect(getUserData, [])
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/register')
+    }
+  }, [])
 
   return (
     <Container className='py-5'>

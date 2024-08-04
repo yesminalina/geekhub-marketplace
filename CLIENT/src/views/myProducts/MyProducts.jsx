@@ -2,11 +2,22 @@ import './MyProducts.css'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
-
+import { useEffect, useContext } from 'react'
+import { UserContext } from '../../context/UserContext'
+import { useNavigate } from 'react-router-dom'
 const edit = <FontAwesomeIcon icon={faEdit} size='1x' />
 const trash = <FontAwesomeIcon icon={faTrash} size='1x' />
 
 const MyProducts = () => {
+  const { isAuthenticated } = useContext(UserContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/register')
+    }
+  }, [])
+
   return (
     <>
       <Container className='twosection'>

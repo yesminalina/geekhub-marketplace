@@ -2,17 +2,25 @@ import './Cart.css'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import CartCard from '../../components/cartCard/CartCard'
 import { CartContext } from '../../context/CartContext'
+import { UserContext } from '../../context/UserContext'
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
   const { cart, total, getTotal } = useContext(CartContext)
+  const { isAuthenticated } = useContext(UserContext)
 
   const navigate = useNavigate()
 
   useEffect(() => {
     getTotal()
   }, [cart])
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/register')
+    }
+  }, [])
 
   return (
     <Container fluid className='px-5 py-5'>
