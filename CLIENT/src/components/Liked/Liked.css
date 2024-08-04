@@ -13,3 +13,11 @@ section {
     gap: 25px;
     margin-left: 150px;
 }
+
+.wholeLike {
+    min-height: 160px;
+}
+
+.likeDescription {
+    max-width: 17rem;
+}

@@ -10,7 +10,7 @@ const Carousel = () => {
     <div>
       <div className='container-home'>
         {products.slice(0, 5).map((product) => (
-          <div key={product.id} style={{ backgroundImage: `url(${product.image_url})` }} onClick={() => navigate(`/product-details/${product.id}`)}>
+          <div key={product.id} style={{ backgroundImage: `url(${product.imageUrl})` }} onClick={() => navigate(`/product-details/${product.id}`)}>
             <div className='content'>
               <h2>{product.title}</h2>
               <span>${product.price.toLocaleString('es-CL')}</span>

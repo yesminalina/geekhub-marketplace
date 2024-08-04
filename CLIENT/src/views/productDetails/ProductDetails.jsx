@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { ProductsContext } from '../../context/ProductsContext'
 import { CartContext } from '../../context/CartContext'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Container, Card, Button } from 'react-bootstrap'
+import { Container, Card, Button, Row, Col } from 'react-bootstrap'
 import StarRating from '../../components/startRating/StarRating'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -23,7 +23,7 @@ const ProductDetails = () => {
       <Card className='principal-box'>
         <Card.Body className='wholespace'>
           <div id='big-photo'>
-            <img src={ProductsData.image_url} className='big-img' alt='Imagen grande' />
+            <img src={ProductsData.imageUrl} className='big-img' alt='Imagen grande' />
           </div>
           <div className='details'>
             <section className='icons'>
@@ -34,7 +34,14 @@ const ProductDetails = () => {
             <Card.Title className='title-name'>{ProductsData.title}</Card.Title>
             <StarRating totalStars={5} />
             <Card.Text className='description'>{ProductsData.description}</Card.Text>
-            <Card.Text className='price'>${ProductsData.price}</Card.Text>
+            <Row className='count'>
+              <Col>
+                <Card.Text className='stock'>Stock:{ProductsData.stock} Unidades</Card.Text>
+              </Col>
+              <Col>
+                <Card.Text className='price'>${ProductsData.price.toLocaleString('es-CL')}</Card.Text>
+              </Col>
+            </Row>
             <Button id='addCart' type='button' onClick={() => addToCart(ProductsData)}>Agregar al carrito</Button>
           </div>
         </Card.Body>

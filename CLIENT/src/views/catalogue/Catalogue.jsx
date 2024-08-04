@@ -14,6 +14,8 @@ const Catalogue = () => {
   const category = queryParams.get('category')
   const searchQuery = queryParams.get('searchQuery')
 
+  console.log(products[0])
+
   const filterStore = () => {
     let result
     if (category) {
@@ -80,10 +82,10 @@ const Catalogue = () => {
           {filterStore().map((product) => (
             <div key={product.id}>
               <div onClick={() => { toggleLike(product.id) }} className='cursor-pointer'>{product.liked ? <IconHeart filled /> : <IconHeart />}</div>
-              <div onClick={() => navigate(`/product-details/${product.id}`)} className='producto' style={{ backgroundImage: `url(${product.image_url})` }}>
+              <div onClick={() => navigate(`/product-details/${product.id}`)} className='producto' style={{ backgroundImage: `url(${product.imageUrl})` }}>
                 <div>
                   <p>{product.title}</p>
-                  <h6><Badge bg='dark'>Precio: {product.price}</Badge></h6>
+                  <h6><Badge bg='dark'>Precio: ${(product.price).toLocaleString('es-CL')}</Badge></h6>
                 </div>
               </div>
             </div>

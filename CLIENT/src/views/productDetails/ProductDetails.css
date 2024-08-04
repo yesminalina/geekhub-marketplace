@@ -1,5 +1,5 @@
 .principal-box {
-    height: 30rem;
+    height: 31rem;
     background-color: #E0AED0;
     padding-top: 2px;
     margin: 2rem;
@@ -81,10 +81,23 @@
 .price {
     font-weight: bolder;
     font-size: 25px;
-    margin-left: 31rem;
+    margin-left: 13rem;
 }
 
 #addCart {
     width: 15rem;
     margin: 2rem 0 0 20rem;
+}
+
+.stock {
+    font-weight: bolder;
+    font-size: 1.2rem;
+    margin: 2rem 0 0 1rem;
+}
+
+.count {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items:end;
 }
