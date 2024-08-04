@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .twosection {
    /*  background-color: rgb(52, 135, 135); */
     width: 100%;
@@ -37,8 +42,21 @@
 #product {
     background-color: rgb(255, 255, 255);
     width: 27rem;
-    height: 8rem;
-    margin-top: 1rem;
+    height: 15rem;
+    margin: 1rem;
+    padding: 0 5px 0 5px;
+}
+
+.productName {
+    font-weight: bolder;
+}
+
+.productDescription {
+    max-height: 6rem;
+}
+
+.productImg {
+    max-width: 240px;
 }
 
 #my-products {
@@ -51,8 +69,9 @@
     cursor: pointer;
     padding: 0;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
+
 }
 
 .interaction {
@@ -82,10 +101,7 @@
     gap: 40px;
     border: 3px solid #4230a9;
     box-shadow: 1px 5px 15px #1e0e3e;
-}
-
-.new-product :nth-child(3) {
-    margin-bottom: 20px;
+    height: 40rem;
 }
 
 .new-product :last-child {
@@ -95,4 +111,23 @@
 #publish-now {
     color: #4230a9;
     font-size: 2rem;
+    margin-bottom: 0;
+}
+
+.publishBtn {
+    margin-top: 110px;
+}
+
+.description {
+    min-height: 3rem;
+    max-height: 8rem;
+    min-width: 25.5rem;
+}
+
+.formRow1 {
+    height: 48px;
+}
+
+.formRow3 {
+    height: 48px;
 }
