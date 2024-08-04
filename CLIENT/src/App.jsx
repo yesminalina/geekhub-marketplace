@@ -10,8 +10,8 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <ProductsContextProvider>
-          <UserContextProvider>
+        <UserContextProvider>
+          <ProductsContextProvider>
             <CartContextProvider>
               <Navigation />
               <Routes>
@@ -31,8 +31,8 @@ const App = () => {
               </Routes>
               <ToastContainer />
             </CartContextProvider>
-          </UserContextProvider>
-        </ProductsContextProvider>
+          </ProductsContextProvider>
+        </UserContextProvider>
       </BrowserRouter>
     </>
   )

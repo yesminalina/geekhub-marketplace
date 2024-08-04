@@ -1,4 +1,6 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState, useContext } from 'react'
+import { UserContext } from './UserContext'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 export const ProductsContext = createContext()
 
@@ -6,12 +8,10 @@ const ProductsContextProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const [filterProducts, setFilterProducts] = useState(products)
 
+  const { isAuthenticated } = useContext(UserContext)
+  const navigate = useNavigate()
+
   const liked = products.filter((product) => product.liked)
-  // const getProducts = async () => {
-  //   const res = await fetch('./json/MOCK_DATA_PRODUCTS.json')
-  //   const data = await res.json()
-  //   setProducts(data)
-  // }
 
   const getProducts = () => {
     axios.get('./products')
@@ -25,13 +25,17 @@ const ProductsContextProvider = ({ children }) => {
   }, [])
 
   const toggleLike = (id) => {
-    const newProducts = products.map((product) => {
-      if (product.id === id) {
-        return ({ ...product, liked: !product.liked })
-      }
-      return product
-    })
-    setProducts(newProducts)
+    if (isAuthenticated) {
+      const newProducts = products.map((product) => {
+        if (product.id === id) {
+          return ({ ...product, liked: !product.liked })
+        }
+        return product
+      })
+      setProducts(newProducts)
+    } else {
+      navigate('/register')
+    }
   }
 
   const fnProducts = (product) => setProducts(product)
