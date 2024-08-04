@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import './assets/css/toastStyle.css'
 import { Cart, Catalogue, Favorites, Home, Login, MyProducts, Payment, ProductDetails, Profile, Register, NotFound, AboutUs, Contact } from './views/indexViews.js'
 import Navigation from './components/navigation/Navigation.jsx'
 import ProductsContextProvider from './context/ProductsContext.jsx'

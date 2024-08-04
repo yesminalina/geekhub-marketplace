@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../../context/UserContext'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,13 @@ const Login = () => {
     e.preventDefault()
     const response = await axios.post('/login', formData)
     window.sessionStorage.setItem('token', response.data.token)
-    window.alert('Usuario identificado con éxito 😀.')
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Sesión Iniciada con Exito 😊',
+      showConfirmButton: false,
+      timer: 1500
+    })
     console.log('La respuesta', response)
     navigate('/profile')
     fnIsAuthenticated(true)

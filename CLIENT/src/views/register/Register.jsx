@@ -3,6 +3,7 @@ import { Card, Button, Col, Form, Row } from 'react-bootstrap'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const Register = () => {
   const [validated, setValidated] = useState(false)
@@ -35,7 +36,13 @@ const Register = () => {
     }
     setValidated(true)
     const response = await axios.post('/register', user)
-    window.alert('Usuario creado con éxito 😀.')
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Usuario registrado Exitosdamente 😊',
+      showConfirmButton: false,
+      timer: 1500
+    })
     console.log('La respuesta', response)
     navigate('/login')
   }
