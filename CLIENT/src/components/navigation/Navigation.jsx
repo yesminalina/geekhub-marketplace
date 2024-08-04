@@ -7,13 +7,15 @@ import logo from '../../assets/img/logo-pink.png'
 import { useContext, useState, useEffect } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { UserContext } from '../../context/UserContext'
+import { ProductsContext } from '../../context/ProductsContext'
 
 const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 
 const Navigation = () => {
   const [search, setSearch] = useState('')
-  const { cart } = useContext(CartContext)
+  const { cart, fnCart } = useContext(CartContext)
   const { isAuthenticated, fnIsAuthenticated } = useContext(UserContext)
+  const { products } = useContext(ProductsContext)
 
   const handleSearch = (e) => {
     setSearch(e.target.value)
@@ -52,6 +54,11 @@ const Navigation = () => {
       fnIsAuthenticated(true)
     }
   }, [isAuthenticated])
+
+  useEffect(() => {
+    const newCart = cart.filter((item) => products.some((product) => product.id === item.id))
+    fnCart(newCart)
+  }, [products])
 
   return (
     <>

@@ -3,12 +3,14 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import CartCard from '../../components/cartCard/CartCard'
 import { CartContext } from '../../context/CartContext'
 import { UserContext } from '../../context/UserContext'
+import { ProductsContext } from '../../context/ProductsContext'
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
-  const { cart, total, getTotal } = useContext(CartContext)
+  const { cart, total, getTotal, fnCart } = useContext(CartContext)
   const { isAuthenticated } = useContext(UserContext)
+  const { products } = useContext(ProductsContext)
 
   const navigate = useNavigate()
 
@@ -20,6 +22,11 @@ const Cart = () => {
     if (!isAuthenticated) {
       navigate('/register')
     }
+  }, [])
+
+  useEffect(() => {
+    const newCart = cart.filter((item) => products.some((product) => product.id === item.id))
+    fnCart(newCart)
   }, [])
 
   return (
@@ -34,8 +41,8 @@ const Cart = () => {
               </Col>
             ))}
             <Col xs={12} className='d-flex justify-content-between align-items-center px-5 py-2 fw-bold'>
-              <p>Subtotal</p>
-              <p className='text-end'>${total}</p>
+              <p className='fs-3'>Total</p>
+              <p className='text-end fs-3'>${total.toLocaleString('es-CL')}</p>
             </Col>
             <Col xs={12} className='text-center'>
               <Button variant='primary' size='lg' onClick={() => navigate('/payment')}>Proceder con la compra</Button>

@@ -18,7 +18,7 @@ const CartCard = ({ product }) => {
     <Container className='border-bottom border-2'>
       <Row className='px-4 py-3'>
         <Col xs={12} md={4} className='p-0'>
-          <Image rounded fluid className='p-0' src={`${product.image_url}`} onClick={() => navigate(`/product-details/${product.id}`)} />
+          <Image rounded fluid className='p-0' src={`${product.imageUrl}`} onClick={() => navigate(`/product-details/${product.id}`)} />
         </Col>
         <Col xs={10} md={6} className='d-flex flex-column justify-content-between ps-4'>
           <div>
@@ -37,7 +37,7 @@ const CartCard = ({ product }) => {
           <Button variant='outline'>
             <i onClick={() => removeItemFromCart(product)} className='px-2'>{trashLogo}</i>
           </Button>
-          <p className='m-0 py-2'>{product.price * product.qty}</p>
+          <p className='m-0 py-2 fs-5'>${(product.price * product.qty).toLocaleString('es-CL')}</p>
         </Col>
       </Row>
     </Container>
