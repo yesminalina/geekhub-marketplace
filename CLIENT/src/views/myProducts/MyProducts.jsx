@@ -9,6 +9,7 @@ import { CartContext } from '../../context/CartContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import showFormAlert from '../../components/showFormAlert/showFormAlert.js'
 const edit = <FontAwesomeIcon icon={faEdit} size='1x' />
 const trash = <FontAwesomeIcon icon={faTrash} size='1x' />
 
@@ -84,6 +85,15 @@ const MyProducts = () => {
     fnProducts(newProducts.filter((item) => item.id !== productId))
   }
 
+  const handleEdit = (product) => {
+    showFormAlert((newProductData) => {
+      console.log('Producto actualizado:', newProductData)
+      axios.put(`/products/${product.id}`, newProductData).then((response) => {
+        fnProducts(products.map(p => p.id === product.id ? response.data.data : p))
+      })
+    })
+  }
+
   const inputStyle = {
     height: `${(inputValueDescription.length + 1) * 0.5}px`,
     transition: 'height 0.4s ease-in-out'
@@ -100,13 +110,13 @@ const MyProducts = () => {
                   <Card id='product'>
                     <Row>
                       <Col md={6}>
-                        <p className='productName'>{product.title.substring(0, 20)}</p>
-                        <p>{product.price.toLocaleString('es-CL')}</p>
+                        <p className='productDark'>{product.title.substring(0, 20)}</p>
+                        <p className='productDark'>${product.price.toLocaleString('es-CL')}</p>
                         <p className='productDescription'>{product.description.substring(0, 80)}</p>
                       </Col>
                       <Col md={5}><img className='productImg' src={product.imageUrl} alt='productImg' /></Col>
                       <Col md={0} id='interaction'>
-                        <Button className='interaction'>{edit}</Button>
+                        <Button className='interaction' onClick={handleEdit}>{edit}</Button>
                         <Button className='interaction' onClick={() => handleDelete(product.id)}>{trash}</Button>
                       </Col>
                     </Row>
