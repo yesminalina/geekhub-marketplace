@@ -6,7 +6,7 @@
   
   /* Notificación de error */
   .Toastify__toast--error {
-    background-color: #f44336 !important; /* Rojo */
+    background-color: crimson !important; /* Rojo */
     color: #ffffff !important; /* Blanco */
   }
   
@@ -18,7 +18,7 @@
   
   /* Notificación informativa */
   .Toastify__toast--info {
-    background-color: #2196f3 !important; /* Azul */
+    background-color: #756AB6 !important; /* Azul */
     color: #ffffff !important; /* Blanco */
   }
   
