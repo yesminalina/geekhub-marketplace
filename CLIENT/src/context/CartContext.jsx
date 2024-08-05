@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -71,13 +71,6 @@ const CartContextProvider = ({ children }) => {
   const getTotal = () => {
     setTotal(cart.reduce((acc, item) => (acc + (item.price * item.qty)), 0))
   }
-
-  useEffect(() => {
-    // const newCart = cart.filter((item) => products.some((product) => product.id === item.id))
-    // setCart(newCart)
-    // const compare = cart.filter((item) => item.id === products.id)
-    // console.log(compare)
-  }, [])
 
   const fnCart = (cart) => setCart(cart)
   const globalState = { cart, total, getTotal, addToCart, removeFromCart, removeItemFromCart, fnCart, removeNotify }
