@@ -1,5 +1,5 @@
 import './Catalogue.css'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate, useLocation, NavLink } from 'react-router-dom'
 import { ProductsContext } from '../../context/ProductsContext'
 import IconHeart from '../../components/iconHeart/IconHeart'
@@ -7,6 +7,7 @@ import { Badge, Dropdown } from 'react-bootstrap'
 
 const Catalogue = () => {
   const { products, toggleLike } = useContext(ProductsContext)
+  const [sortBy, setSortBy] = useState('')
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -16,53 +17,67 @@ const Catalogue = () => {
 
   console.log(products[0])
 
-  const filterStore = () => {
+  const filterStore = (sortBy) => {
     let result
+
     if (category) {
-      result = products.filter((product) => product.category.toLowerCase().includes(category.toLowerCase()))
+      result = products.filter((product) =>
+        product.category.toLowerCase().includes(category.toLowerCase())
+      )
     } else if (searchQuery) {
-      result = products.filter((product) => product.title.toLowerCase().includes(searchQuery.toLowerCase()))
+      result = products.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
     } else {
-      result = products
+      result = [...products]
     }
+
+    if (sortBy === 'asc') {
+      result.sort((a, b) => a.price - b.price)
+    } else if (sortBy === 'desc') {
+      result.sort((a, b) => b.price - a.price)
+    } else if (sortBy === 'ascName') {
+      result.sort((a, b) => a.title.localeCompare(b.title))
+    } else if (sortBy === 'descName') {
+      result.sort((a, b) => b.title.localeCompare(a.title))
+    }
+
     return result
   }
+
+  const filteredProducts = filterStore(sortBy)
 
   const handleFilterLink = (e) => {
     e.preventDefault()
     navigate(`/catalogue/?category=${e.target.name}`)
   }
 
-  /* const handleLength = (e) => {
-    const categoryLength = products.filter((product) => product.category === e.target.name).length
-    return categoryLength
-  } */
+  const handleCatalogue = (products) => {
+    const categoryCount = products.reduce((acc, product) => {
+      acc[product.category] = (acc[product.category] || 0) + 1
+      return acc
+    }, {})
+
+    return Object.entries(categoryCount).map(([category, count]) => ({
+      category,
+      count
+    }))
+  }
+  console.log(handleCatalogue(products))
 
   return (
     <>
       <div className='grid-container'>
         <aside>
           <h3>Categorías</h3>
-          <article className='category'>
-            <p><NavLink name='Juegos de Mesa' onClick={handleFilterLink}>Juegos de Mesa</NavLink></p>
-            <p className='cantidad'>({})</p>
-          </article>
-          <article className='category'>
-            <p><NavLink name='TCG' onClick={handleFilterLink}>TCG</NavLink></p>
-            <p className='cantidad'>({})</p>
-          </article>
-          <article className='category'>
-            <p><NavLink name='Figuras coleccionables' onClick={handleFilterLink}>Figuras coleccionables</NavLink></p>
-            <p className='cantidad'>(8)</p>
-          </article>
-          <article className='category'>
-            <p><NavLink name='Mangas y Cómics' onClick={handleFilterLink}>Mangas y Cómics</NavLink></p>
-            <p className='cantidad'>(3)</p>
-          </article>
-          <article className='category'>
-            <p><NavLink name='Álbumes y Láminas' onClick={handleFilterLink}>Álbumes y Láminas</NavLink></p>
-            <p className='cantidad'>(3)</p>
-          </article>
+          {
+            handleCatalogue(products).map(({ category, count }) => (
+              <article className='category' key={category}>
+                <p><NavLink name={category} onClick={handleFilterLink}>{category}:</NavLink></p>
+                <p className='cantidad'>({count})</p>
+              </article>
+            ))
+          }
         </aside>
 
         <Dropdown className='d-flex'>
@@ -71,15 +86,15 @@ const Catalogue = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href='#'>Precio de menor a mayor</Dropdown.Item>
-            <Dropdown.Item href='#'>Precio de mayor a menor</Dropdown.Item>
-            <Dropdown.Item href='#'>Alfabético de A-Z</Dropdown.Item>
-            <Dropdown.Item href='#'>Alfabético de Z-A</Dropdown.Item>
+            <Dropdown.Item onClick={() => setSortBy('asc')}>Precio de menor a mayor</Dropdown.Item>
+            <Dropdown.Item onClick={() => setSortBy('desc')}>Precio de mayor a menor</Dropdown.Item>
+            <Dropdown.Item onClick={() => setSortBy('ascName')}>Alfabético de A-Z</Dropdown.Item>
+            <Dropdown.Item onClick={() => setSortBy('descName')}>Alfabético de Z-A</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
         <div className='gallery grid-columns-5 p-3'>
-          {filterStore().map((product) => (
+          {filteredProducts.map((product) => (
             <div key={product.id}>
               <div onClick={() => { toggleLike(product.id) }} className='cursor-pointer'>{product.liked ? <IconHeart filled /> : <IconHeart />}</div>
               <div onClick={() => navigate(`/product-details/${product.id}`)} className='producto' style={{ backgroundImage: `url(${product.imageUrl})` }}>
