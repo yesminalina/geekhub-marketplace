@@ -9,7 +9,7 @@
     "imageUrl": "https://images.ctfassets.net/s5n2t79q9icq/1z13R9mGzDfdRrp6f4bEtx/4dbed6b57bc6ff7c1fe7bd0033a52da1/48njalb3udbhaj8.png",
     "category": "TCG",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "imageUrl": "https://image.made-in-china.com/202f0j00UcZbjTpzOtki/Hot-Sale-English-French-Spanish-Pokemon-Booster-Card-Box-Pokemon-Card.webp",
     "category": "TCG",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 3,
@@ -33,7 +33,7 @@
     "imageUrl": "https://images.thedirect.com/media/article_full/marvel-legends.jpg",
     "category": "Álbumes y Láminas",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 4,
@@ -45,7 +45,7 @@
     "imageUrl": "https://i.etsystatic.com/17850170/r/il/deea35/1601587900/il_570xN.1601587900_edal.jpg",
     "category": "Figuras Coleccionables",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 5,
@@ -57,7 +57,7 @@
     "imageUrl": "https://www.denofgeek.com/wp-content/uploads/2020/11/amazing-rare-pokemon-cards-main.jpg?fit=1200%2C675",
     "category": "Álbumes y Láminas",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 6,
@@ -69,7 +69,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/cc0000/ffffff",
     "category": "TCG",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 7,
@@ -81,7 +81,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/ff4444/ffffff",
     "category": "Juegos de Mesa",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 8,
@@ -93,7 +93,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
     "category": "Mangas y Cómics",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 9,
@@ -105,7 +105,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
     "category": "Álbumes y Láminas",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 10,
@@ -117,7 +117,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/cc0000/ffffff",
     "category": "Álbumes y Láminas",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 11,
@@ -129,7 +129,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/cc0000/ffffff",
     "category": "Figuras Coleccionables",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 12,
@@ -141,7 +141,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
     "category": "Mangas y Cómics",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 13,
@@ -153,7 +153,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/dddddd/000000",
     "category": "Figuras Coleccionables",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 14,
@@ -165,7 +165,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/dddddd/000000",
     "category": "Mangas y Cómics",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 15,
@@ -177,7 +177,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/dddddd/000000",
     "category": "Álbumes y Láminas",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 16,
@@ -189,7 +189,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/ff4444/ffffff",
     "category": "Juegos de Mesa",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 17,
@@ -201,7 +201,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
     "category": "Juegos de Mesa",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 18,
@@ -213,7 +213,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
     "category": "Juegos de Mesa",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 19,
@@ -225,7 +225,7 @@
     "imageUrl": "http://dummyimage.com/950x625.png/5fa2dd/ffffff",
     "category": "Mangas y Cómics",
     "liked": false,
-    "score": null
+    "score": 0
   },
   {
     "id": 20,
@@ -237,6 +237,6 @@
     "imageUrl": "http://dummyimage.com/950x625.png/ff4444/ffffff",
     "category": "Mangas y Cómics",
     "liked": false,
-    "score": null
+    "score": 0
   }
 ]

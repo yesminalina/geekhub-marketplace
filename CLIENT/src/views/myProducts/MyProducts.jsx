@@ -24,7 +24,7 @@ const MyProducts = () => {
   })
   const [userProducts, setUserProducts] = useState([])
 
-  const { isAuthenticated } = useContext(UserContext)
+  const { isAuthenticated, activeUser } = useContext(UserContext)
   const { products, fnProducts, createProduct } = useContext(ProductsContext)
   const { removeNotify } = useContext(CartContext)
   const navigate = useNavigate()
@@ -49,7 +49,6 @@ const MyProducts = () => {
   const handleCreate = async (e) => {
     e.preventDefault()
     const product = { ...inputValue, description: inputValueDescription, category, userId: 1, liked: false, score: null, id: 21 }
-    console.log(product)
     const { title, price, stock, imageUrl } = inputValue
     if (title === '' || price === '' || stock === '' || imageUrl === '') {
       Swal.fire({
@@ -63,37 +62,31 @@ const MyProducts = () => {
       createProduct()
       const response = await axios.post('/products', product)
       fnProducts([...products, response.data.data])
-      console.log(products)
     }
   }
 
   const findUserProducts = (userId) => {
     const userProductFilter = products.filter((product) => product.userId === userId)
-    console.log(userProductFilter)
     return userProductFilter
   }
 
   useEffect(() => {
     setUserProducts(findUserProducts(1))
-    console.log(userProducts)
   }, [products])
 
   const handleDelete = (productId) => {
     removeNotify()
     const newProducts = [...products]
-    console.log(newProducts.filter((item) => item.id !== productId))
     fnProducts(newProducts.filter((item) => item.id !== productId))
   }
 
   const handleEdit = (product) => {
     showFormAlert((newProductData) => {
-      console.log('Producto actualizado:', newProductData)
-      axios.put(`/products/${product.id}`, newProductData).then((response) => {
+      axios.put(`/products/${product.id}`, { ...newProductData, userId: activeUser.id, id: product.id }).then((response) => {
         fnProducts(products.map(p => p.id === product.id ? response.data.data : p))
       })
     })
   }
-
   const inputStyle = {
     height: `${(inputValueDescription.length + 1) * 0.5}px`,
     transition: 'height 0.4s ease-in-out'
@@ -116,7 +109,7 @@ const MyProducts = () => {
                       </Col>
                       <Col md={5}><img className='productImg' src={product.imageUrl} alt='productImg' /></Col>
                       <Col md={0} id='interaction'>
-                        <Button className='interaction' onClick={handleEdit}>{edit}</Button>
+                        <Button className='interaction' onClick={() => handleEdit(product)}>{edit}</Button>
                         <Button className='interaction' onClick={() => handleDelete(product.id)}>{trash}</Button>
                       </Col>
                     </Row>

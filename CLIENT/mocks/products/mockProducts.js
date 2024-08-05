@@ -29,9 +29,17 @@ const putProduct = http.put('/products/:id', async ({ request, params }) => {
 
   const { id } = params
   const updatedProduct = await request.json()
-  console.log('Producto actualizado', id, updatedProduct)
 
-  return HttpResponse.json({ status: true, data: updatedProduct, message: 'Producto modificado con exito' }, { status: 201 })
+  return HttpResponse.json({ status: true, data: { ...updatedProduct, id: +id }, message: 'Producto modificado con exito' }, { status: 201 })
 })
 
-export default [getProducts, postProduct, putProduct]
+const putScore = http.put('/products/score/:id', async ({ request, params }) => {
+  await delay(300)
+
+  const { id } = params
+  const updatedScore = await request.json()
+
+  return HttpResponse.json({ status: true, data: updatedScore }, { status: 201 })
+})
+
+export default [getProducts, postProduct, putProduct, putScore]

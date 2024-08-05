@@ -1,4 +1,3 @@
-// showProductFormAlert.js
 import Swal from 'sweetalert2'
 
 const showFormAlert = (onSave) => {
@@ -28,8 +27,8 @@ const showFormAlert = (onSave) => {
       const title = Swal.getPopup().querySelector('#title').value
       const category = Swal.getPopup().querySelector('#category').value
       const imageUrl = Swal.getPopup().querySelector('#imageUrl').value
-      const price = Swal.getPopup().querySelector('#price').value
-      const stock = Swal.getPopup().querySelector('#stock').value
+      const price = Number(Swal.getPopup().querySelector('#price').value)
+      const stock = Number(Swal.getPopup().querySelector('#stock').value)
       const description = Swal.getPopup().querySelector('#description').value
 
       if (!title || !category || !imageUrl || !price || !stock || !description) {

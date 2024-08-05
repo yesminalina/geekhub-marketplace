@@ -32,7 +32,7 @@ const ProductDetails = () => {
               </div>
             </section>
             <Card.Title className='title-name'>{ProductsData.title}</Card.Title>
-            <StarRating totalStars={5} />
+            <StarRating totalStars={5} id={ProductsData.id} />
             <Card.Text className='description'>{ProductsData.description}</Card.Text>
             <Row className='count'>
               <Col>
