@@ -1,13 +1,16 @@
 // StarRating.js
+import './StarRating.css'
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import './StarRating.css'
+import axios from 'axios'
 
-const StarRating = ({ totalStars = 5 }) => {
+const StarRating = ({ totalStars = 5, id }) => {
   const [rating, setRating] = useState(0)
 
-  const handleClick = (value) => {
+  const handleClick = async (value) => {
+    const response = await axios.put(`/products/score/${id}`, value)
+    console.log(response)
     setRating(value)
   }
 
