@@ -78,8 +78,25 @@ const putProfile = http.put('/profile/:id', async ({ request, params }) => {
 
   const { id } = params
   const updatedProfile = await request.json()
-  console.log('perfil actualizado', id, updatedProfile)
-  return HttpResponse.json({ status: true, data: updatedProfile, message: 'Usuario modificado con exito' }, { status: 201 })
+  return HttpResponse.json({ status: true, data: updatedProfile, message: `Usuario ${id} modificado con exito` }, { status: 201 })
 })
 
-export default [register, login, getProfile, putProfile]
+const deleteProfile = http.delete('/profile/:id', async ({ request, params }) => {
+  await delay(300)
+  const { id } = params
+  return HttpResponse.json({ status: true, message: `Usuario ${id} eliminado con éxito` }, { status: 201 })
+})
+
+const patchPhoto = http.patch('/profile/photo/:id', async ({ request, params }) => {
+  await delay(300)
+  const { photoUrl } = await request.json()
+  return HttpResponse.json({ status: true, data: photoUrl, message: 'Foto modificada con exito' }, { status: 201 })
+})
+
+const deletePhoto = http.delete('/profile/photo/:id', async ({ request, params }) => {
+  await delay(300)
+  const { id } = params
+  return HttpResponse.json({ status: true, message: `Foto eliminada con exito en usuario ${id}` }, { status: 201 })
+})
+
+export default [register, login, getProfile, putProfile, patchPhoto, deletePhoto, deleteProfile]

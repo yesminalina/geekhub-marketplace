@@ -1,20 +1,54 @@
 import './ProfileForm.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../context/UserContext'
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap'
 import axios from 'axios'
 
 const ProfileForm = ({ activeUser }) => {
   const [user, setUser] = useState(activeUser)
+  const [photo, setPhoto] = useState(activeUser.photoUrl)
   const id = activeUser.id
+
+  const { fnIsAuthenticated } = useContext(UserContext)
+
+  const navigate = useNavigate()
+
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  const handleChangePhoto = (e) => {
+    setPhoto({ [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const userData = { ...activeUser, ...user }
     const response = await axios.put(`/profile/${id}`, userData)
-    console.log('El usuario actualizado es:', response)
+    window.alert(`Usuario actualizado con éxito: ${response.data.data.email}`)
+  }
+
+  const handleUpdatePhoto = async (e) => {
+    e.preventDefault()
+    const newPhoto = { ...photo }
+    const response = await axios.patch(`/profile/photo/${id}`, newPhoto)
+    window.alert(`Foto actualizada con éxito: ${response.data.data}`)
+  }
+
+  const handleDeletePhoto = async (e) => {
+    e.preventDefault()
+    const response = await axios.delete(`/profile/photo/${id}`)
+    window.alert(`${response.data.message}`)
+  }
+
+  const handleDeleteUser = async (e) => {
+    e.preventDefault()
+    const response = await axios.delete(`/profile/${id}`)
+    window.sessionStorage.removeItem('token')
+    fnIsAuthenticated(false)
+    navigate('/')
+    window.alert(`${response.data.message}`)
   }
 
   return (
@@ -24,13 +58,13 @@ const ProfileForm = ({ activeUser }) => {
           <Col className='d-flex justify-content-center align-items-center' md={8}>
             <Form className='w-100'>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
-                <Form.Control name='photoUrl' type='email' placeholder='URL de la imagen' onChange={handleChange} />
+                <Form.Control name='photoUrl' type='text' placeholder='URL de la imagen' onChange={handleChangePhoto} />
               </Form.Group>
               <Container className='d-flex justify-content-around p-0'>
-                <Button className='w-50 me-2' variant='primary' type='submit'>
+                <Button className='w-50 me-2' variant='primary' type='submit' onClick={handleUpdatePhoto}>
                   Subir Foto
                 </Button>
-                <Button className='w-50' variant='primary' type='submit'>
+                <Button className='w-50' variant='primary' type='submit' onClick={handleDeletePhoto}>
                   Eliminar Foto
                 </Button>
               </Container>
@@ -82,7 +116,7 @@ const ProfileForm = ({ activeUser }) => {
           </Row>
           <Row className='mb-3'>
             <Col>
-              <Button className='w-25' variant='primary' type='submit'>
+              <Button className='w-25' variant='primary' type='submit' onClick={handleDeleteUser}>
                 Eliminar cuenta
               </Button>
             </Col>
