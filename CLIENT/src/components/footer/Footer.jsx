@@ -2,13 +2,14 @@ import './Footer.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faXTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import logo from '../../assets/img/logo-white.png'
 import { useContext } from 'react'
 import { ProductsContext } from '../../context/ProductsContext'
+import handleConditions from '../termsAndConditions/termsAndConditions.js'
 
 const instaLogo = <FontAwesomeIcon icon={faInstagram} size='2xl' />
-const twitterLogo = <FontAwesomeIcon icon={faTwitter} size='2xl' />
+const xtwitterLogo = <FontAwesomeIcon icon={faXTwitter} size='2xl' />
 const facebookLogo = <FontAwesomeIcon icon={faFacebook} size='2xl' />
 const map = 'http://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22650034.730859995!2d0!3d-69.72697362493312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa4b9967b3390754b%3A0x6e52be1f740f2075!2sAnt%C3%A1rtida!5e0!3m2!1ses!2scl!4v1721459642136!5m2!1ses!2scl'
 
@@ -54,7 +55,7 @@ const Footer = () => {
             <NavLink>Contáctanos</NavLink>
           </div>
           <div className='d-flex flex-column'>
-            <NavLink>Términos y condiciones</NavLink>
+            <NavLink onClick={handleConditions}>Términos y condiciones</NavLink>
             <NavLink>Política de privacidad</NavLink>
           </div>
         </Col>
@@ -63,7 +64,7 @@ const Footer = () => {
             <p>Síguenos</p>
             <div>
               <i className='pe-2'>{instaLogo}</i>
-              <i className='pe-2'>{twitterLogo}</i>
+              <i className='pe-2'>{xtwitterLogo}</i>
               <i className='pe-2'>{facebookLogo}</i>
             </div>
           </article>
