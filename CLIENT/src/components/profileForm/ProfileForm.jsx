@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const ProfileForm = ({ activeUser }) => {
   const [user, setUser] = useState(activeUser)
-  const [photo, setPhoto] = useState(activeUser.photoUrl)
+  const [photo, setPhoto] = useState('')
   const id = activeUser.id
 
   const { fnIsAuthenticated } = useContext(UserContext)
@@ -31,15 +32,26 @@ const ProfileForm = ({ activeUser }) => {
 
   const handleUpdatePhoto = async (e) => {
     e.preventDefault()
-    const newPhoto = { ...photo }
+    const newPhoto = { photoUrl: photo }
     const response = await axios.patch(`/profile/photo/${id}`, newPhoto)
-    window.alert(`Foto actualizada con éxito: ${response.data.data}`)
+    console.log(response)
+    if (newPhoto.photoUrl === '') {
+      Swal.fire({
+        title: 'Debes ingresa una URL'
+      })
+    } else {
+      Swal.fire({
+        title: 'Foto actualizada con éxito' /* ${response.data.data.photoUrl} */
+      })
+    }
   }
 
   const handleDeletePhoto = async (e) => {
     e.preventDefault()
     const response = await axios.delete(`/profile/photo/${id}`)
-    window.alert(`${response.data.message}`)
+    Swal.fire({
+      title: `${response.data.message}`
+    })
   }
 
   const handleDeleteUser = async (e) => {
