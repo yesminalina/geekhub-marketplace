@@ -3,6 +3,7 @@ import { Row, Col, Button, Form } from 'react-bootstrap'
 import { CartContext } from '../../context/CartContext'
 import Swal from 'sweetalert2'
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const PaymentForm = () => {
   const { total, fnCart } = useContext(CartContext)
@@ -14,6 +15,8 @@ const PaymentForm = () => {
     cardMonth: '',
     cardYear: ''
   })
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -36,6 +39,15 @@ const PaymentForm = () => {
         text: `Orden Nº ${total}`
       })
       fnCart([])
+      setInputValue({
+        cardNumber: '',
+        cardCvc: '',
+        cardName: '',
+        cardDay: '',
+        cardMonth: '',
+        cardYear: ''
+      })
+      navigate('/')
     }
   }
 
