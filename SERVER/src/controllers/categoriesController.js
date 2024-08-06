@@ -1,3 +1,3 @@
 import * as sql from '../models/categories.dao.js'
 
-export const findCategories = () => {}
+export const findCategories = () => sql

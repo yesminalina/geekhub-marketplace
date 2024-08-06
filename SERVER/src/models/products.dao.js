@@ -1,5 +1,5 @@
 import db from '../database/db.js'
 
-export const findProducts = () => {}
-export const findProductById = () => {}
-export const createProduct = () => {}
+export const findProducts = () => db()
+export const findProductById = () => db()
+export const createProduct = () => db()

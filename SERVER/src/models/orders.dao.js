@@ -1,3 +1,3 @@
 import db from '../database/db.js'
 
-export const findOrderById = () => {}
+export const findOrderById = () => db()
