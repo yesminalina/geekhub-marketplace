@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import './assets/css/toastStyle.css'
 import { Cart, Catalogue, Favorites, Home, Login, MyProducts, Payment, ProductDetails, Profile, Register, NotFound, AboutUs, Contact } from './views/indexViews.js'
@@ -10,7 +10,7 @@ import UserContextProvider from './context/UserContext.jsx'
 const App = () => {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <UserContextProvider>
           <ProductsContextProvider>
             <CartContextProvider>
@@ -34,7 +34,7 @@ const App = () => {
             </CartContextProvider>
           </ProductsContextProvider>
         </UserContextProvider>
-      </BrowserRouter>
+      </HashRouter>
     </>
   )
 }
