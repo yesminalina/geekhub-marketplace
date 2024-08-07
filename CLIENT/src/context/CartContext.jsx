@@ -33,20 +33,36 @@ const CartContextProvider = ({ children }) => {
       theme: 'colored'
     })
   }
+
+  const stockNotify = () => {
+    toast.error('Limite de stock alcanzado', {
+      position: 'bottom-right',
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored'
+    })
+  }
+
   const addToCart = (product) => {
-    const itemInCart = cart.find((item) => item.id === product.id)
-    if (itemInCart) {
-      setCart(cart.map((item) => {
-        if (item.stock > item.qty) {
-          addNotify()
-          return item.id === product.id ? { ...item, qty: item.qty + 1 } : item
-        } else {
-          return item.id === product.id ? { ...item, qty: item.qty } : item
-        }
-      }))
-    } else {
+    const newCart = JSON.parse(JSON.stringify(cart))
+    newCart.findIndex((item) => item.id === product.id)
+    const index = newCart.findIndex((item) => item.id === product.id)
+    if (index === -1) {
+      // EL ELEMENTO NO EXISTE
+      setCart([...cart, { ...product, qty: 1 }])
       addNotify()
-      setCart([...cart, { id: product.id, imageUrl: product.imageUrl, title: product.title, description: product.description, price: product.price, stock: product.stock, qty: 1 }])
+    } else {
+      if (newCart[index].stock > newCart[index].qty) {
+        newCart[index].qty += 1
+        addNotify()
+      } else {
+        stockNotify()
+      }
+      setCart(newCart)
     }
   }
 
