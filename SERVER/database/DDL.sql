@@ -22,14 +22,10 @@ price           INT             NOT NULL,
 description     VARCHAR(300)    NOT NULL, 
 stock           INT             NOT NULL,
 image_url       VARCHAR(255)    NOT NULL,
+score          INT             NOT NULL,
+category        VARCHAR(25)     NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
-CREATE TABLE categories(
-id              SERIAL          NOT NULL,
-name            VARCHAR(35)     NOT NULL,
-PRIMARY KEY (id)
 );
 
 CREATE TABLE orders(
@@ -43,16 +39,7 @@ CREATE TABLE favorites(
 id              SERIAL          NOT NULL,
 user_id         INT             NOT NULL,
 product_id      INT             NOT NULL,
-PRIMARY KEY (id),
-FOREIGN KEY (user_id) REFERENCES users(id),
-FOREIGN KEY (product_id) REFERENCES products(id)
-);
-
-CREATE TABLE scores(
-id              SERIAL          NOT NULL,
-user_id         INT             NOT NULL,
-product_id      INT             NOT NULL,
-scores          INT             NOT NULL,
+liked           BOOLEAN         NOT NULL DEFAULT false,
 PRIMARY KEY (id),
 FOREIGN KEY (user_id) REFERENCES users(id),
 FOREIGN KEY (product_id) REFERENCES products(id)
@@ -65,13 +52,4 @@ product_id      INT             NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (order_id) REFERENCES orders(id),
 FOREIGN KEY (product_id) REFERENCES products(id)
-);
-
-CREATE TABLE product_category(
-id              SERIAL          NOT NULL,
-product_id      INT             NOT NULL,
-category_id      INT             NOT NULL,
-PRIMARY KEY (id),
-FOREIGN KEY (product_id) REFERENCES products(id),
-FOREIGN KEY (category_id) REFERENCES categories(id)
 );
