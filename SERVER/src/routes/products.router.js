@@ -6,10 +6,10 @@ const router = Router()
 router.get('/catalogue', productsController.findProducts)
 router.get('/product-details/:id', productsController.findProductById)
 router.post('/my-products', productsController.createProduct)
-router.put('/my-products', productsController.updateProduct)
-router.delete('/my-products', productsController.deleteProduct)
-router.get('/product-details', productsController.findScoreProduct)
-router.put('/product-details', productsController.scoreProduct)
+router.get('/my-products/:user_id', productsController.findUserProducts)
+router.put('/my-products/:id', productsController.updateProduct)
+router.delete('/my-products/:id', productsController.deleteProduct)
+router.get('/product-details/score/:id', productsController.findScoreProduct)
+router.put('/product-details/score/:id', productsController.scoreProduct)
 
 export default router
-// falta hacer la ruta de los productos que crea el usuario

@@ -1,5 +1,5 @@
 export { default as usersRouter } from './users.router.js'
 export { default as productsRouter } from './products.router.js'
 export { default as categoriesRouter } from './categories.router.js'
-export { default as ordersRouter } from './orders.router.js'
 export { default as errorsRouter } from './errors.router.js'
+export { default as favoritesRouter } from './favorites.router.js'

@@ -27,6 +27,8 @@ export const findProductById = (id) => db('SELECT * FROM products WHERE id = $1;
 
 export const createProduct = ({ userId, title, price, description, stock, imageUrl, score, category }) => db('INSERT INTO products (id, user_id, title, price, description, stock, image_url, score, category) VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *;', [ userId, title, price, description, stock, imageUrl, score, category])
 
+export const findUserProducts = (userId) => db('SELECT * FROM products WHERE user_id = $1;', [userId])
+
 export const updateProduct = (id, { userId, title, price, description, stock, imageUrl, category }) => db('UPDATE products SET title = $3, price = $4, description = $5, stock = $6, image_url = $7, category = $8 WHERE id = $1 AND user_id = $2;', [id, userId, title, price, description, stock, imageUrl, category])
 
 export const deleteProduct = (id) => db('DELETE FROM products WHERE id = $1;', [id])
