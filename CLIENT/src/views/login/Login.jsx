@@ -5,6 +5,7 @@ import { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../../context/UserContext'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { URLBASE } from '../../config/constants'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +18,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await axios.post('/login', formData)
-    window.sessionStorage.setItem('token', response.data.token)
+    const response = await axios.post(`${URLBASE}/login`, formData)
+    console.log(response)
+    window.sessionStorage.setItem('token', response.data.message.token)
     Swal.fire({
       position: 'center',
       icon: 'success',

@@ -5,6 +5,7 @@ import { UserContext } from '../../context/UserContext'
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { URLBASE } from '../../config/constants'
 
 const ProfileForm = ({ activeUser }) => {
   const [user, setUser] = useState(activeUser)
@@ -26,29 +27,30 @@ const ProfileForm = ({ activeUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const userData = { ...activeUser, ...user }
-    const response = await axios.put(`/profile/${id}`, userData)
+    const response = await axios.put(`${URLBASE}/profile/${id}`, userData)
     window.alert(`Usuario actualizado con éxito: ${response.data.data.email}`)
   }
 
   const handleUpdatePhoto = async (e) => {
     e.preventDefault()
-    const newPhoto = { photoUrl: photo }
-    const response = await axios.patch(`/profile/photo/${id}`, newPhoto)
-    console.log(response)
-    if (newPhoto.photoUrl === '') {
+    console.log(photo)
+    const response = await axios.put(`${URLBASE}/profile/photo/${id}`, photo)
+    // FALTA VALIDAR QUE NO PASE VACIO EL VALOR DE PHOTO A LA DB porque queda NUll
+    if (photo === '') {
       Swal.fire({
         title: 'Debes ingresa una URL'
       })
     } else {
+      setPhoto(response)
       Swal.fire({
-        title: 'Foto actualizada con éxito' /* ${response.data.data.photoUrl} */
+        title: 'Foto actualizada con éxito'
       })
     }
   }
 
   const handleDeletePhoto = async (e) => {
     e.preventDefault()
-    const response = await axios.delete(`/profile/photo/${id}`)
+    const response = await axios.put(`${URLBASE}/profile/default-photo/${id}`)
     Swal.fire({
       title: `${response.data.message}`
     })
@@ -56,7 +58,7 @@ const ProfileForm = ({ activeUser }) => {
 
   const handleDeleteUser = async (e) => {
     e.preventDefault()
-    const response = await axios.delete(`/profile/${id}`)
+    const response = await axios.delete(`${URLBASE}/profile/${id}`)
     window.sessionStorage.removeItem('token')
     fnIsAuthenticated(false)
     navigate('/')
@@ -92,7 +94,7 @@ const ProfileForm = ({ activeUser }) => {
           <Row className='mb-3'>
             <Col>
               <Form.Label>Nombre</Form.Label>
-              <Form.Control name='firstName' placeholder={activeUser.firstName} onChange={handleChange} />
+              <Form.Control name='firsName' placeholder={activeUser.firstName} onChange={handleChange} />
             </Col>
             <Col>
               <Form.Label>Apellido</Form.Label>

@@ -4,7 +4,7 @@ export const register = ({ firstName, lastName, address, phoneNumber, email }, p
 
 export const login = ({ email }) => db('SELECT email, password FROM users WHERE email = $1;', [email])
 
-export const findProfile = (email) => db('SELECT email, first_name, last_name, phone_number, address FROM users WHERE email = $1;', [email])
+export const findProfile = (email) => db('SELECT id, email, first_name, last_name, phone_number, address, photo_url FROM users WHERE email = $1;', [email])
 
 export const deleteProfile = (id) => db('DELETE FROM users WHERE id = $1 RETURNING *;', [id])
 

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { URLBASE } from '../../config/constants'
 
 const Register = () => {
   const [validated, setValidated] = useState(false)
@@ -13,8 +14,7 @@ const Register = () => {
     address: '',
     phoneNumber: '',
     password: '',
-    email: '',
-    photoUrl: ''
+    email: ''
   })
 
   const navigate = useNavigate()
@@ -35,7 +35,7 @@ const Register = () => {
       e.stopPropagation()
     }
     setValidated(true)
-    const response = await axios.post('/register', user)
+    const response = await axios.post(`${URLBASE}/register`, user)
     Swal.fire({
       position: 'center',
       icon: 'success',

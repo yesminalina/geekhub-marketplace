@@ -6,6 +6,7 @@ import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import axios from 'axios'
+import { URLBASE } from '../../config/constants'
 
 const Profile = () => {
   const { activeUser, fnActiveUser, isAuthenticated } = useContext(UserContext)
@@ -13,10 +14,12 @@ const Profile = () => {
 
   const getUserData = () => {
     const token = window.sessionStorage.getItem('token')
-    axios.get('./profile', { headers: { Authorization: `Bearer ${token}` } })
-      .then(({ data: [user] }) => {
-        fnActiveUser({ ...user[0] })
-        console.log(user)
+    console.log(token)
+    axios.get(`${URLBASE}/profile`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((response) => {
+        const { first_name: firstName, last_name: lastName, phone_number: phoneNumber, photo_url: photoUrl } = response.data.message[0]
+        console.log(photoUrl)
+        fnActiveUser({ ...response.data.message[0], firstName, lastName, phoneNumber, photoUrl })
       })
       .catch(({ response: { data } }) => {
         console.error(data)
