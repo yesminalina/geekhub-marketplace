@@ -8,9 +8,9 @@ first_name      VARCHAR(35)     NOT NULL,
 last_name       VARCHAR(35)     NOT NULL,
 address         VARCHAR(100)    NOT NULL,
 phone_number    INT             NOT NULL,
-password        VARCHAR(35)     NOT NULL,
+password        VARCHAR(60)     NOT NULL,
 email           VARCHAR(50)     NOT NULL UNIQUE,
-photo_url       VARCHAR(255),    
+photo_url       VARCHAR(255)    DEFAULT 'https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg',    
 PRIMARY KEY (id)
 );
 
