@@ -3,9 +3,8 @@ import { jwtSign } from '../utils/jwt.js'
 import { hashPass, comparePass } from '../utils/bcrypt.js'
 
 export const register = (req, res) => {
-
   hashPass(req.body.password)
-    .then(hashedPass => sql.register(req.body, {password: hashedPass}))
+    .then(hashedPass => sql.register(req.body, hashedPass))
     .then(result => {
       if (result.code) {
         res.status(500).json({ status: false, code: 500, message: 'Ha ocurrido un error, vuelve a intentar' })
@@ -17,21 +16,23 @@ export const register = (req, res) => {
 }
 
 export const login = (req, res) => {
-  sql.login(req.body.email)
+  const { email, password } = req.body
+  sql.login({ email })
     .then(users => {
       if (users.length === 0) {
-        res.status(401).json({ status: false, code: 401, message: 'Usuario y/o contraseña incorrectas' })
+        res.status(401).json({ status: false, code: 401, message: 'Usuario y/o contraseña incorrectas 1' })
         return
       }
-
-      return comparePass(password, [users].password)
+      const user = users[0]
+      return comparePass(password, user.password)
         .then(passwordMatch => {
           if (!passwordMatch) {
             res.status(401).json({ status: false, code: 401, message: 'Usuario y/o contraseña incorrectas' })
             return
           }
 
-          const token = jwtSign(user)
+          const token = jwtSign(user.email)
+          console.log(token)
           res.status(200).json({ status: true, code: 200, message: { token } })
         })
     })
@@ -40,7 +41,7 @@ export const login = (req, res) => {
     })
 }
 
-export const findProfile = (req, res) => sql.findProfile(req.body.email)
+export const findProfile = (req, res) => sql.findProfile(req.user)
   .then((result) => res.status(200).json({ status: true, code: 200, message: result }))
   .catch((error) => res.status(500).json({ status: false, code: 500, message: error }))
 
@@ -52,10 +53,10 @@ export const updateProfile = (req, res) => sql.updateProfile(req.params.id, req.
   .then((result) => res.status(200).json({ status: true, code: 200, message: result }))
   .catch((error) => res.status(500).json({ status: false, code: 500, message: error }))
 
-export const updatePhotoProfile = (req, res) => sql.updatePhotoProfile(req.params.id, req.body.photo_url)
+export const updatePhotoProfile = (req, res) => sql.updatePhotoProfile(req.params.id, req.body.photoUrl)
   .then((result) => res.status(200).json({ status: true, code: 200, message: result }))
   .catch((error) => res.status(500).json({ status: false, code: 500, message: error }))
 
-export const deletePhotoProfile = (req, res) => sql.deletePhotoProfile(req.params.id)
+export const defaultPhotoProfile = (req, res) => sql.defaultPhotoProfile(req.params.id)
   .then((result) => res.status(200).json({ status: true, code: 200, message: result }))
   .catch((error) => res.status(500).json({ status: false, code: 500, message: error }))
