@@ -7,7 +7,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import { URLBASE } from '../../config/constants'
 
-const ProfileForm = ({ activeUser }) => {
+const ProfileForm = ({ activeUser, getUserData }) => {
   const [user, setUser] = useState(activeUser)
   const [photo, setPhoto] = useState('')
   const id = activeUser.id
@@ -21,50 +21,55 @@ const ProfileForm = ({ activeUser }) => {
   }
 
   const handleChangePhoto = (e) => {
-    setPhoto({ [e.target.name]: e.target.value })
+    setPhoto(e.target.value)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const userData = { ...activeUser, ...user }
-    const response = await axios.put(`${URLBASE}/profile/${id}`, userData)
-    window.alert(`Usuario actualizado con éxito: ${response.data.data.email}`)
+    await axios.put(`${URLBASE}/profile/${id}`, userData)
+    getUserData()
+    Swal.fire({
+      title: 'Usuario actualizado exitosamente'
+    })
   }
 
   const handleUpdatePhoto = async (e) => {
     e.preventDefault()
-    console.log(photo)
-    const response = await axios.put(`${URLBASE}/profile/photo/${id}`, photo)
-    // FALTA VALIDAR QUE NO PASE VACIO EL VALOR DE PHOTO A LA DB porque queda NUll
     if (photo === '') {
       Swal.fire({
         title: 'Debes ingresa una URL'
       })
     } else {
-      setPhoto(response)
+      const photoData = { photoUrl: photo }
+      await axios.put(`${URLBASE}/profile/photo/${id}`, photoData)
+      getUserData()
       Swal.fire({
         title: 'Foto actualizada con éxito'
       })
+      setPhoto('')
     }
   }
 
   const handleDeletePhoto = async (e) => {
     e.preventDefault()
-    const response = await axios.put(`${URLBASE}/profile/default-photo/${id}`)
+    await axios.put(`${URLBASE}/profile/default-photo/${id}`)
+    getUserData()
     Swal.fire({
-      title: `${response.data.message}`
+      title: 'Foto eliminada'
     })
   }
 
   const handleDeleteUser = async (e) => {
     e.preventDefault()
-    const response = await axios.delete(`${URLBASE}/profile/${id}`)
+    await axios.delete(`${URLBASE}/profile/${id}`)
     window.sessionStorage.removeItem('token')
     fnIsAuthenticated(false)
     navigate('/')
-    window.alert(`${response.data.message}`)
+    Swal.fire({
+      title: 'Usuario eliminado con éxito'
+    })
   }
-
   return (
     <Container fluid className='py-4 px-2'>
       <Container>
@@ -72,7 +77,7 @@ const ProfileForm = ({ activeUser }) => {
           <Col className='d-flex justify-content-center align-items-center' md={8}>
             <Form className='w-100'>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
-                <Form.Control name='photoUrl' type='text' placeholder='URL de la imagen' onChange={handleChangePhoto} />
+                <Form.Control name='photoUrl' type='text' value={photo} placeholder='URL de la imagen' onChange={handleChangePhoto} />
               </Form.Group>
               <Container className='d-flex justify-content-around p-0'>
                 <Button className='w-50 me-2' variant='primary' type='submit' onClick={handleUpdatePhoto}>
@@ -94,7 +99,7 @@ const ProfileForm = ({ activeUser }) => {
           <Row className='mb-3'>
             <Col>
               <Form.Label>Nombre</Form.Label>
-              <Form.Control name='firsName' placeholder={activeUser.firstName} onChange={handleChange} />
+              <Form.Control name='firstName' placeholder={activeUser.firstName} onChange={handleChange} />
             </Col>
             <Col>
               <Form.Label>Apellido</Form.Label>

@@ -17,9 +17,9 @@ const Profile = () => {
     console.log(token)
     axios.get(`${URLBASE}/profile`, { headers: { Authorization: `Bearer ${token}` } })
       .then((response) => {
-        const { first_name: firstName, last_name: lastName, phone_number: phoneNumber, photo_url: photoUrl } = response.data.message[0]
-        console.log(photoUrl)
-        fnActiveUser({ ...response.data.message[0], firstName, lastName, phoneNumber, photoUrl })
+        const { id, first_name: firstName, last_name: lastName, phone_number: phoneNumber, photo_url: photoUrl, address, email } = response.data.message[0]
+        console.log(response.data.message[0])
+        fnActiveUser({ id, firstName, lastName, phoneNumber, photoUrl, address, email })
       })
       .catch(({ response: { data } }) => {
         console.error(data)
@@ -41,7 +41,7 @@ const Profile = () => {
           <ProfileMenu />
         </Col>
         <Col xs={9} className='profile-form-section'>
-          <ProfileForm activeUser={activeUser} />
+          <ProfileForm activeUser={activeUser} getUserData={getUserData} />
         </Col>
       </Row>
     </Container>

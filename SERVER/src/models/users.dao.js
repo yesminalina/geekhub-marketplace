@@ -8,9 +8,8 @@ export const findProfile = (email) => db('SELECT id, email, first_name, last_nam
 
 export const deleteProfile = (id) => db('DELETE FROM users WHERE id = $1 RETURNING *;', [id])
 
-export const updateProfile = (id, { firstName, lastName, address, phoneNumber, email, password }) => db('UPDATE users SET first_name = $2, last_name = $3, address = $4, phone_number = $5, email = $6, password = $7 WHERE id = $1 RETURNING *;', [id, firstName, lastName, address, phoneNumber, email, password])
+export const updateProfile = (id, { firstName, lastName, address, phoneNumber, email, password }) => db('UPDATE users SET first_name = $2, last_name = $3, address = $4, phone_number = $5, email = $6, password = COALESCE($7, password) WHERE id = $1 RETURNING *;', [id, firstName, lastName, address, phoneNumber, email, password])
 
 export const updatePhotoProfile = (id, photoUrl) => db('UPDATE users SET photo_url = $2 WHERE id = $1;', [id, photoUrl])
 
 export const defaultPhotoProfile = (id) => db('UPDATE users SET photo_url = DEFAULT WHERE id = $1 RETURNING *;', [id])
-// Revisar si imagen renderiza en el front
