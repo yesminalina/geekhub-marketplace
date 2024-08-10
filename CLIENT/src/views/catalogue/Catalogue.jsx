@@ -1,12 +1,12 @@
 import './Catalogue.css'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useNavigate, useLocation, NavLink } from 'react-router-dom'
 import { ProductsContext } from '../../context/ProductsContext'
 import IconHeart from '../../components/iconHeart/IconHeart'
 import { Badge, Dropdown } from 'react-bootstrap'
 
 const Catalogue = () => {
-  const { products, toggleLike } = useContext(ProductsContext)
+  const { products, toggleLike, getProducts } = useContext(ProductsContext)
   const [sortBy, setSortBy] = useState('')
 
   const navigate = useNavigate()
@@ -63,7 +63,10 @@ const Catalogue = () => {
       count
     }))
   }
-  console.log(handleCatalogue(products))
+
+  useEffect(() => {
+    getProducts()
+  }, [])
 
   return (
     <>
@@ -94,13 +97,13 @@ const Catalogue = () => {
         </Dropdown>
 
         <div className='gallery grid-columns-5 p-3'>
-          {filteredProducts.map((product) => (
-            <div key={product.id}>
-              <div onClick={() => { toggleLike(product.id) }} className='cursor-pointer'>{product.liked ? <IconHeart filled /> : <IconHeart />}</div>
-              <div onClick={() => navigate(`/product-details/${product.id}`)} className='producto' style={{ backgroundImage: `url(${product.imageUrl})` }}>
+          {filteredProducts.map(({ id, liked, image_url: imageUrl, title, price }) => (
+            <div key={id}>
+              <div onClick={() => { toggleLike(id) }} className='cursor-pointer'>{liked ? <IconHeart filled /> : <IconHeart />}</div>
+              <div onClick={() => navigate(`/product-details/${id}`)} className='producto' style={{ backgroundImage: `url(${imageUrl})` }}>
                 <div>
-                  <p>{product.title}</p>
-                  <h6><Badge bg='dark'>Precio: ${(product.price).toLocaleString('es-CL')}</Badge></h6>
+                  <p>{title}</p>
+                  <h6><Badge bg='dark'>Precio: ${(price).toLocaleString('es-CL')}</Badge></h6>
                 </div>
               </div>
             </div>

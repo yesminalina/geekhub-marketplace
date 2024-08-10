@@ -8,5 +8,7 @@ const font = http.get('https://fonts*', () => passthrough())
 const url = http.get('https://*', () => passthrough())
 const localhostGet = http.get('http://localhost:3000/*', () => passthrough())
 const localhostPut = http.put('http://localhost:3000/*', () => passthrough())
+const localhostPost = http.post('http://localhost:3000/*', () => passthrough())
+const localhostDelete = http.delete('http://localhost:3000/*', () => passthrough())
 
-export default [src, assets, img, webImg, font, url, localhostGet, localhostPut]
+export default [src, assets, img, webImg, font, url, localhostGet, localhostPut, localhostPost, localhostDelete]

@@ -1,7 +1,7 @@
 import format from 'pg-format'
 import db from '../database/db.js'
 
-export const findProducts = ({ limits = 15, order_by: orderBy = '', page = 0, category, title }) => {
+export const findProducts = ({ limit = 15, order_by: orderBy = 'id_ASC', page = 0, category, title }) => {
   let query = 'SELECT * FROM products'
   const filters = []
   const values = []
@@ -18,14 +18,14 @@ export const findProducts = ({ limits = 15, order_by: orderBy = '', page = 0, ca
     query += ` WHERE ${filters.join(' AND ')}`
   }
     const [column, sort] = orderBy.split('_')
-    const offset = Math.abs(+page !== 0 ? page - 1 : 0) * limits
-    const formatQuery = format(`${query} ORDER BY %s %s LIMIT %s OFFSET %s`, column, sort, limits, offset)
-    return db(formatQuery)
+    const offset = Math.abs(+page !== 0 ? page - 1 : 0) * limit
+    const formatQuery = format(`${query} ORDER BY %s %s LIMIT %s OFFSET %s;`, column, sort, limit, offset)
+    return db(formatQuery, values)
 }
 
 export const findProductById = (id) => db('SELECT * FROM products WHERE id = $1;', [id])
 
-export const createProduct = ({ userId, title, price, description, stock, imageUrl, score, category }) => db('INSERT INTO products (id, user_id, title, price, description, stock, image_url, score, category) VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *;', [ userId, title, price, description, stock, imageUrl, score, category])
+export const createProduct = ({ userId, title, price, description, stock, imageUrl, category }) => db('INSERT INTO products (id, user_id, title, price, description, stock, image_url, category) VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *;', [ userId, title, price, description, stock, imageUrl, category])
 
 export const findUserProducts = (userId) => db('SELECT * FROM products WHERE user_id = $1;', [userId])
 

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { URLBASE } from '../config/constants'
 
 export const ProductsContext = createContext()
 
@@ -17,9 +18,9 @@ const ProductsContextProvider = ({ children }) => {
   const liked = products.filter((product) => product.liked)
 
   const getProducts = () => {
-    axios.get('./products')
-      .then(({ data }) => {
-        setProducts(data.data)
+    axios.get(`${URLBASE}/catalogue`)
+      .then((response) => {
+        setProducts(response.data.message)
       })
   }
 

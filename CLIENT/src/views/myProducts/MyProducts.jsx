@@ -8,6 +8,7 @@ import { ProductsContext } from '../../context/ProductsContext'
 import { CartContext } from '../../context/CartContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { URLBASE } from '../../config/constants.js'
 import Swal from 'sweetalert2'
 import showFormAlert from '../../components/showFormAlert/showFormAlert.js'
 const edit = <FontAwesomeIcon icon={faEdit} size='1x' />
@@ -25,9 +26,10 @@ const MyProducts = () => {
   const [userProducts, setUserProducts] = useState([])
 
   const { isAuthenticated, activeUser } = useContext(UserContext)
-  const { products, fnProducts, createProduct } = useContext(ProductsContext)
+  const { products, createProduct } = useContext(ProductsContext)
   const { removeNotify } = useContext(CartContext)
   const navigate = useNavigate()
+  const userId = activeUser.id
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -48,7 +50,8 @@ const MyProducts = () => {
 
   const handleCreate = async (e) => {
     e.preventDefault()
-    const product = { ...inputValue, description: inputValueDescription, category, userId: 1, liked: false, score: null, id: 21 }
+    const product = { ...inputValue, category, description: inputValueDescription, userId }
+    console.log(product)
     const { title, price, stock, imageUrl } = inputValue
     if (title === '' || price === '' || stock === '' || imageUrl === '') {
       Swal.fire({
@@ -59,32 +62,34 @@ const MyProducts = () => {
         timer: 1500
       })
     } else {
+      await axios.post(`${URLBASE}/my-products`, product)
+      getUserProducts()
       createProduct()
-      const response = await axios.post('/products', product)
-      fnProducts([...products, response.data.data])
     }
   }
 
-  const findUserProducts = (userId) => {
-    const userProductFilter = products.filter((product) => product.userId === userId)
-    return userProductFilter
+  const getUserProducts = async () => {
+    const response = await axios.get(`${URLBASE}/my-products/${userId}`)
+    console.log(response.data)
+    setUserProducts(response.data.message)
   }
 
   useEffect(() => {
-    setUserProducts(findUserProducts(1))
+    getUserProducts()
   }, [products])
 
-  const handleDelete = (productId) => {
+  const handleDelete = async (productId) => {
     removeNotify()
-    const newProducts = [...products]
-    fnProducts(newProducts.filter((item) => item.id !== productId))
+    await axios.delete(`${URLBASE}/my-products/${productId}`)
+    getUserProducts()
+    // const newProducts = [...products]
+    // fnProducts(newProducts.filter((item) => item.id !== productId))
   }
 
   const handleEdit = (product) => {
     showFormAlert((newProductData) => {
-      axios.put(`/products/${product.id}`, { ...newProductData, userId: activeUser.id, id: product.id }).then((response) => {
-        fnProducts(products.map(p => p.id === product.id ? response.data.data : p))
-      })
+      console.log({ ...newProductData, userId: activeUser.id, id: product.id })
+      axios.put(`${URLBASE}/my-products/${product.id}`, { ...newProductData, userId: activeUser.id, id: product.id })
     })
   }
   const inputStyle = {
@@ -107,7 +112,7 @@ const MyProducts = () => {
                         <p className='productDark'>${product.price.toLocaleString('es-CL')}</p>
                         <p className='productDescription'>{product.description.substring(0, 80)}</p>
                       </Col>
-                      <Col md={5}><img className='productImg' src={product.imageUrl} alt='productImg' /></Col>
+                      <Col md={5}><img className='productImg' src={product.image_url} alt='productImg' /></Col>
                       <Col md={0} id='interaction'>
                         <Button className='interaction' onClick={() => handleEdit(product)}>{edit}</Button>
                         <Button className='interaction' onClick={() => handleDelete(product.id)}>{trash}</Button>

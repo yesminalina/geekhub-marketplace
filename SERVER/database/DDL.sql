@@ -22,7 +22,7 @@ price           INT             NOT NULL,
 description     VARCHAR(300)    NOT NULL, 
 stock           INT             NOT NULL,
 image_url       VARCHAR(255)    NOT NULL,
-score           INT             NOT NULL,
+score           INT             NOT NULL DEFAULT 0,
 category        VARCHAR(25)     NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (user_id) REFERENCES users(id)
