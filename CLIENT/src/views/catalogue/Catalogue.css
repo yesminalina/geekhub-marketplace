@@ -81,6 +81,6 @@
   .cursor-pointer {
     cursor: pointer;
     align-self: flex-end;
-    transform: translate(585%, 115%);
+    transform: translate(365%, 115%);
     width: 40px;
   }
