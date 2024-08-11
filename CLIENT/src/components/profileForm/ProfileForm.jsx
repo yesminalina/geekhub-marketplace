@@ -15,6 +15,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
   const { fnIsAuthenticated } = useContext(UserContext)
 
   const navigate = useNavigate()
+  const token = window.sessionStorage.getItem('token')
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
@@ -27,7 +28,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const userData = { ...activeUser, ...user }
-    await axios.put(`${URLBASE}/profile/${id}`, userData)
+    await axios.put(`${URLBASE}/profile/${id}`, userData, { headers: { Authorization: `Bearer ${token}` } })
     getUserData()
     Swal.fire({
       title: 'Usuario actualizado exitosamente'
@@ -42,7 +43,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
       })
     } else {
       const photoData = { photoUrl: photo }
-      await axios.put(`${URLBASE}/profile/photo/${id}`, photoData)
+      await axios.put(`${URLBASE}/profile/photo/${id}`, photoData, { headers: { Authorization: `Bearer ${token}` } })
       getUserData()
       Swal.fire({
         title: 'Foto actualizada con éxito'
@@ -53,7 +54,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
 
   const handleDeletePhoto = async (e) => {
     e.preventDefault()
-    await axios.put(`${URLBASE}/profile/default-photo/${id}`)
+    await axios.put(`${URLBASE}/profile/default-photo/${id}`, {}, { headers: { Authorization: `Bearer ${token}` } })
     getUserData()
     Swal.fire({
       title: 'Foto eliminada'
@@ -62,7 +63,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
 
   const handleDeleteUser = async (e) => {
     e.preventDefault()
-    await axios.delete(`${URLBASE}/profile/${id}`)
+    await axios.delete(`${URLBASE}/profile/${id}`, { headers: { Authorization: `Bearer ${token}` } })
     window.sessionStorage.removeItem('token')
     fnIsAuthenticated(false)
     navigate('/')

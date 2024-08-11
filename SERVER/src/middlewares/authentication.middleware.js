@@ -13,9 +13,6 @@ export const authToken = (req, res, next) => {
   }
 
   try {
-  /*   const decoded = jwtVerify(token)
-    req.user = jwtDecode(decoded)
-    next() */
     req.user = jwtDecode(token)
     console.log(req.user)
     jwtVerify(token) && next()

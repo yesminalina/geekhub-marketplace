@@ -14,7 +14,6 @@ const Profile = () => {
 
   const getUserData = () => {
     const token = window.sessionStorage.getItem('token')
-    console.log(token)
     axios.get(`${URLBASE}/profile`, { headers: { Authorization: `Bearer ${token}` } })
       .then((response) => {
         const { id, first_name: firstName, last_name: lastName, phone_number: phoneNumber, photo_url: photoUrl, address, email } = response.data.message[0]
