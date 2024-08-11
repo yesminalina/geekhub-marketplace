@@ -30,6 +30,7 @@ const MyProducts = () => {
   const { removeNotify } = useContext(CartContext)
   const navigate = useNavigate()
   const userId = activeUser.id
+  const token = window.sessionStorage.getItem('token')
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -62,15 +63,14 @@ const MyProducts = () => {
         timer: 1500
       })
     } else {
-      await axios.post(`${URLBASE}/my-products`, product)
+      await axios.post(`${URLBASE}/my-products`, product, { headers: { Authorization: `Bearer ${token}` } })
       getUserProducts()
       createProduct()
     }
   }
 
   const getUserProducts = async () => {
-    const response = await axios.get(`${URLBASE}/my-products/${userId}`)
-    console.log(response.data)
+    const response = await axios.get(`${URLBASE}/my-products/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
     setUserProducts(response.data.message)
   }
 
@@ -80,16 +80,14 @@ const MyProducts = () => {
 
   const handleDelete = async (productId) => {
     removeNotify()
-    await axios.delete(`${URLBASE}/my-products/${productId}`)
+    await axios.delete(`${URLBASE}/my-products/${productId}`, { headers: { Authorization: `Bearer ${token}` } })
     getUserProducts()
-    // const newProducts = [...products]
-    // fnProducts(newProducts.filter((item) => item.id !== productId))
   }
 
   const handleEdit = (product) => {
     showFormAlert((newProductData) => {
-      console.log({ ...newProductData, userId: activeUser.id, id: product.id })
-      axios.put(`${URLBASE}/my-products/${product.id}`, { ...newProductData, userId: activeUser.id, id: product.id })
+      axios.put(`${URLBASE}/my-products/${product.id}`, { ...newProductData, userId: activeUser.id, id: product.id }, { headers: { Authorization: `Bearer ${token}` } })
+      getUserProducts()
     })
   }
   const inputStyle = {

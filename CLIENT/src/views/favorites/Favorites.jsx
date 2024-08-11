@@ -1,13 +1,19 @@
 import './Favorites.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ProductsContext } from '../../context/ProductsContext'
+import { UserContext } from '../../context/UserContext'
 import Liked from '../../components/Liked/Liked'
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 const Favorites = () => {
   const navigate = useNavigate()
-  const { liked } = useContext(ProductsContext)
+  const { liked, getFavorites } = useContext(ProductsContext)
+  const { activeUser } = useContext(UserContext)
+
+  useEffect(() => {
+    getFavorites(activeUser.id)
+  }, [])
 
   return (
     <div className='fav'>
