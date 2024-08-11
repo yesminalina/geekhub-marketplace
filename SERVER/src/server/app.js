@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { serverLog } from '../middlewares/index.middlerwares.js'
-import { usersRouter, productsRouter, categoriesRouter, errorsRouter, favoritesRouter } from '../routes/index.routes.js'
+import { usersRouter, productsRouter, categoriesRouter, errorsRouter, favoritesRouter, scoresRouter } from '../routes/index.routes.js'
 
 const app = express()
 const PORT = process.env.PORT ?? 3000
@@ -14,6 +14,7 @@ app.use(serverLog)
 app.use(usersRouter)
 app.use(productsRouter)
 app.use(categoriesRouter)
+app.use(scoresRouter)
 app.use(favoritesRouter)
 app.use(errorsRouter)
 

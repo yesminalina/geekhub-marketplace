@@ -20,7 +20,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({
     title: '',
     description: '',
-    stock: '',
+    // stock: '',
     price: '',
     imageUrl: '',
     score: 0,
