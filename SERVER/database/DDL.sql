@@ -22,10 +22,9 @@ price           INT             NOT NULL,
 description     VARCHAR(300)    NOT NULL, 
 stock           INT             NOT NULL,
 image_url       VARCHAR(255)    NOT NULL,
--- score           INT             NOT NULL DEFAULT 0,
 category        VARCHAR(25)     NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (user_id) REFERENCES users(id)
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE favorites(
@@ -34,12 +33,12 @@ user_id         INT             NOT NULL,
 product_id      INT             NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (user_id) REFERENCES users(id),
-FOREIGN KEY (product_id) REFERENCES products(id)
+FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
 CREATE TABLE scores(
 id              SERIAL          NOT NULL,
-user_id         INT             NOT NULL UNIQUE,
+user_id         INT             NOT NULL,
 product_id      INT             NOT NULL,
 score           INT             NOT NULL,
 PRIMARY KEY (id),

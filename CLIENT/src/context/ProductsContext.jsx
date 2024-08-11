@@ -11,11 +11,12 @@ export const ProductsContext = createContext()
 const ProductsContextProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const [filterProducts, setFilterProducts] = useState(products)
+  const [liked, setLiked] = useState([])
 
-  const { isAuthenticated } = useContext(UserContext)
+  const { isAuthenticated, activeUser } = useContext(UserContext)
+  const userId = activeUser.id
+  console.log(userId)
   const navigate = useNavigate()
-
-  const liked = products.filter((product) => product.liked)
 
   const getProducts = () => {
     axios.get(`${URLBASE}/catalogue`)
@@ -24,22 +25,39 @@ const ProductsContextProvider = ({ children }) => {
       })
   }
 
+  const getFavorites = async (userId) => {
+    if (userId) {
+      const token = window.sessionStorage.getItem('token')
+      const response = await axios.get(`${URLBASE}/favorites/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
+      setLiked(response.data.message)
+    }
+  }
+
   useEffect(() => {
     getProducts()
   }, [])
 
-  const toggleLike = (id) => {
+  useEffect(() => {
+    getFavorites(userId)
+  }, [])
+
+  const toggleLike = async (userId, productId) => {
     if (isAuthenticated) {
-      const newProducts = products.map((product) => {
-        if (product.id === id) {
-          return ({ ...product, liked: !product.liked })
-        }
-        return product
-      })
-      setProducts(newProducts)
+      const token = window.sessionStorage.getItem('token')
+      await axios.post(`${URLBASE}/favorites/${userId}`, { productId }, { headers: { Authorization: `Bearer ${token}` } })
     } else {
       navigate('/register')
     }
+  }
+
+  const removeLike = async (userId, productId) => {
+    if (isAuthenticated) {
+      const token = window.sessionStorage.getItem('token')
+      await axios.delete(`${URLBASE}/favorites/${userId}`, { data: { productId }, headers: { Authorization: `Bearer ${token}` } })
+    } else {
+      navigate('/register')
+    }
+    getFavorites(userId)
   }
 
   const createProduct = () => {
@@ -58,7 +76,7 @@ const ProductsContextProvider = ({ children }) => {
   const fnProducts = (product) => setProducts(product)
   const fnFilterProducts = (product) => setFilterProducts(product)
 
-  const globalState = { products, filterProducts, fnProducts, fnFilterProducts, getProducts, liked, toggleLike, createProduct }
+  const globalState = { products, filterProducts, fnProducts, fnFilterProducts, getProducts, liked, toggleLike, removeLike, createProduct, getFavorites }
 
   return (
     <ProductsContext.Provider value={globalState}>

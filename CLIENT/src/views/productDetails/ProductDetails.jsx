@@ -2,6 +2,7 @@ import './ProductDetails.css'
 import { useContext, useState, useEffect } from 'react'
 import { ProductsContext } from '../../context/ProductsContext'
 import { CartContext } from '../../context/CartContext'
+import { UserContext } from '../../context/UserContext'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button, Row, Col } from 'react-bootstrap'
 import StarRating from '../../components/startRating/StarRating'
@@ -15,7 +16,9 @@ const add = <FontAwesomeIcon icon={faShoppingCart} size='2x' />
 
 const ProductDetails = () => {
   const { id } = useParams()
-  const { toggleLike, products } = useContext(ProductsContext)
+  const productId = +id
+  const { toggleLike, liked, getFavorites } = useContext(ProductsContext)
+  const { activeUser } = useContext(UserContext)
   const { addToCart } = useContext(CartContext)
   const [product, setProduct] = useState({
     title: '',
@@ -32,18 +35,26 @@ const ProductDetails = () => {
   const getProductDetails = () => {
     axios.get(`${URLBASE}/product-details/${id}`)
       .then((response) => {
-        console.log(response.data.message)
         setProduct({ ...response.data.message[0], id: +id })
-        console.log(product)
       })
   }
+  /*
+  const getScore = async (id) => {
+    const response = await axios.get(`${URLBASE}/product-details/score/${id}`)
+    const [score] = response.data.message
+    return score.round
+  } */
 
   useEffect(() => {
     getProductDetails()
   }, [])
-  const { liked, title, description, stock, price, image_url: imageUrl } = product
-  // liked debería venir de la respuesta del back, haciendo un join con la tabla favoritos
-  const ProductsData = products.find((product) => product.id === +id)
+
+  useEffect(() => {
+    getFavorites(activeUser.id)
+  }, [])
+
+  const { title, description, stock, price, image_url: imageUrl } = product
+  console.log(liked)
 
   return (
     <Container className='pdcontainer'>
@@ -55,7 +66,7 @@ const ProductDetails = () => {
           <div className='details'>
             <section className='icons'>
               {/* liked debe venir de products (respuesta back) después de crear tabla favorites */}
-              <div className='action' onClick={() => toggleLike(ProductsData.id)}>{ProductsData.liked ? <IconHeart filled /> : <IconHeart />}</div>
+              <div className='action' onClick={() => toggleLike(activeUser.id, productId)}>{liked.id ? <IconHeart filled /> : <IconHeart />}</div>
               <div className='action' onClick={() => { addToCart(product); navigate('/cart') }}>{add}
               </div>
             </section>
