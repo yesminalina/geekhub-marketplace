@@ -14,7 +14,6 @@ export const authToken = (req, res, next) => {
 
   try {
     req.user = jwtDecode(token)
-    console.log(req.user)
     jwtVerify(token) && next()
   } catch (error) {
     res.status(401).json({ status: false, code: 401, message: 'El token es inválido' })

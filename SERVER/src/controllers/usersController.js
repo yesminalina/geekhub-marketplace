@@ -20,7 +20,7 @@ export const login = (req, res) => {
   sql.login({ email })
     .then(users => {
       if (users.length === 0) {
-        res.status(401).json({ status: false, code: 401, message: 'Usuario y/o contraseña incorrectas 1' })
+        res.status(401).json({ status: false, code: 401, message: 'Usuario y/o contraseña incorrectas' })
         return
       }
       const user = users[0]
@@ -32,7 +32,6 @@ export const login = (req, res) => {
           }
 
           const token = jwtSign(user.email)
-          console.log(token)
           res.status(200).json({ status: true, code: 200, message: { token } })
         })
     })
