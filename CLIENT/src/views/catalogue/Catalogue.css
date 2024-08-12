@@ -16,8 +16,9 @@
     justify-content: end;
     align-items: flex-start;
     height: 200px;
-    background-size: cover;
-    background-position: center;
+    background-size:cover;
+    background-position:top;
+    background-repeat: no-repeat;
     color: white;
     text-align: left;
     text-shadow: 0px 0px 15px black;
@@ -44,29 +45,36 @@
     align-items: start;
     margin-left: 10px;
   }
+
   aside h3 {
     margin: 0 0 20px 50px;
     padding-top: 10px;
   }
+
   aside p {
     margin: 0;
     padding-top: 12px;
     color: #FFE5E5;
   }
+
   article {
     display: flex;
   }
+
   article a {
     text-decoration: none;
   }
+
   .cantidad {
     padding-left: 5px;
     color: rgb(147, 145, 145);
   }
+
   .d-flex{
     grid-area: c;
     justify-content: end;
   }
+
   .grid-container {
     display: grid;
     grid-template-areas:
@@ -78,9 +86,8 @@
     gap: 1px;
     color: #FFE5E5;
   }
-  .cursor-pointer {
-    cursor: pointer;
-    align-self: flex-end;
-    transform: translate(365%, 115%);
-    width: 40px;
+
+  .likeBtn {
+    transform: translate(340%, 100%);
+    width: 74.2px;
   }

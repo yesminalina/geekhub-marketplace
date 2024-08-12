@@ -3,12 +3,11 @@ import { useContext, useState, useEffect } from 'react'
 import { useNavigate, useLocation, NavLink } from 'react-router-dom'
 import { ProductsContext } from '../../context/ProductsContext'
 import { UserContext } from '../../context/UserContext'
-import IconHeart from '../../components/iconHeart/IconHeart'
 import LikeButton from '../../components/likeButton/LikeButton'
 import { Badge, Dropdown } from 'react-bootstrap'
 
 const Catalogue = () => {
-  const { products, toggleLike, getProducts } = useContext(ProductsContext)
+  const { products, getProducts } = useContext(ProductsContext)
   const { activeUser } = useContext(UserContext)
   const userId = activeUser.id
   const [sortBy, setSortBy] = useState('')
@@ -18,8 +17,6 @@ const Catalogue = () => {
   const queryParams = new URLSearchParams(location.search)
   const category = queryParams.get('category')
   const searchQuery = queryParams.get('searchQuery')
-
-  console.log(products[0])
 
   const filterStore = (sortBy) => {
     let result
@@ -50,7 +47,6 @@ const Catalogue = () => {
   }
 
   const filteredProducts = filterStore(sortBy)
-  console.log([filteredProducts])
 
   const handleFilterLink = (e) => {
     e.preventDefault()
@@ -81,8 +77,7 @@ const Catalogue = () => {
           {
             handleCatalogue(products).map(({ category, count }) => (
               <article className='category' key={category}>
-                <p><NavLink name={category} onClick={handleFilterLink}>{category}:</NavLink></p>
-                <p className='cantidad'>({count})</p>
+                <p><NavLink name={category} onClick={handleFilterLink}>{category}:<span className='cantidad'>({count})</span></NavLink></p>
               </article>
             ))
           }
@@ -104,10 +99,11 @@ const Catalogue = () => {
         <div className='gallery grid-columns-5 p-3'>
           {filteredProducts.map(({ id, liked, image_url: imageUrl, title, price }) => (
             <div key={id}>
-              {/* <div onClick={() => { toggleLike(activeUser.id, id) }} className='cursor-pointer'>{liked ? <IconHeart filled /> : <IconHeart />}</div> */}
-              <LikeButton userId={userId} productId={id} />
-              <div onClick={() => navigate(`/product-details/${id}`)} className='producto' style={{ backgroundImage: `url(${imageUrl})` }}>
-                <div>
+              <div>
+                <div className='likeBtn'>
+                  <LikeButton userId={userId} productId={id} />
+                </div>
+                <div onClick={() => navigate(`/product-details/${id}`)} style={{ backgroundImage: `url(${imageUrl})` }} className='producto'>
                   <p>{title}</p>
                   <h6><Badge bg='dark'>Precio: ${(price).toLocaleString('es-CL')}</Badge></h6>
                 </div>

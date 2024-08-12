@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState, useContext } from 'react'
 import { UserContext } from './UserContext'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -13,10 +12,8 @@ const ProductsContextProvider = ({ children }) => {
   const [filterProducts, setFilterProducts] = useState(products)
   const [liked, setLiked] = useState([])
 
-  const { isAuthenticated, activeUser } = useContext(UserContext)
+  const { activeUser } = useContext(UserContext)
   const userId = activeUser.id
-  console.log(userId)
-  const navigate = useNavigate()
 
   const getProducts = () => {
     axios.get(`${URLBASE}/catalogue`)
@@ -41,25 +38,6 @@ const ProductsContextProvider = ({ children }) => {
     getFavorites(userId)
   }, [])
 
-  const toggleLike = async (userId, productId) => {
-    if (isAuthenticated) {
-      const token = window.sessionStorage.getItem('token')
-      await axios.post(`${URLBASE}/favorites/${userId}`, { productId }, { headers: { Authorization: `Bearer ${token}` } })
-    } else {
-      navigate('/register')
-    }
-  }
-
-  const removeLike = async (userId, productId) => {
-    if (isAuthenticated) {
-      const token = window.sessionStorage.getItem('token')
-      await axios.delete(`${URLBASE}/favorites/${userId}`, { data: { productId }, headers: { Authorization: `Bearer ${token}` } })
-    } else {
-      navigate('/register')
-    }
-    getFavorites(userId)
-  }
-
   const createProduct = () => {
     toast.info('Producto creado exitosamente', {
       position: 'bottom-right',
@@ -76,7 +54,7 @@ const ProductsContextProvider = ({ children }) => {
   const fnProducts = (product) => setProducts(product)
   const fnFilterProducts = (product) => setFilterProducts(product)
 
-  const globalState = { products, filterProducts, fnProducts, fnFilterProducts, getProducts, liked, toggleLike, removeLike, createProduct, getFavorites }
+  const globalState = { products, filterProducts, fnProducts, fnFilterProducts, getProducts, liked, createProduct, getFavorites }
 
   return (
     <ProductsContext.Provider value={globalState}>

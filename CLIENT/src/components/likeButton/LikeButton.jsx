@@ -1,3 +1,4 @@
+import './LikeButton.css'
 import { Button } from 'react-bootstrap'
 import IconHeart from '../iconHeart/IconHeart'
 import { useState, useEffect, useContext } from 'react'
@@ -5,6 +6,7 @@ import axios from 'axios'
 import { URLBASE } from '../../config/constants'
 import { useNavigate } from 'react-router-dom'
 import { ProductsContext } from '../../context/ProductsContext'
+import Swal from 'sweetalert2'
 
 const LikeButton = ({ productId, userId }) => {
   const { getFavorites } = useContext(ProductsContext)
@@ -32,13 +34,10 @@ const LikeButton = ({ productId, userId }) => {
   const toggleLike = async () => {
     try {
       if (isLiked) {
-        // Si ya es favorito, eliminarlo
         await axios.delete(`${URLBASE}/favorites/${userId}/`, { data: { productId }, headers: { Authorization: `Bearer ${token}` } })
       } else {
-        // Si no es favorito, agregarlo
         await axios.post(`${URLBASE}/favorites/${userId}/`, { productId }, { headers: { Authorization: `Bearer ${token}` } })
       }
-      // Cambiar el estado después de la operación
       setIsLiked(!isLiked)
     } catch (error) {
       console.error('Error al actualizar favoritos', error)
@@ -46,8 +45,23 @@ const LikeButton = ({ productId, userId }) => {
     getFavorites(userId)
   }
 
+  const toRegister = () => {
+    Swal.fire({
+      title: 'Para dar like debes iniciar sesión o registrarte',
+      showCancelButton: true,
+      confirmButtonColor: '#756AB6',
+      cancelButtonColor: '#E0AED0',
+      confirmButtonText: 'Registrate',
+      cancelButtonText: 'Quedarme aquí'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/register')
+      }
+    })
+  }
+
   return (
-    <Button onClick={() => { userId ? toggleLike(userId, productId) : navigate('/register') }}>{isLiked ? <IconHeart filled /> : <IconHeart />}</Button>
+    <Button className='originalLike' onClick={() => { userId ? toggleLike(userId, productId) : toRegister() }}>{isLiked ? <IconHeart filled /> : <IconHeart />}</Button>
   )
 }
 export default LikeButton

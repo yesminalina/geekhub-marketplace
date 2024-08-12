@@ -8,17 +8,17 @@ import { Container, Card, Button, Row, Col } from 'react-bootstrap'
 import StarRating from '../../components/startRating/StarRating'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import IconHeart from '../../components/iconHeart/IconHeart'
 import { URLBASE } from '../../config/constants'
 import LikeButton from '../../components/likeButton/LikeButton'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const add = <FontAwesomeIcon icon={faShoppingCart} size='2x' />
 
 const ProductDetails = () => {
   const { id } = useParams()
   const productId = +id
-  const { toggleLike, liked, getFavorites } = useContext(ProductsContext)
+  const { getFavorites } = useContext(ProductsContext)
   const { activeUser } = useContext(UserContext)
   const { addToCart } = useContext(CartContext)
   const [product, setProduct] = useState({
@@ -40,12 +40,21 @@ const ProductDetails = () => {
         setProduct({ ...response.data.message[0], id: +id })
       })
   }
-  /*
-  const getScore = async (id) => {
-    const response = await axios.get(`${URLBASE}/product-details/score/${id}`)
-    const [score] = response.data.message
-    return score.round
-  } */
+
+  const toRegister = () => {
+    Swal.fire({
+      title: 'Para ver el carrito debes iniciar sesión o registrarte',
+      showCancelButton: true,
+      confirmButtonColor: '#756AB6',
+      cancelButtonColor: '#E0AED0',
+      confirmButtonText: 'Registrate',
+      cancelButtonText: 'Quedarme aquí'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/register')
+      }
+    })
+  }
 
   useEffect(() => {
     getProductDetails()
@@ -56,7 +65,15 @@ const ProductDetails = () => {
   }, [])
 
   const { title, description, stock, price, image_url: imageUrl } = product
-  console.log(liked)
+  const handleCart = (product) => {
+    if (userId) {
+      addToCart(product)
+      navigate('/cart')
+    } else {
+      addToCart(product)
+      toRegister()
+    }
+  }
 
   return (
     <Container className='pdcontainer'>
@@ -67,9 +84,8 @@ const ProductDetails = () => {
           </div>
           <div className='details'>
             <section className='icons'>
-              {/* liked debe venir de products (respuesta back) después de crear tabla favorites */}
               <LikeButton userId={userId} productId={productId} />
-              <div className='action' onClick={() => { addToCart(product); navigate('/cart') }}>{add}
+              <div className='action' onClick={() => { handleCart(product) }}>{add}
               </div>
             </section>
             <Card.Title className='title-name'>{title}</Card.Title>
