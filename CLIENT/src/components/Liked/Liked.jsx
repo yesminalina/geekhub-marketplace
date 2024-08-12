@@ -1,5 +1,5 @@
 import './Liked.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ProductsContext } from '../../context/ProductsContext'
 import { UserContext } from '../../context/UserContext'
 import { CartContext } from '../../context/CartContext'
@@ -8,15 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import IconHeart from '../iconHeart/IconHeart'
 import { useNavigate } from 'react-router-dom'
+import LikeButton from '../likeButton/LikeButton'
 
 const cart = <FontAwesomeIcon icon={faShoppingCart} size='3x' />
 
 const Liked = () => {
-  const { liked, removeLike } = useContext(ProductsContext)
+  const { liked } = useContext(ProductsContext)
   const { activeUser } = useContext(UserContext)
   const { addToCart } = useContext(CartContext)
   const navigate = useNavigate()
-  console.log(liked[0])
+  const userId = activeUser.id
 
   return (
     <Container className='pt-5'>
@@ -39,7 +40,8 @@ const Liked = () => {
                     <Row>
                       <Col>
                         <section style={{ paddingRight: '20px' }} className='d-flex align-items-center justify-content-end'>
-                          <Button onClick={() => { removeLike(activeUser.id, like.productid) }}>{like.liked ? <IconHeart filled /> : <IconHeart />}</Button>
+                          {/* <Button onClick={() => { removeLike(activeUser.id, like.productid) }}>{like.liked ? <IconHeart filled /> : <IconHeart />}</Button> */}
+                          <LikeButton userId={userId} productId={like.product_id} />
                           <Button onClick={() => addToCart(like)}>{cart}</Button>
                         </section>
                       </Col>

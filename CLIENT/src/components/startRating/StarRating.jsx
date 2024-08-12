@@ -35,7 +35,9 @@ const StarRating = ({ totalStars = 5, id: productId }) => {
   }, [])
 
   useEffect(() => {
-    getScoreByUser()
+    if (userId) {
+      getScoreByUser()
+    }
   }, [rating])
 
   const handleClick = async (value) => {

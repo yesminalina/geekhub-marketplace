@@ -15,3 +15,10 @@ export const removeFavorites = (req, res) => {
   .then((result) => res.status(200).json({ status: true, code: 200, message: result }))
   .catch((error) => res.status(500).json({ status: false, code: 500, message: error }))
 }
+
+export const isFavorite = (req, res) => {
+  console.log(req.params)
+  sql.isFavorite(req.params.userId, req.params.productId)
+  .then((result) => res.status(201).json({ status: true, code: 201, message: result }))
+  .catch((error) => res.status(500).json({ status: false, code: 500, message: error }))
+}
