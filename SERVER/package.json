@@ -6,11 +6,17 @@
   "eslintConfig": {
     "extends": [
       "./SERVER/node_modules/standard/eslintrc.json"
-    ]
+    ],
+    "env": {
+      "jest": true
+    }
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage --run"
   },
   "keywords": [],
   "author": "",
