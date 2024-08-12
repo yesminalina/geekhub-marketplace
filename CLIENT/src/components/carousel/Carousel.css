@@ -55,3 +55,8 @@
   transform: translatey(0%);
   visibility: visible;
 }
+
+.imgCarousel {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
