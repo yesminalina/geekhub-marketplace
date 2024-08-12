@@ -1,0 +1,8 @@
+.originalLike {
+    background-color: transparent;
+    border: transparent;
+}
+
+.originalLike:hover {
+    background-color: transparent;
+}
