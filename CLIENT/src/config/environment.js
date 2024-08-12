@@ -1,8 +1,8 @@
 export const enableMocking = async () => {
   if (process.env.NODE_ENV !== 'development') {
-    return
+  /*   return */
   }
 
-  const { worker } = await import('../../mocks/browser')
-  return worker.start()
+  /*  const { worker } = await import('../../mocks/browser')
+  return worker.start() */
 }
