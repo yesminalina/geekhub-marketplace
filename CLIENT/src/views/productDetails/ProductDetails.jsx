@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import IconHeart from '../../components/iconHeart/IconHeart'
 import { URLBASE } from '../../config/constants'
+import LikeButton from '../../components/likeButton/LikeButton'
 import axios from 'axios'
 
 const add = <FontAwesomeIcon icon={faShoppingCart} size='2x' />
@@ -30,6 +31,7 @@ const ProductDetails = () => {
     liked: false
   })
 
+  const userId = activeUser.id
   const navigate = useNavigate()
 
   const getProductDetails = () => {
@@ -66,7 +68,7 @@ const ProductDetails = () => {
           <div className='details'>
             <section className='icons'>
               {/* liked debe venir de products (respuesta back) después de crear tabla favorites */}
-              <div className='action' onClick={() => toggleLike(activeUser.id, productId)}>{liked.id ? <IconHeart filled /> : <IconHeart />}</div>
+              <LikeButton userId={userId} productId={productId} />
               <div className='action' onClick={() => { addToCart(product); navigate('/cart') }}>{add}
               </div>
             </section>

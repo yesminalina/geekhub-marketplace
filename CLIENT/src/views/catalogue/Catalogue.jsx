@@ -4,12 +4,13 @@ import { useNavigate, useLocation, NavLink } from 'react-router-dom'
 import { ProductsContext } from '../../context/ProductsContext'
 import { UserContext } from '../../context/UserContext'
 import IconHeart from '../../components/iconHeart/IconHeart'
+import LikeButton from '../../components/likeButton/LikeButton'
 import { Badge, Dropdown } from 'react-bootstrap'
 
 const Catalogue = () => {
   const { products, toggleLike, getProducts } = useContext(ProductsContext)
   const { activeUser } = useContext(UserContext)
-  console.log(activeUser.id)
+  const userId = activeUser.id
   const [sortBy, setSortBy] = useState('')
 
   const navigate = useNavigate()
@@ -103,7 +104,8 @@ const Catalogue = () => {
         <div className='gallery grid-columns-5 p-3'>
           {filteredProducts.map(({ id, liked, image_url: imageUrl, title, price }) => (
             <div key={id}>
-              <div onClick={() => { toggleLike(activeUser.id, id) }} className='cursor-pointer'>{liked ? <IconHeart filled /> : <IconHeart />}</div>
+              {/* <div onClick={() => { toggleLike(activeUser.id, id) }} className='cursor-pointer'>{liked ? <IconHeart filled /> : <IconHeart />}</div> */}
+              <LikeButton userId={userId} productId={id} />
               <div onClick={() => navigate(`/product-details/${id}`)} className='producto' style={{ backgroundImage: `url(${imageUrl})` }}>
                 <div>
                   <p>{title}</p>
