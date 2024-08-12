@@ -35,16 +35,25 @@ const Register = () => {
       e.stopPropagation()
     }
     setValidated(true)
-    const response = await axios.post(`${URLBASE}/register`, user)
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Usuario registrado Exitosamente 😊',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    console.log('La respuesta', response)
-    navigate('/login')
+    try {
+      await axios.post(`${URLBASE}/register`, user)
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Usuario registrado Exitosamente 😊',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      navigate('/login')
+    } catch (error) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Este usuario ya existe',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
 
   return (

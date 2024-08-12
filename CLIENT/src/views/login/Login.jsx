@@ -18,19 +18,27 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await axios.post(`${URLBASE}/login`, formData)
-    console.log(response)
-    window.sessionStorage.setItem('token', response.data.message.token)
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Sesión Iniciada con Exito 😊',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    console.log('La respuesta', response)
-    navigate('/profile')
-    fnIsAuthenticated(true)
+    try {
+      const response = await axios.post(`${URLBASE}/login`, formData)
+      window.sessionStorage.setItem('token', response.data.message.token)
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Sesión Iniciada con Exito 😊',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      navigate('/profile')
+      fnIsAuthenticated(true)
+    } catch (error) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Credenciales Incorrectas',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
 
   useEffect(() => {

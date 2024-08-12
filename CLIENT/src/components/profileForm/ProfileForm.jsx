@@ -61,16 +61,34 @@ const ProfileForm = ({ activeUser, getUserData }) => {
     })
   }
 
-  const handleDeleteUser = async (e) => {
+  const handleDeleteUser = (e) => {
     e.preventDefault()
-    await axios.delete(`${URLBASE}/profile/${id}`, { headers: { Authorization: `Bearer ${token}` } })
-    window.sessionStorage.removeItem('token')
-    fnIsAuthenticated(false)
-    navigate('/')
     Swal.fire({
-      title: 'Usuario eliminado con éxito'
+      title: 'Estás seguro que quieres eliminar tu cuenta?',
+      text: 'No podrás revertir esta acción!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar cuenta!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Cuenta Eliminada!',
+          text: 'Lamentamos que te hayas ido considera regresar pronto',
+          icon: 'success'
+        })
+        axios.delete(`${URLBASE}/profile/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+        window.sessionStorage.removeItem('token')
+        fnIsAuthenticated(false)
+        navigate('/')
+        Swal.fire({
+          title: 'Usuario eliminado con éxito'
+        })
+      }
     })
   }
+
   return (
     <Container fluid className='py-4 px-2'>
       <Container>

@@ -17,7 +17,6 @@ const Profile = () => {
     axios.get(`${URLBASE}/profile`, { headers: { Authorization: `Bearer ${token}` } })
       .then((response) => {
         const { id, first_name: firstName, last_name: lastName, phone_number: phoneNumber, photo_url: photoUrl, address, email } = response.data.message[0]
-        console.log(response.data.message[0])
         fnActiveUser({ id, firstName, lastName, phoneNumber, photoUrl, address, email })
       })
       .catch(({ response: { data } }) => {
