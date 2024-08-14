@@ -8,7 +8,8 @@ const config = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   database: process.env.DB_DATABASE,
-  allowExitOnIdle: true
+  allowExitOnIdle: true,
+  ssl: true
 }
 
 const pool = new Pool(config)
