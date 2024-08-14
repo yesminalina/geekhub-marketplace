@@ -38,7 +38,7 @@ INSERT INTO products (user_id, title, price, description, stock, image_url, cate
 VALUES (3, 'Batman de Killing Joke Edición Especial', 14000, 'El autor aclamado por la crítica, Alan Moore, redefinió la narrativa de novelas gráficas con Watchmen y V de Vendetta.', 14, 'https://m.media-amazon.com/images/I/81K4ioEeoVL._SY466_.jpg', 'Mangas y Cómics');
 
 INSERT INTO products (user_id, title, price, description, stock, image_url, category)
-VALUES (1, '', 34000, 'Regresa a Hogwarts, escuela de magia y hechicería con esta segunda expansión al juego Harry Potter: Batalla de Hogwarts con nuevas tarjetas, habilidades, personajes para jugar, y más', 17, 'https://m.media-amazon.com/images/I/81rKelELUnL._AC_SX679_.jpg', 'Juegos de Mesa');
+VALUES (1, 'Hogwarts Battle', 34000, 'Regresa a Hogwarts, escuela de magia y hechicería con esta segunda expansión al juego Harry Potter: Batalla de Hogwarts con nuevas tarjetas, habilidades, personajes para jugar, y más', 17, 'https://m.media-amazon.com/images/I/81rKelELUnL._AC_SX679_.jpg', 'Juegos de Mesa');
 
 INSERT INTO products (user_id, title, price, description, stock, image_url, category)
 VALUES (1, 'Monopoly Edición de Batman', 25000, '¡Captura a los villanos para salvar Gotham City! Este juego Monopoly Batman Edition combina el clásico juego de Monopoly con personajes icónicos de Batman, temas y obras de arte', 22, 'https://m.media-amazon.com/images/I/81SA1AxQ9xL._AC_SX679_.jpg', 'Juegos de Mesa');
@@ -51,3 +51,9 @@ VALUES (3, 'Manga My Hero Academy', 6000, 'Héroes y villanos estarían luchando
 
 INSERT INTO products (user_id, title, price, description, stock, image_url, category)
 VALUES (3, 'Álbum Dragon Ball Z 4', 12500, 'Recrea las grandes peleas y aventuras de Gokú con el álbum Dragon Ball Z 4 Saga de Cell parte 2', 15, 'https://http2.mlstatic.com/D_NQ_NP_685544-MLU77791780309_072024-O.webp', 'Álbumes y Láminas');
+
+INSERT INTO products (user_id, title, price, description, stock, image_url, category)
+VALUES (2, 'One Piece Gift Collection', 48000, 'Bundle Box One Piece con 13 sobres de tus personajes favoritos', 3, 'https://kantocards.com/cdn/shop/files/giftcollection_720x.jpg?v=1696360145', 'TCG');
+
+INSERT INTO products (user_id, title, price, description, stock, image_url, category)
+VALUES (2, 'Album 40 sobres Elemental', 13000, 'El nuevo álbum de estampas basado en el éxito de Disney y Pixar Elementos. Es una historia ubicada en ciudad elemento, un lugar mágico y lleno de personajes diferentes y muy divertidos', 46, 'https://tiendapanini.cl/media/catalog/product/0/0/004680acl.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=897&width=960&canvas=960:897&dpr=1%201x', 'Álbumes y Láminas');
