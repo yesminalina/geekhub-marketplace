@@ -27,7 +27,7 @@ const Liked = () => {
             <div key={like.id}>
               <div className='wholeLike d-flex justify-content-between w-100'>
                 <div className='d-flex gap-2 justify-content-start align-items-center'>
-                  <img src={like.image_url} alt='' style={{ width: '180px', cursor: 'pointer', paddingLeft: '20px' }} onClick={() => navigate(`/product-details/${like.id}`)} />
+                  <img src={like.image_url} alt='' style={{ width: '180px', cursor: 'pointer', paddingLeft: '20px' }} onClick={() => navigate(`/product-details/${like.product_id}`)} />
                   <div className='containerLike'>
                     <h5 className='m-0 text-capitalize'>{like.title}</h5>
                     <h6 className='text-dark'>Precio:${like.price.toLocaleString('es-CL')}</h6>
