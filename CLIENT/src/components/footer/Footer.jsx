@@ -11,7 +11,7 @@ import handleConditions from '../termsAndConditions/termsAndConditions.js'
 const instaLogo = <FontAwesomeIcon icon={faInstagram} size='2xl' />
 const xtwitterLogo = <FontAwesomeIcon icon={faXTwitter} size='2xl' />
 const facebookLogo = <FontAwesomeIcon icon={faFacebook} size='2xl' />
-const map = 'http://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22650034.730859995!2d0!3d-69.72697362493312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa4b9967b3390754b%3A0x6e52be1f740f2075!2sAnt%C3%A1rtida!5e0!3m2!1ses!2scl!4v1721459642136!5m2!1ses!2scl'
+const map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22650034.730859995!2d0!3d-69.72697362493312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa4b9967b3390754b%3A0x6e52be1f740f2075!2sAnt%C3%A1rtida!5e0!3m2!1ses!2scl!4v1721459642136!5m2!1ses!2scl'
 
 const Footer = () => {
   const { products, fnFilterProducts } = useContext(ProductsContext)
@@ -49,7 +49,7 @@ const Footer = () => {
         </Col>
         <Col xs={3} className='d-flex flex-column justify-content-between'>
           <div className='d-flex flex-column'>
-            <NavLink><h5>Ayuda</h5></NavLink>
+            <h5>Ayuda</h5>
             <NavLink>Preguntas Frecuentes</NavLink>
             <NavLink>Servicio al cliente</NavLink>
             <NavLink>Contáctanos</NavLink>
