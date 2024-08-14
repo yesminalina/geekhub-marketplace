@@ -18,6 +18,6 @@ app.use(scoresRouter)
 app.use(favoritesRouter)
 app.use(errorsRouter)
 
-app.listen(PORT, () => console.log(`Server running 👾 in http://localhost:${PORT}`))
+app.listen(PORT, () => console.log(`Your service is live 👾 in ${PORT}`))
 
 export default app
