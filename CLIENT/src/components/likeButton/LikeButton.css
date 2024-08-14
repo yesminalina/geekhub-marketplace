@@ -6,3 +6,7 @@
 .originalLike:hover {
     background-color: transparent;
 }
+
+.originalLike:active {
+    background-color: transparent !important;
+}
