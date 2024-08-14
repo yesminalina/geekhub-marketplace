@@ -99,7 +99,7 @@ const Catalogue = () => {
         <div className='gallery grid-columns-5 p-3'>
           {filteredProducts.map(({ id, liked, image_url: imageUrl, title, price }) => (
             <div key={id}>
-              <div>
+              <div className='cardCatalogue'>
                 <div className='likeBtn'>
                   <LikeButton userId={userId} productId={id} />
                 </div>

@@ -88,6 +88,13 @@
   }
 
   .likeBtn {
-    transform: translate(340%, 100%);
+    /* transform: translate(340%, 100%); */
     width: 74.2px;
+    position: absolute;
+    display: inline-block;
+  }
+
+  .cardCatalogue {
+    position: relative;
+
   }
