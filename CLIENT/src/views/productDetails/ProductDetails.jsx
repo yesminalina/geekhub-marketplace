@@ -37,7 +37,7 @@ const ProductDetails = () => {
   const getProductDetails = () => {
     axios.get(`${URLBASE}/product-details/${id}`)
       .then((response) => {
-        setProduct({ ...response.data.message[0], id: +id })
+        setProduct({ ...response.data.message[0], id: productId })
       })
   }
 
@@ -89,7 +89,7 @@ const ProductDetails = () => {
               </div>
             </section>
             <Card.Title className='title-name'>{title}</Card.Title>
-            <StarRating totalStars={5} id={id} />
+            <StarRating totalStars={5} productId={productId} />
             <Card.Text className='description'>{description}</Card.Text>
             <Row className='count'>
               <Col>
