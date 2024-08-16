@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
   const { cart, total, getTotal, fnCart } = useContext(CartContext)
-  const { isAuthenticated } = useContext(UserContext)
+  const { isAuthenticated, fnIsAuthenticated, getUserData } = useContext(UserContext)
   const { products } = useContext(ProductsContext)
 
   const navigate = useNavigate()
@@ -19,10 +19,14 @@ const Cart = () => {
   }, [cart])
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+      getUserData()
+    } else {
       navigate('/register')
     }
-  }, [])
+  }, [isAuthenticated])
 
   useEffect(() => {
     const newCart = cart.filter((item) => products.some((product) => product.id === item.id))

@@ -8,7 +8,7 @@ import { Badge, Dropdown } from 'react-bootstrap'
 
 const Catalogue = () => {
   const { products, getProducts } = useContext(ProductsContext)
-  const { activeUser } = useContext(UserContext)
+  const { activeUser, fnIsAuthenticated, isAuthenticated, getUserData } = useContext(UserContext)
   const userId = activeUser.id
   const [sortBy, setSortBy] = useState('')
 
@@ -64,6 +64,18 @@ const Catalogue = () => {
       count
     }))
   }
+
+  // useEffect(() => {
+  //   getUserData()
+  // }, [])
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+      getUserData()
+    }
+  }, [isAuthenticated])
 
   useEffect(() => {
     getProducts()

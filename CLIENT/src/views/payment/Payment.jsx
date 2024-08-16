@@ -2,14 +2,28 @@ import { Container, Row, Col } from 'react-bootstrap'
 import CartCard from '../../components/cartCard/CartCard'
 import PaymentForm from '../../components/paymentForm/PaymentForm'
 import { CartContext } from '../../context/CartContext'
+import { UserContext } from '../../context/UserContext'
 import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Payment = () => {
   const { cart, total, getTotal } = useContext(CartContext)
+  const { fnIsAuthenticated, getUserData, isAuthenticated } = useContext(UserContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     getTotal()
   }, [cart])
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+      getUserData()
+    } else {
+      navigate('/register')
+    }
+  }, [isAuthenticated])
 
   return (
     <Container fluid className='min-vh-100 px-5 py-5'>

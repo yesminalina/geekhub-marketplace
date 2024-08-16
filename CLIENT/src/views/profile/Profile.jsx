@@ -5,32 +5,21 @@ import ProfileForm from '../../components/profileForm/ProfileForm'
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
-import axios from 'axios'
-import { URLBASE } from '../../config/constants'
 
 const Profile = () => {
-  const { activeUser, fnActiveUser, isAuthenticated } = useContext(UserContext)
+  const { activeUser, isAuthenticated, fnIsAuthenticated, getUserData } = useContext(UserContext)
   const navigate = useNavigate()
 
-  const getUserData = () => {
-    const token = window.sessionStorage.getItem('token')
-    axios.get(`${URLBASE}/profile`, { headers: { Authorization: `Bearer ${token}` } })
-      .then((response) => {
-        const { id, first_name: firstName, last_name: lastName, phone_number: phoneNumber, photo_url: photoUrl, address, email } = response.data.message[0]
-        fnActiveUser({ id, firstName, lastName, phoneNumber, photoUrl, address, email })
-      })
-      .catch(({ response: { data } }) => {
-        console.error(data)
-        navigate('/register')
-      })
-  }
-
-  useEffect(getUserData, [])
   useEffect(() => {
-    if (!isAuthenticated) {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+    } else {
       navigate('/register')
     }
-  }, [])
+  }, [isAuthenticated])
+
+  useEffect(getUserData, [])
 
   return (
     <Container className='py-5'>

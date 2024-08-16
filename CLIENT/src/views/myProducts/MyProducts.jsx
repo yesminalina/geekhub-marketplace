@@ -25,7 +25,7 @@ const MyProducts = () => {
   })
   const [userProducts, setUserProducts] = useState([])
 
-  const { isAuthenticated, activeUser } = useContext(UserContext)
+  const { isAuthenticated, activeUser, fnIsAuthenticated, getUserData } = useContext(UserContext)
   const { products, createProduct } = useContext(ProductsContext)
   const { removeNotify } = useContext(CartContext)
   const navigate = useNavigate()
@@ -33,10 +33,13 @@ const MyProducts = () => {
   const token = window.sessionStorage.getItem('token')
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+    } else {
       navigate('/register')
     }
-  }, [])
+  }, [isAuthenticated])
 
   const handleChange = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value })
@@ -68,14 +71,14 @@ const MyProducts = () => {
     }
   }
 
+  useEffect(() => {
+    getUserData()
+  }, [])
+
   const getUserProducts = async () => {
     const response = await axios.get(`${URLBASE}/my-products/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
     setUserProducts(response.data.message)
   }
-
-  useEffect(() => {
-    getUserProducts()
-  }, [products])
 
   const handleDelete = async (productId) => {
     removeNotify()
@@ -89,6 +92,13 @@ const MyProducts = () => {
       getUserProducts()
     })
   }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getUserProducts()
+    }
+  }, [products, activeUser])
+
   const inputStyle = {
     height: `${(inputValueDescription.length + 1) * 0.5}px`,
     transition: 'height 0.4s ease-in-out'

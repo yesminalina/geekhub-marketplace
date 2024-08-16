@@ -14,7 +14,7 @@ const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 const Navigation = () => {
   const [search, setSearch] = useState('')
   const { cart, fnCart } = useContext(CartContext)
-  const { isAuthenticated, fnIsAuthenticated } = useContext(UserContext)
+  const { isAuthenticated, fnIsAuthenticated, fnActiveUser } = useContext(UserContext)
   const { products } = useContext(ProductsContext)
 
   const handleSearch = (e) => {
@@ -41,6 +41,8 @@ const Navigation = () => {
   const handleLogout = () => {
     window.sessionStorage.removeItem('token')
     fnIsAuthenticated(false)
+    fnActiveUser({})
+    fnCart([])
   }
 
   const quantity = cart.map((product) => (

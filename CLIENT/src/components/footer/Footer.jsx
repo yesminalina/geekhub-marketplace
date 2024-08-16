@@ -7,6 +7,7 @@ import logo from '../../assets/img/logo-white.png'
 import { useContext } from 'react'
 import { ProductsContext } from '../../context/ProductsContext'
 import handleConditions from '../termsAndConditions/termsAndConditions.js'
+import { UserContext } from '../../context/UserContext.jsx'
 
 const instaLogo = <FontAwesomeIcon icon={faInstagram} size='2xl' />
 const xtwitterLogo = <FontAwesomeIcon icon={faXTwitter} size='2xl' />
@@ -15,12 +16,22 @@ const map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22650034.7308
 
 const Footer = () => {
   const { products, fnFilterProducts } = useContext(ProductsContext)
+  const { isAuthenticated } = useContext(UserContext)
   const navigate = useNavigate()
 
   const handleFilterLink = (e) => {
     const result = products.filter((product) => product.category.toLowerCase().includes(e.target.name.toLowerCase()))
     fnFilterProducts(result)
     navigate('/catalogue')
+    e.preventDefault()
+  }
+
+  const handleClick = (e) => {
+    if (!isAuthenticated) {
+      navigate('/register')
+    } else {
+      navigate('/my-products')
+    }
     e.preventDefault()
   }
 
@@ -44,7 +55,7 @@ const Footer = () => {
           </article>
           <article className='d-flex flex-column'>
             <h5>Vende</h5>
-            <NavLink to='/my-products' className='footerlink'>Publica un producto</NavLink>
+            <NavLink className='footerlink' onClick={handleClick}>Publica un producto</NavLink>
           </article>
         </Col>
         <Col xs={3} className='d-flex flex-column justify-content-between'>

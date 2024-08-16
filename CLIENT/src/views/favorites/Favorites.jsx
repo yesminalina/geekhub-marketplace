@@ -9,11 +9,16 @@ import { useNavigate } from 'react-router-dom'
 const Favorites = () => {
   const navigate = useNavigate()
   const { liked, getFavorites } = useContext(ProductsContext)
-  const { activeUser } = useContext(UserContext)
+  const { activeUser, getUserData, isAuthenticated } = useContext(UserContext)
 
   useEffect(() => {
-    getFavorites(activeUser.id)
-  }, [])
+    if (isAuthenticated) {
+      getFavorites(activeUser.id)
+      getUserData()
+    } else {
+      navigate('/register')
+    }
+  }, [activeUser])
 
   return (
     <div className='fav'>

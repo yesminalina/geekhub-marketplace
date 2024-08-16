@@ -13,7 +13,7 @@ const ProductsContextProvider = ({ children }) => {
   const [liked, setLiked] = useState([])
 
   const { activeUser } = useContext(UserContext)
-  const userId = activeUser.id
+  const userId = activeUser.id ?? ''
 
   const getProducts = () => {
     axios.get(`${URLBASE}/catalogue`)

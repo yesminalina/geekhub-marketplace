@@ -1,6 +1,7 @@
 import './Register.css'
 import { Card, Button, Col, Form, Row } from 'react-bootstrap'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -16,6 +17,7 @@ const Register = () => {
     password: '',
     email: ''
   })
+  const { isAuthenticated, fnIsAuthenticated } = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -55,6 +57,14 @@ const Register = () => {
       })
     }
   }
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+      navigate('/profile')
+    }
+  }, [isAuthenticated])
 
   return (
     <div className='principal-register'>

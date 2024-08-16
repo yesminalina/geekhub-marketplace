@@ -19,7 +19,7 @@ const ProductDetails = () => {
   const { id } = useParams()
   const productId = +id
   const { getFavorites } = useContext(ProductsContext)
-  const { activeUser } = useContext(UserContext)
+  const { activeUser, fnIsAuthenticated, isAuthenticated } = useContext(UserContext)
   const { addToCart } = useContext(CartContext)
   const [product, setProduct] = useState({
     title: '',
@@ -55,6 +55,13 @@ const ProductDetails = () => {
       }
     })
   }
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('token')
+    if (token) {
+      fnIsAuthenticated(true)
+    }
+  }, [isAuthenticated])
 
   useEffect(() => {
     getProductDetails()

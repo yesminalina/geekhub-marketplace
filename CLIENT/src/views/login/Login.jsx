@@ -14,7 +14,7 @@ const Login = () => {
   })
 
   const navigate = useNavigate()
-  const { fnIsAuthenticated } = useContext(UserContext)
+  const { fnIsAuthenticated, isAuthenticated } = useContext(UserContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -45,8 +45,9 @@ const Login = () => {
     const token = window.sessionStorage.getItem('token')
     if (token) {
       fnIsAuthenticated(true)
+      navigate('/profile')
     }
-  }, [])
+  }, [isAuthenticated])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
