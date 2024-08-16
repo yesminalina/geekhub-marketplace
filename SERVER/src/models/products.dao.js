@@ -1,7 +1,7 @@
 import format from 'pg-format'
 import db from '../database/db.js'
 
-export const findProducts = ({ limit = 15, order_by: orderBy = 'id_ASC', page = 0, category, title }) => {
+export const findProducts = ({ limit, order_by: orderBy = 'id_ASC', page = 0, category, title }) => {
   let query = 'SELECT * FROM products'
   const filters = []
   const values = []

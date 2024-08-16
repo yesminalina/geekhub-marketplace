@@ -52,9 +52,8 @@ const MyProducts = () => {
   const handleCreate = async (e) => {
     e.preventDefault()
     const product = { ...inputValue, category, description: inputValueDescription, userId }
-    console.log(product)
-    const { title, price, stock, imageUrl } = inputValue
-    if (title === '' || price === '' || stock === '' || imageUrl === '') {
+    const { title, price, stock, imageUrl, description } = inputValue
+    if (title === '' || price === '' || stock === '' || imageUrl === '' || category === '' || description === '') {
       Swal.fire({
         position: 'center',
         icon: 'error',
