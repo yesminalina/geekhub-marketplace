@@ -8,7 +8,7 @@ import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
-const StarRating = ({ totalStars = 5, id: productId }) => {
+const StarRating = ({ totalStars = 5, productId }) => {
   const [rating, setRating] = useState(0)
   const [ratingUser, setRatingUser] = useState(null)
   const { activeUser } = useContext(UserContext)

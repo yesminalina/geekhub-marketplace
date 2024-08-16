@@ -72,12 +72,12 @@ const Navigation = () => {
             </Navbar.Brand>
           </Container>
           <Container className='secondContainer'>
-            <Navbar.Toggle aria-controls='navbarScroll' />
-            <div id='navbarScroll'>
-              <Form className='d-flex w-100'>
-                <Form.Control type='text' placeholder='Busca un producto' className='mr-sm-2 me-sm-2 w-100' aria-label='Search' value={search} onChange={handleSearch} />
-                <Button className='search-btn' bsPrefix='custom-btn' onClick={handleFilter}>Buscar</Button>
-              </Form>
+            <Form className='d-flex w-100'>
+              <Form.Control type='text' placeholder='Busca un producto' className='mr-sm-2 me-sm-2 w-100' aria-label='Search' value={search} onChange={handleSearch} />
+              <Button className='search-btn' bsPrefix='custom-btn' onClick={handleFilter}>Buscar</Button>
+            </Form>
+            <Navbar.Toggle className='my-2' aria-controls='navbarScroll' />
+            <Navbar.Collapse id='navbarScroll'>
               <Nav className='linksContainer me-auto my-2 my-lg-0' style={{ maxHeight: '100px' }} navbarScroll>
                 <NavLink to='/' className='navlinks'>Inicio</NavLink>
                 <NavLink to='/catalogue' className='navlinks'>Tienda</NavLink>
@@ -91,7 +91,7 @@ const Navigation = () => {
                 <NavLink to='/about-us' className='navlinks'>Sobre Nosotros</NavLink>
                 <NavLink to='https://chat.whatsapp.com/CGobfcrDWaKFOF8pRffIRI' target='_blank' className='navlinks'>Contacto</NavLink>
               </Nav>
-            </div>
+            </Navbar.Collapse>
           </Container>
           {isAuthenticated
             ? <Container className='thirdContainer'>
