@@ -63,7 +63,7 @@ const Footer = () => {
             <h5>Ayuda</h5>
             <NavLink>Preguntas Frecuentes</NavLink>
             <NavLink>Servicio al cliente</NavLink>
-            <NavLink>Contáctanos</NavLink>
+            <NavLink to='https://chat.whatsapp.com/CGobfcrDWaKFOF8pRffIRI' target='_blank' className='navlinks'>Contáctanos</NavLink>
           </div>
           <div className='d-flex flex-column'>
             <NavLink onClick={handleConditions}>Términos y condiciones</NavLink>
@@ -74,9 +74,9 @@ const Footer = () => {
           <article className='d-flex flex-column'>
             <p>Síguenos</p>
             <div>
-              <i className='pe-2'>{instaLogo}</i>
-              <i className='pe-2'>{xtwitterLogo}</i>
-              <i className='pe-2'>{facebookLogo}</i>
+              <NavLink to='https://www.instagram.com/geekhubg51/' target='_blank' className='navlinks'><i className='pe-2'>{instaLogo}</i></NavLink>
+              <NavLink to='https://x.com/geekhubg51' target='_blank' className='navlinks'><i className='pe-2'>{xtwitterLogo}</i></NavLink>
+              <NavLink to='https://www.facebook.com/profile.php?id=61564609434017' target='_blank' className='navlinks'><i className='pe-2'>{facebookLogo}</i></NavLink>
             </div>
           </article>
         </Col>
