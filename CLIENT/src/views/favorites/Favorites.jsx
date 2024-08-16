@@ -12,9 +12,12 @@ const Favorites = () => {
   const { activeUser, getUserData, isAuthenticated } = useContext(UserContext)
 
   useEffect(() => {
+    getUserData()
+  }, [])
+
+  useEffect(() => {
     if (isAuthenticated) {
       getFavorites(activeUser.id)
-      getUserData()
     } else {
       navigate('/register')
     }
