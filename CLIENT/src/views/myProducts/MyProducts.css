@@ -20,12 +20,17 @@
 
 #products {
     width: 30rem;
-    height: fit-content;
+    height: 40rem;
     overflow-y:scroll;
     box-sizing: border-box;
     margin: 2rem 0 0 0;
     display: flex;
     padding: 0;
+    background-color: #E0AED0;
+    border: 3px solid #4230a9;
+    border-radius: 5px;
+    box-shadow: 1px 5px 15px #1e0e3e;
+    color: #4230a9;
 }
 
 #separator {
@@ -33,16 +38,13 @@
 }
 
 .product {
-    background-color: #E0AED0;
     height: 43rem;
-    border: 3px solid #4230a9;
-    box-shadow: 1px 5px 15px #1e0e3e;
 }
 
 #product {
     background-color: rgb(255, 255, 255);
     width: 27rem;
-    height: 15rem;
+    height: 18rem;
     margin: 1rem;
     padding: 0 5px 0 5px;
 }
@@ -73,10 +75,15 @@
     display: flex;
     justify-content: end;
     align-items: center;
-
 }
 
 .interaction {
+    color: #4230a9;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+.interaction:hover {
     color: #4230a9;
     background-color: rgba(255, 255, 255, 0);
     border: none;
@@ -132,4 +139,24 @@
 
 .formRow3 {
     height: 48px;
+}
+
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #756AB6 #FFE5E5; 
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #756AB6;
+    border-radius: 10px;
+    border: 2px solid #FFE5E5;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #FFE5E5;
+    border-radius: 10px;
 }
