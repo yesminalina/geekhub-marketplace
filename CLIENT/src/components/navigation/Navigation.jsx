@@ -8,6 +8,7 @@ import { useContext, useState, useEffect } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { UserContext } from '../../context/UserContext'
 import { ProductsContext } from '../../context/ProductsContext'
+import Swal from 'sweetalert2'
 
 const cartLogo = <FontAwesomeIcon icon={faCartShopping} size='xl' />
 
@@ -45,6 +46,21 @@ const Navigation = () => {
     fnCart([])
   }
 
+  const toRegister = () => {
+    Swal.fire({
+      title: 'Para ver el carrito debes iniciar sesión o registrarte',
+      showCancelButton: true,
+      confirmButtonColor: '#756AB6',
+      cancelButtonColor: '#E0AED0',
+      confirmButtonText: 'Registrate',
+      cancelButtonText: 'Quedarme aquí'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/register')
+      }
+    })
+  }
+
   const quantity = cart.map((product) => (
     product.qty
   ))
@@ -74,7 +90,7 @@ const Navigation = () => {
             </Navbar.Brand>
           </Container>
           <Container className='secondContainer'>
-            <Form className='d-flex w-100'>
+            <Form className='d-flex w-100' onSubmit={handleFilter}>
               <Form.Control type='text' placeholder='Busca un producto' className='mr-sm-2 me-sm-2 w-100' aria-label='Search' value={search} onChange={handleSearch} />
               <Button className='search-btn' bsPrefix='custom-btn' onClick={handleFilter}>Buscar</Button>
             </Form>
@@ -104,7 +120,7 @@ const Navigation = () => {
             : <Container className='thirdContainer'>
               <NavLink to='/register' className='navlinks'>Registrar</NavLink>
               <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
-              <NavLink to='/register' className='cart'>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink>
+              <NavLink className='cart' onClick={toRegister}>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink>
             </Container>}
         </Container>
       </Navbar>
