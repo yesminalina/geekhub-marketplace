@@ -35,26 +35,27 @@ const Register = () => {
     if (form.checkValidity() === false) {
       e.preventDefault()
       e.stopPropagation()
-    }
-    setValidated(true)
-    try {
-      await axios.post(`${URLBASE}/register`, user)
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Usuario registrado Exitosamente 😊',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      navigate('/login')
-    } catch (error) {
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Este usuario ya existe',
-        showConfirmButton: false,
-        timer: 1500
-      })
+      setValidated(true)
+    } else {
+      try {
+        await axios.post(`${URLBASE}/register`, user)
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Usuario registrado Exitosamente 😊',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        navigate('/login')
+      } catch (error) {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Este usuario ya existe',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
     }
   }
 
@@ -101,12 +102,12 @@ const Register = () => {
           </Row>
           <Form.Group className='mb-3' controlId='formBasicEmail'>
             <Form.Label>Correo Electrónico</Form.Label>
-            <Form.Control type='email' name='email' placeholder='tucorreo@mail.com' onChange={handleChange} />
+            <Form.Control type='email' name='email' placeholder='tucorreo@mail.com' onChange={handleChange} required />
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='formBasicPassword'>
             <Form.Label>Password</Form.Label>
-            <Form.Control type='password' name='password' placeholder='Password' onChange={handleChange} />
+            <Form.Control type='password' name='password' placeholder='Password' onChange={handleChange} required />
           </Form.Group>
           <Form.Group className='mb-3'>
             <Form.Check
