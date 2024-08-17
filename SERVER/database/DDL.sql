@@ -32,7 +32,7 @@ id              SERIAL          NOT NULL,
 user_id         INT             NOT NULL,
 product_id      INT             NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
@@ -42,6 +42,6 @@ user_id         INT             NOT NULL,
 product_id      INT             NOT NULL,
 score           INT             NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
