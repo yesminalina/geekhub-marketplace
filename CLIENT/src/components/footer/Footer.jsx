@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faXTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import logo from '../../assets/img/logo-white.png'
 import { useContext } from 'react'
-import { ProductsContext } from '../../context/ProductsContext'
 import handleConditions from '../termsAndConditions/termsAndConditions.js'
 import handlePolitics from '../politics/politics.js'
 import handleFaq from '../faq/faq.js'
 import { UserContext } from '../../context/UserContext.jsx'
+import Swal from 'sweetalert2'
 
 const instaLogo = <FontAwesomeIcon icon={faInstagram} size='2xl' />
 const xtwitterLogo = <FontAwesomeIcon icon={faXTwitter} size='2xl' />
@@ -17,20 +17,33 @@ const facebookLogo = <FontAwesomeIcon icon={faFacebook} size='2xl' />
 const map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22650034.730859995!2d0!3d-69.72697362493312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa4b9967b3390754b%3A0x6e52be1f740f2075!2sAnt%C3%A1rtida!5e0!3m2!1ses!2scl!4v1721459642136!5m2!1ses!2scl'
 
 const Footer = () => {
-  const { products, fnFilterProducts } = useContext(ProductsContext)
   const { isAuthenticated } = useContext(UserContext)
   const navigate = useNavigate()
 
   const handleFilterLink = (e) => {
-    const result = products.filter((product) => product.category.toLowerCase().includes(e.target.name.toLowerCase()))
-    fnFilterProducts(result)
-    navigate('/catalogue')
     e.preventDefault()
+    const category = e.target.name.toLowerCase()
+    navigate(`/catalogue/?category=${category}`)
+  }
+
+  const toRegister = () => {
+    Swal.fire({
+      title: 'Para ver el carrito debes iniciar sesión o registrarte',
+      showCancelButton: true,
+      confirmButtonColor: '#756AB6',
+      cancelButtonColor: '#E0AED0',
+      confirmButtonText: 'Registrate',
+      cancelButtonText: 'Quedarme aquí'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/register')
+      }
+    })
   }
 
   const handleClick = (e) => {
     if (!isAuthenticated) {
-      navigate('/register')
+      toRegister()
     } else {
       navigate('/my-products')
     }
