@@ -41,6 +41,10 @@ const MyProducts = () => {
     }
   }, [isAuthenticated])
 
+  useEffect(() => {
+    getUserData()
+  }, [])
+
   const handleChange = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value })
   }
@@ -71,10 +75,6 @@ const MyProducts = () => {
     }
   }
 
-  useEffect(() => {
-    getUserData()
-  }, [])
-
   const getUserProducts = async () => {
     const response = await axios.get(`${URLBASE}/my-products/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
     setUserProducts(response.data.message)
@@ -93,11 +93,12 @@ const MyProducts = () => {
     })
   }
 
+  // Faltaba poner userProducts en el array
   useEffect(() => {
     if (isAuthenticated) {
       getUserProducts()
     }
-  }, [products, activeUser])
+  }, [userProducts, products, activeUser])
 
   const inputStyle = {
     height: `${(inputValueDescription.length + 1) * 0.5}px`,
