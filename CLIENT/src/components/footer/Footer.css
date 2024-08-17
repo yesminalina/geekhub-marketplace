@@ -18,3 +18,8 @@ a.active {
 .footerlink {
     color: #FFE5E5;
 }
+
+a {
+    text-decoration: none;
+    color: #FFE5E5;
+}

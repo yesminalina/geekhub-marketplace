@@ -7,6 +7,8 @@ import logo from '../../assets/img/logo-white.png'
 import { useContext } from 'react'
 import { ProductsContext } from '../../context/ProductsContext'
 import handleConditions from '../termsAndConditions/termsAndConditions.js'
+import handlePolitics from '../politics/politics.js'
+import handleFaq from '../faq/faq.js'
 import { UserContext } from '../../context/UserContext.jsx'
 
 const instaLogo = <FontAwesomeIcon icon={faInstagram} size='2xl' />
@@ -38,13 +40,13 @@ const Footer = () => {
   return (
     <Container fluid className='principalfooter py-4 px-4'>
       <Row>
-        <Col xs={4}>
+        <Col md={12} lg={4}>
           <div className='d-flex flex-column'>
             <img src={logo} className='logo-img' />
             <iframe src={map} style={{ border: 0, width: '350px', height: '200px' }} loading='lazy' referrerPolicy='no-referrer-when-downgrade' className='rounded-1'> </iframe>
           </div>
         </Col>
-        <Col xs={3} className='d-flex flex-column justify-content-between'>
+        <Col md={12} lg={3} className='d-flex flex-column justify-content-between'>
           <article className='d-flex flex-column justify-content-between pb-2'>
             <h5>Categorías</h5>
             <NavLink className='mb-1' name='Juegos de Mesa' onClick={handleFilterLink}>Juegos de Mesa</NavLink>
@@ -58,19 +60,19 @@ const Footer = () => {
             <NavLink className='footerlink' onClick={handleClick}>Publica un producto</NavLink>
           </article>
         </Col>
-        <Col xs={3} className='d-flex flex-column justify-content-between'>
+        <Col md={12} lg={3} className='d-flex flex-column justify-content-between'>
           <div className='d-flex flex-column'>
             <h5>Ayuda</h5>
-            <NavLink>Preguntas Frecuentes</NavLink>
-            <NavLink>Servicio al cliente</NavLink>
+            <NavLink onClick={handleFaq}>Preguntas Frecuentes</NavLink>
+            <a href='mailto: info@geekhub.com'>info@geekhub.com</a>
             <NavLink to='https://chat.whatsapp.com/CGobfcrDWaKFOF8pRffIRI' target='_blank' className='navlinks'>Contáctanos</NavLink>
           </div>
           <div className='d-flex flex-column'>
             <NavLink onClick={handleConditions}>Términos y condiciones</NavLink>
-            <NavLink>Política de privacidad</NavLink>
+            <NavLink onClick={handlePolitics}>Política de privacidad</NavLink>
           </div>
         </Col>
-        <Col xs={2} className='d-flex flex-column justify-content-end'>
+        <Col md={12} lg={2} className='d-flex flex-column justify-content-end'>
           <article className='d-flex flex-column'>
             <p>Síguenos</p>
             <div>
