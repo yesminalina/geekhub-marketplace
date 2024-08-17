@@ -65,10 +65,6 @@ const Catalogue = () => {
     }))
   }
 
-  // useEffect(() => {
-  //   getUserData()
-  // }, [])
-
   useEffect(() => {
     const token = window.sessionStorage.getItem('token')
     if (token) {
@@ -115,7 +111,7 @@ const Catalogue = () => {
                 <div className='likeBtn'>
                   <LikeButton userId={userId} productId={id} />
                 </div>
-                <div onClick={() => navigate(`/product-details/${id}`)} style={{ backgroundImage: `url(${imageUrl})` }} className='producto'>
+                <div onClick={() => navigate(`/product-details/${id}`)} style={{ backgroundImage: `url(${imageUrl})` }} className='productCard'>
                   <p>{title}</p>
                   <h6><Badge bg='dark'>Precio: ${(price).toLocaleString('es-CL')}</Badge></h6>
                 </div>
