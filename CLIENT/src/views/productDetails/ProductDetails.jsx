@@ -24,11 +24,10 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({
     title: '',
     description: '',
-    // stock: '',
+    stock: '',
     price: '',
     imageUrl: '',
-    score: 0,
-    liked: false
+    score: 0
   })
 
   const userId = activeUser.id
