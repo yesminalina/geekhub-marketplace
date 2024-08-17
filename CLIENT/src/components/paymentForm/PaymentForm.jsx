@@ -70,13 +70,13 @@ const PaymentForm = () => {
       <Form.Label>Fecha de vencimiento</Form.Label>
       <Row className='mb-3'>
         <Col xs={2}>
-          <Form.Control type='number' name='cardDay' placeholder='15' onChange={handleChange} />
+          <Form.Control type='number' name='cardDay' placeholder='15' onChange={handleChange} min='1' max='31' />
         </Col>
         <Col xs={6}>
-          <Form.Control type='number' name='cardMonth' placeholder='November' onChange={handleChange} />
+          <Form.Control type='number' name='cardMonth' placeholder='11' onChange={handleChange} min='1' max='12' />
         </Col>
         <Col xs={4}>
-          <Form.Control type='number' name='cardYear' placeholder='2027' onChange={handleChange} />
+          <Form.Control type='number' name='cardYear' placeholder='2027' onChange={handleChange} min='2024' />
         </Col>
       </Row>
       <Button variant='primary' type='submit' size='lg' className='w-100 mt-2' onClick={thanks}>Pagar</Button>

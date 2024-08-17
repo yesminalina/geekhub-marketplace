@@ -22,7 +22,6 @@ const Navigation = () => {
     setSearch(e.target.value)
   }
 
-  // Handles search button
   const navigate = useNavigate()
 
   const handleFilter = (e) => {
@@ -31,14 +30,12 @@ const Navigation = () => {
     navigate(`/catalogue/?searchQuery=${searchQuery}`)
   }
 
-  // Handles links to catalogue filtered by category
   const handleFilterLink = (e) => {
     e.preventDefault()
     const category = e.target.name.toLowerCase()
     navigate(`/catalogue/?category=${category}`)
   }
 
-  // Logout
   const handleLogout = () => {
     window.sessionStorage.removeItem('token')
     fnIsAuthenticated(false)
