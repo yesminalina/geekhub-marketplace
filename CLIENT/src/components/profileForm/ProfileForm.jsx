@@ -2,6 +2,7 @@ import './ProfileForm.css'
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
+import { CartContext } from '../../context/CartContext'
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap'
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -13,6 +14,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
   const id = activeUser.id
 
   const { fnIsAuthenticated } = useContext(UserContext)
+  const { fnCart } = useContext(CartContext)
 
   const navigate = useNavigate()
   const token = window.sessionStorage.getItem('token')
@@ -81,6 +83,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
         axios.delete(`${URLBASE}/profile/${id}`, { headers: { Authorization: `Bearer ${token}` } })
         window.sessionStorage.removeItem('token')
         fnIsAuthenticated(false)
+        fnCart([])
         navigate('/')
         Swal.fire({
           title: 'Usuario eliminado con éxito'
@@ -142,7 +145,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
             </Col>
             <Col>
               <Form.Label>Contraseña</Form.Label>
-              <Form.Control name='password' placeholder='********' onChange={handleChange} />
+              <Form.Control name='password' placeholder='********' type='password' onChange={handleChange} />
             </Col>
           </Row>
           <Row className='mb-3'>
