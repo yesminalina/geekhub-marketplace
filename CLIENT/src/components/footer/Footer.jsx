@@ -28,7 +28,7 @@ const Footer = () => {
 
   const toRegister = () => {
     Swal.fire({
-      title: 'Para ver el carrito debes iniciar sesión o registrarte',
+      title: 'Para publicar un producto debes iniciar sesión o registrarte',
       showCancelButton: true,
       confirmButtonColor: '#756AB6',
       cancelButtonColor: '#E0AED0',
