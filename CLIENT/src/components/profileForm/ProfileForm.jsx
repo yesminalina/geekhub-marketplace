@@ -13,7 +13,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
   const [photo, setPhoto] = useState('')
   const id = activeUser.id
 
-  const { fnIsAuthenticated } = useContext(UserContext)
+  const { fnIsAuthenticated, fnActiveUser } = useContext(UserContext)
   const { fnCart } = useContext(CartContext)
 
   const navigate = useNavigate()
@@ -84,6 +84,7 @@ const ProfileForm = ({ activeUser, getUserData }) => {
         window.sessionStorage.removeItem('token')
         fnIsAuthenticated(false)
         fnCart([])
+        fnActiveUser({})
         navigate('/')
         Swal.fire({
           title: 'Usuario eliminado con éxito'
