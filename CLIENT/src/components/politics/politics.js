@@ -2,7 +2,6 @@ import Swal from 'sweetalert2'
 
 const politics = () => {
   Swal.fire({
-    title: 'Términos y Condiciones',
     html: `
         <body>
     <h1>Política de Privacidad</h1>
