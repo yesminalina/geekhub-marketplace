@@ -21,38 +21,40 @@ const Header = () => {
   }
 
   return (
-    <Carousel fade>
-      <Carousel.Item interval={2200}>
-        <img src={catBoard} alt='img1' name='Juegos de Mesa' onClick={handleFilterLink} />
-        <Carousel.Caption>
-          <h3>Juegos de Mesa</h3>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={2200}>
-        <img src={catTCG} alt='img2' name='TCG' onClick={handleFilterLink} />
-        <Carousel.Caption>
-          <h3>TCG</h3>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={2200}>
-        <img src={catFigures} alt='img3' name='Figuras Coleccionables' onClick={handleFilterLink} />
-        <Carousel.Caption>
-          <h3>Figuras Coleccionables</h3>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={2200}>
-        <img src={catComics} alt='img4' name='Mangas y Cómics' onClick={handleFilterLink} />
-        <Carousel.Caption>
-          <h3>Mangas y Cómics</h3>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={2200}>
-        <img src={catAlbums} alt='img5' name='Álbumes y Láminas' onClick={handleFilterLink} />
-        <Carousel.Caption>
-          <h3>Álbumes y Láminas</h3>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+    <div className='header-carousel'>
+      <Carousel fade>
+        <Carousel.Item interval={2200}>
+          <img className='slide-img' src={catBoard} alt='img1' name='Juegos de Mesa' onClick={handleFilterLink} />
+          <Carousel.Caption>
+            <h3>Juegos de Mesa</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2200}>
+          <img className='slide-img' src={catTCG} alt='img2' name='TCG' onClick={handleFilterLink} />
+          <Carousel.Caption>
+            <h3>TCG</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2200}>
+          <img className='slide-img' src={catFigures} alt='img3' name='Figuras Coleccionables' onClick={handleFilterLink} />
+          <Carousel.Caption>
+            <h3>Figuras Coleccionables</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2200}>
+          <img className='slide-img' src={catComics} alt='img4' name='Mangas y Cómics' onClick={handleFilterLink} />
+          <Carousel.Caption>
+            <h3>Mangas y Cómics</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2200}>
+          <img className='slide-img' src={catAlbums} alt='img5' name='Álbumes y Láminas' onClick={handleFilterLink} />
+          <Carousel.Caption>
+            <h3>Álbumes y Láminas</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+    </div>
   )
 }
 
