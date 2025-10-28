@@ -6,7 +6,7 @@
   * password: 1234
 
 # link Deploy
-* https://geekhub-frontend.onrender.com/#/
+* https://geekhub-marketplace.onrender.com
 
 ### Autores:
 * Alejandro Stuardo
