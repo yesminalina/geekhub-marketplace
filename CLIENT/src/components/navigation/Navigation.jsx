@@ -104,7 +104,7 @@ const Navigation = () => {
                   <NavDropdown.Item as={Link} to='albums&laminas' className='navdropitem' name='Álbumes y Láminas' onClick={handleFilterLink}>Álbumes y Láminas</NavDropdown.Item>
                 </NavDropdown>
                 <NavLink to='/about-us' className='navlinks'>Sobre Nosotros</NavLink>
-                <NavLink to='https://chat.whatsapp.com/CGobfcrDWaKFOF8pRffIRI' target='_blank' className='navlinks'>Contacto</NavLink>
+                {/* <NavLink to='https://chat.whatsapp.com/CGobfcrDWaKFOF8pRffIRI' target='_blank' className='navlinks'>Contacto</NavLink> */}
               </Nav>
             </Navbar.Collapse>
           </Container>
