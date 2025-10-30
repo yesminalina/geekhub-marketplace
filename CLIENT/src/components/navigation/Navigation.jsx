@@ -43,20 +43,22 @@ const Navigation = () => {
     fnCart([])
   }
 
-  const toRegister = () => {
-    Swal.fire({
-      title: 'Para ver el carrito debes iniciar sesión o registrarte',
-      showCancelButton: true,
-      confirmButtonColor: '#756AB6',
-      cancelButtonColor: '#E0AED0',
-      confirmButtonText: 'Registrate',
-      cancelButtonText: 'Quedarme aquí'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate('/register')
-      }
-    })
-  }
+  // Se comenta esta función para permitir que usuarios no autenticados vean el carrito
+
+  // const toRegister = () => {
+  //   Swal.fire({
+  //     title: 'Para ver el carrito debes iniciar sesión o registrarte',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#756AB6',
+  //     cancelButtonColor: '#E0AED0',
+  //     confirmButtonText: 'Registrate',
+  //     cancelButtonText: 'Quedarme aquí'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       navigate('/register')
+  //     }
+  //   })
+  // }
 
   const quantity = cart.map((product) => (
     product.qty
@@ -117,7 +119,8 @@ const Navigation = () => {
             : <Container className='thirdContainer'>
               <NavLink to='/register' className='navlinks'>Registrar</NavLink>
               <NavLink to='/login' className='navlinks'>Iniciar Sesión</NavLink>
-              <NavLink className='cart' onClick={toRegister}>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink>
+              <NavLink to='/cart' className='cart'>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink>
+              {/* <NavLink className='cart' onClick={toRegister}>{cantidad > 0 ? cantidad : ''}{cartLogo}</NavLink> */}
             </Container>}
         </Container>
       </Navbar>

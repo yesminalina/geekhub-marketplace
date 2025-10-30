@@ -71,14 +71,25 @@ const ProductDetails = () => {
   }, [])
 
   const { title, description, stock, price, image_url: imageUrl } = product
-  const handleCart = (product) => {
-    if (userId) {
-      addToCart(product)
-      navigate('/cart')
-    } else {
-      addToCart(product)
-      toRegister()
-    }
+  // se comenta esta función para permitir agregar al carrito sin estar autenticado
+  // const handleCart = (product) => {
+  //   if (userId) {
+  //     addToCart(product)
+  //     navigate('/cart')
+  //   } else {
+  //     addToCart(product)
+  //     toRegister()
+  //   }
+  // }
+
+  const handleNavigate = () => {
+    navigate('/cart')
+    // Se comenta esta parte para permitir agregar al carrito sin estar autenticado
+    // if (userId) {
+    //   navigate('/cart')
+    // } else {
+    //   toRegister()
+    // }
   }
 
   return (
@@ -92,7 +103,7 @@ const ProductDetails = () => {
             <Col md={6} className='details'>
               <section className='icons'>
                 <LikeButton userId={userId} productId={productId} />
-                <div className='action' onClick={() => { handleCart(product) }}>{add}
+                <div className='action' onClick={() => { addToCart(product); handleNavigate() }}>{add}
                 </div>
               </section>
               <Card.Title className='title-name'>{title}</Card.Title>
