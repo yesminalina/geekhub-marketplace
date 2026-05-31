@@ -4,7 +4,7 @@ import { ProductsContext } from '../../context/ProductsContext'
 import { CartContext } from '../../context/CartContext'
 import { UserContext } from '../../context/UserContext'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Container, Card, Button, Row, Col } from 'react-bootstrap'
+import { Container, Card, Button, Row, Col, Spinner } from 'react-bootstrap'
 import StarRating from '../../components/startRating/StarRating'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -21,6 +21,7 @@ const ProductDetails = () => {
   const { getFavorites } = useContext(ProductsContext)
   const { activeUser, fnIsAuthenticated, isAuthenticated } = useContext(UserContext)
   const { addToCart } = useContext(CartContext)
+  const [loading, setLoading] = useState(true)
   const [product, setProduct] = useState({
     title: '',
     description: '',
@@ -38,6 +39,7 @@ const ProductDetails = () => {
       .then((response) => {
         setProduct({ ...response.data.message[0], id: productId })
       })
+      .finally(() => setLoading(false))
   }
 
   const toRegister = () => {
@@ -69,6 +71,14 @@ const ProductDetails = () => {
   useEffect(() => {
     getFavorites(activeUser.id)
   }, [])
+
+  if (loading) {
+    return (
+      <Container className='pdcontainer py-5 justify-content-center'>
+        <Spinner animation='border' role='status' />
+      </Container>
+    )
+  }
 
   const { title, description, stock, price, image_url: imageUrl } = product
   // se comenta esta función para permitir agregar al carrito sin estar autenticado
